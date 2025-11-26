@@ -1,6 +1,5 @@
 {
-  "include": ["**/*.ts"],
-  "exclude": ["eslint.config.ts", "knip.config.ts", "vitest.config.ts", "node_modules"],
+  "include": ["vite.config.ts", "eslint.config.ts", "knip.config.ts"],
   "references": [
     { "path": "./tsconfig.build.json" },
     { "path": "./tsconfig.spec.json" }

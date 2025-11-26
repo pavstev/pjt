@@ -65,11 +65,7 @@ const config = defineConfig([
       parser: tseslint.parser,
       parserOptions: {
         projectService: {
-          allowDefaultProject: [
-            "eslint.config.ts",
-            "knip.config.ts",
-            "vitest.config.ts",
-          ],
+          allowDefaultProject: ["vitest.config.ts"],
         },
       },
     },
