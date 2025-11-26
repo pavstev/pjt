@@ -1,0 +1,25 @@
+# Source code
+src/
+
+# Tests
+*.test.ts
+*.spec.ts
+
+# Config files
+.gitignore
+.npmignore
+tsconfig.json
+vitest.config.ts
+
+# Development files
+.env
+
+# Project-specific files
+.opencode/
+.specify/
+specs/
+AGENTS.md
+pnpm-workspace.yaml
+
+# Include build output
+!dist/

@@ -1,0 +1,46 @@
+{
+  "extensions": {
+    "recommendations": [
+      "ms-vscode.vscode-typescript-next",
+      "esbenp.prettier-vscode",
+      "dbaeumer.vscode-eslint",
+      "christian-kohler.path-intellisense",
+      "ms-vscode.vscode-json"
+    ]
+  },
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "node_modules/": true,
+      "specs/": true,
+      ".specify/": true,
+      ".opencode/": true
+    },
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+      "*.ts": "${capture}.js, ${capture}.mjs, ${capture}.cjs, ${capture}.test.ts, ${capture}.spec.ts, ${capture}.e2e.ts, ${capture}.d.ts, ${capture}.stories.ts",
+      "*.json": "${capture}.jsonc, ${capture}.json5",
+      "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, .nvmrc, .npmrc, pnpm-workspace.yaml",
+      "tsconfig.json": "tsconfig.*.json, jsconfig.json",
+      "eslint.config.ts": "eslint.config.*.ts, eslint.config.mjs, eslint.config.cjs",
+      ".prettierrc*": "prettier.config.*.ts, prettier.config.mjs, prettier.config.cjs, .prettierignore",
+      "knip.config.ts": "knip.config.*.ts, knip.config.mjs, knip.config.cjs",
+      ".env": ".env.local, .env.production, .env.development, .env.test, .env.example",
+      ".gitignore": ".gitattributes, .gitmodules",
+      "README.md": "CHANGELOG.md, LICENSE, CONTRIBUTING.md, CODE_OF_CONDUCT.md, SECURITY.md",
+      "*.config.ts": "${capture}.config.*.ts, ${capture}.config.mjs, ${capture}.config.cjs"
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "typescript.suggest.autoImports": true,
+    "emmet.includeLanguages": {}
+  }
+}
