@@ -1,9 +1,25 @@
-import { execPromise } from "./utils";
+import { execPromise, validateGitCleanOptions } from "./utils";
+import { GitCleanOptions, GitError } from "../types";
+import { logger } from "./logger";
 
 export const gitClean = async (
-  exclude: string[] = [".env.local"],
+  options: GitCleanOptions = {},
 ): Promise<void> => {
-  const excludeArgs = exclude.map(e => `-e ${e}`).join(" ");
-  const command = `git clean -Xfd ${excludeArgs}`;
-  return execPromise(command);
+  validateGitCleanOptions(options);
+  try {
+    const { exclude = [".env.local"], dryRun = false } = options;
+    const excludeArgs = exclude.map(e => `-e ${e}`).join(" ");
+    const dryFlag = dryRun ? "--dry-run " : "";
+    const command = `git clean -Xfd ${dryFlag}${excludeArgs}`;
+    await execPromise(command);
+    logger.info("Git clean completed successfully");
+  } catch (error) {
+    if (
+      error instanceof Error &&
+      error.message.includes("Command execution failed")
+    ) {
+      throw new GitError("Git clean failed");
+    }
+    throw error;
+  }
 };

@@ -1,23 +1,23 @@
 #!/usr/bin/env node
 
-import { handlePackageJsonTools } from "./commands/package-json-tools";
-import { handleAiCommit } from "./commands/ai-commit";
-import { printHelp } from "./commands/help";
-import { printVersion } from "./commands/version";
+import { commands } from "./commands";
+import { handleError } from "./cli-utils";
 
 const main = async () => {
   const args = process.argv.slice(2);
+  const commandName = args.length === 0 ? "package-json-tools" : args[0];
 
-  if (args.length === 0 || args[0] === "package-json-tools") {
-    await handlePackageJsonTools();
-  } else if (args[0] === "--version" || args[0] === "-v") {
-    printVersion();
-  } else if (args[0] === "--help" || args[0] === "-h") {
-    printHelp();
-  } else if (args[0] === "ai-commit") {
-    await handleAiCommit();
+  const command = commands.find(cmd => cmd.name === commandName);
+
+  if (command) {
+    try {
+      await command.handler();
+    } catch (error) {
+      handleError(error);
+    }
   } else {
-    console.error(`Unknown command: ${args[0]}`);
+    console.error(`Unknown command: ${commandName}`);
+    console.error("Run --help for available commands");
     process.exit(1);
   }
 };
