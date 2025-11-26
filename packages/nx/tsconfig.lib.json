@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "outDir": "../../dist/packages/nx",
+    "declaration": true,
+    "types": ["node"]
+  },
+  "exclude": [
+    "jest.config.ts",
+    "jest.config.cts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
+  ],
+  "extends": "./tsconfig.json",
+  "include": ["src/**/*.ts"],
+  "references": [
+    {
+      "path": "../core/tsconfig.lib.json"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "autoupdate": "notify",
+  "username": "pavstev",
+  "tui": {
+    "diff_style": "stacked"
+  },
+  "experimental": {
+    "hook": {
+      "file_edited": {}
+    }
+  },
+  "instructions": ["packages/opencode/instructions/registry-system.md"],
+  "mcp": {
+    "Astro docs": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://mcp.docs.astro.build/mcp"
+    },
+    "cloudflare-browser": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://browser.mcp.cloudflare.com/mcp"
+    },
+    "cloudflare-workers-builds": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://builds.mcp.cloudflare.com/mcp"
+    },
+    "eslint": {
+      "command": ["npx", "-y", "@eslint/mcp@latest"],
+      "enabled": false,
+      "type": "local"
+    },
+    "everything": {
+      "command": ["npx", "-y", "@modelcontextprotocol/server-everything"],
+      "type": "local"
+    },
+    "lighthouse": {
+      "command": ["npx", "-y", "@danielsogl/lighthouse-mcp@latest"],
+      "enabled": false,
+      "type": "local"
+    },
+    "magicui": {
+      "command": ["npx", "-y", "@magicuidesign/mcp@latest"],
+      "enabled": false,
+      "type": "local"
+    },
+    "nx": {
+      "command": ["npx", "-y", "nx-mcp@latest"],
+      "enabled": true,
+      "type": "local"
+    },
+    "playwright": {
+      "command": ["npx", "@playwright/mcp@latest"],
+      "enabled": false,
+      "type": "local"
+    },
+    "shadcn": {
+      "command": ["npx", "shadcn@latest", "mcp"],
+      "enabled": false,
+      "type": "local"
+    }
+  },
+  "snapshot": false,
+  "theme": "github",
+  "watcher": {
+    "ignore": []
+  }
+}

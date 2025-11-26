@@ -1,0 +1,9 @@
+packages:
+  - "packages/*"
+  - "packages/opencode"
+
+dangerouslyAllowAllBuilds: true
+ignoreWorkspaceRootCheck: true
+engineStrict: true
+packageManagerStrictVersion: true
+sharedWorkspaceLockfile: true

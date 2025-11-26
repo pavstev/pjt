@@ -1,0 +1,39 @@
+{
+  "author": {
+    "name": "Stevan Pavlovic",
+    "email": "hi@stevanpavlovic.com",
+    "url": "https://stevanpavlovic.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/pavstev/pjt/issues"
+  },
+  "dependencies": {
+    "@pjt/core": "workspace:*",
+    "zod": "4.1.13"
+  },
+  "description": "Schemas for pjt",
+  "devDependencies": {
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "require": "./src/index.ts",
+      "types": "./src/index.ts"
+    },
+    "./json/*": "./src/json/*"
+  },
+  "files": ["./"],
+  "homepage": "https://pjt.stevanpavlovic.com",
+  "keywords": ["schemas", "pjt"],
+  "license": "MIT",
+  "main": "./src/index.ts",
+  "name": "@pjt/schemas",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavstev/pjt.git"
+  },
+  "types": "./src/index.ts",
+  "version": "1.0.0"
+}

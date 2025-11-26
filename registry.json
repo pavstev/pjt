@@ -1,0 +1,980 @@
+{
+  "$schema": "./registry.schema.json",
+  "categories": {
+    "core": {
+      "name": "Core Infrastructure",
+      "description": "Essential system components and infrastructure",
+      "priority": 10
+    },
+    "development": {
+      "name": "Development Tools",
+      "description": "Tools for software development and coding",
+      "priority": 9
+    },
+    "quality": {
+      "name": "Code Quality",
+      "description": "Linting, formatting, and code quality tools",
+      "priority": 8
+    },
+    "documentation": {
+      "name": "Documentation",
+      "description": "Documentation generation and maintenance",
+      "priority": 7
+    },
+    "deployment": {
+      "name": "Deployment & Release",
+      "description": "Build, deployment, and release management",
+      "priority": 6
+    },
+    "analysis": {
+      "name": "Analysis & Review",
+      "description": "Code analysis, review, and testing tools",
+      "priority": 5
+    },
+    "utilities": {
+      "name": "Utilities",
+      "description": "General utility tools and helpers",
+      "priority": 4
+    },
+    "design": {
+      "name": "Design & Creative",
+      "description": "Design tools and creative assistants",
+      "priority": 3
+    },
+    "automation": {
+      "name": "Automation",
+      "description": "Workflow automation and scripting",
+      "priority": 2
+    }
+  },
+  "components": {
+    "agents": [
+      {
+        "id": "openagent",
+        "name": "OpenAgent",
+        "type": "agent",
+        "path": "packages/opencode/agent/openagent.md",
+        "description": "Universal agent for answering queries, executing tasks, and coordinating workflows across any domain",
+        "tags": ["universal", "coordinator", "orchestrator", "workflow"],
+        "dependencies": [],
+        "category": "core"
+      },
+      {
+        "id": "opencoder",
+        "name": "OpenCoder",
+        "type": "agent",
+        "path": "packages/opencode/agent/opencoder.md",
+        "description": "Multi-language implementation agent for modular and functional development",
+        "tags": [
+          "coding",
+          "implementation",
+          "typescript",
+          "python",
+          "go",
+          "rust"
+        ],
+        "dependencies": [],
+        "category": "development"
+      },
+      {
+        "id": "build",
+        "name": "Build Agent",
+        "type": "agent",
+        "path": "packages/opencode/agent/build.md",
+        "description": "Specialized agent for build processes and compilation",
+        "tags": ["build", "compilation", "ci-cd"],
+        "dependencies": [],
+        "category": "deployment"
+      },
+      {
+        "id": "cli-developer",
+        "name": "CLI Developer",
+        "type": "agent",
+        "path": "packages/opencode/agent/cli-developer.md",
+        "description": "Agent specialized in CLI tool development and user experience",
+        "tags": ["cli", "command-line", "ux", "terminal"],
+        "dependencies": [],
+        "category": "development"
+      },
+      {
+        "id": "debug",
+        "name": "Debug Agent",
+        "type": "agent",
+        "path": "packages/opencode/agent/debug.md",
+        "description": "Specialized agent for debugging and troubleshooting issues",
+        "tags": ["debug", "troubleshooting", "diagnostics"],
+        "dependencies": [],
+        "category": "analysis"
+      },
+      {
+        "id": "docs-maintainer",
+        "name": "Documentation Maintainer",
+        "type": "agent",
+        "path": "packages/opencode/agent/docs-maintainer.md",
+        "description": "Agent for maintaining and updating documentation",
+        "tags": ["documentation", "maintenance", "content"],
+        "dependencies": [],
+        "category": "documentation"
+      },
+      {
+        "id": "docs",
+        "name": "Documentation Agent",
+        "type": "agent",
+        "path": "packages/opencode/agent/docs.md",
+        "description": "General documentation creation and management agent",
+        "tags": ["documentation", "writing", "content"],
+        "dependencies": [],
+        "category": "documentation"
+      },
+      {
+        "id": "eslint-config",
+        "name": "ESLint Config Agent",
+        "type": "agent",
+        "path": "packages/opencode/agent/eslint-config.md",
+        "description": "Agent for ESLint configuration development and rule management",
+        "tags": ["eslint", "linting", "javascript", "typescript"],
+        "dependencies": [],
+        "category": "quality"
+      },
+      {
+        "id": "explore",
+        "name": "Exploration Agent",
+        "type": "agent",
+        "path": "packages/opencode/agent/explore.md",
+        "description": "Agent for fast codebase exploration and analysis",
+        "tags": ["exploration", "analysis", "discovery"],
+        "dependencies": [],
+        "category": "analysis"
+      },
+      {
+        "id": "general",
+        "name": "General Purpose Agent",
+        "type": "agent",
+        "path": "packages/opencode/agent/general.md",
+        "description": "General-purpose agent for various development tasks",
+        "tags": ["general", "utility", "versatile"],
+        "dependencies": [],
+        "category": "utilities"
+      },
+      {
+        "id": "generator-developer",
+        "name": "Generator Developer",
+        "type": "agent",
+        "path": "packages/opencode/agent/generator-developer.md",
+        "description": "Specialized agent for Nx generator development and code scaffolding",
+        "tags": ["nx", "generator", "scaffolding", "codegen"],
+        "dependencies": [],
+        "category": "development"
+      },
+      {
+        "id": "git-committer",
+        "name": "Git Committer",
+        "type": "agent",
+        "path": "packages/opencode/agent/git-committer.md",
+        "description": "Agent for committing code changes following conventional commit standards",
+        "tags": ["git", "commit", "conventional-commits"],
+        "dependencies": [],
+        "category": "automation"
+      },
+      {
+        "id": "monorepo-maintainer",
+        "name": "Monorepo Maintainer",
+        "type": "agent",
+        "path": "packages/opencode/agent/monorepo-maintainer.md",
+        "description": "Specialized agent for overall monorepo health, maintenance, and optimization",
+        "tags": ["monorepo", "maintenance", "nx", "workspace"],
+        "dependencies": [],
+        "category": "core"
+      },
+      {
+        "id": "nx-workspace",
+        "name": "Nx Workspace Agent",
+        "type": "agent",
+        "path": "packages/opencode/agent/nx-workspace.md",
+        "description": "Specialized agent for Nx monorepo management, build optimization, and workspace configuration",
+        "tags": ["nx", "monorepo", "build", "optimization"],
+        "dependencies": [],
+        "category": "core"
+      },
+      {
+        "id": "plan",
+        "name": "Planning Agent",
+        "type": "agent",
+        "path": "packages/opencode/agent/plan.md",
+        "description": "Agent for project planning and task breakdown",
+        "tags": ["planning", "project-management", "task-breakdown"],
+        "dependencies": [],
+        "category": "automation"
+      },
+      {
+        "id": "prettier-config",
+        "name": "Prettier Config Agent",
+        "type": "agent",
+        "path": "packages/opencode/agent/prettier-config.md",
+        "description": "Specialized agent for Prettier configuration development and formatting optimization",
+        "tags": ["prettier", "formatting", "code-style"],
+        "dependencies": [],
+        "category": "quality"
+      },
+      {
+        "id": "release-manager",
+        "name": "Release Manager",
+        "type": "agent",
+        "path": "packages/opencode/agent/release-manager.md",
+        "description": "Specialized agent for release management, versioning, and deployment",
+        "tags": ["release", "versioning", "deployment"],
+        "dependencies": [],
+        "category": "deployment"
+      },
+      {
+        "id": "review",
+        "name": "Review Agent",
+        "type": "agent",
+        "path": "packages/opencode/agent/review.md",
+        "description": "Agent for code review with read-only access",
+        "tags": ["review", "code-review", "quality-assurance"],
+        "dependencies": [],
+        "category": "analysis"
+      },
+      {
+        "id": "schema-developer",
+        "name": "Schema Developer",
+        "type": "agent",
+        "path": "packages/opencode/agent/schema-developer.md",
+        "description": "Specialized agent for JSON schema development and validation",
+        "tags": ["schema", "json-schema", "validation"],
+        "dependencies": [],
+        "category": "development"
+      },
+      {
+        "id": "security",
+        "name": "Security Agent",
+        "type": "agent",
+        "path": "packages/opencode/agent/security.md",
+        "description": "Agent for security auditing and vulnerability assessment",
+        "tags": ["security", "audit", "vulnerability"],
+        "dependencies": [],
+        "category": "analysis"
+      }
+    ],
+    "subagents": [
+      {
+        "id": "build-agent",
+        "name": "Build Subagent",
+        "type": "subagent",
+        "path": "packages/opencode/agent/subagents/code/build-agent.md",
+        "description": "Subagent for build validation and compilation checking",
+        "tags": ["build", "validation", "compilation"],
+        "dependencies": [],
+        "category": "deployment"
+      },
+      {
+        "id": "codebase-pattern-analyst",
+        "name": "Codebase Pattern Analyst",
+        "type": "subagent",
+        "path": "packages/opencode/agent/subagents/code/codebase-pattern-analyst.md",
+        "description": "Subagent for codebase pattern analysis and finding similar implementations",
+        "tags": ["analysis", "patterns", "codebase"],
+        "dependencies": [],
+        "category": "analysis"
+      },
+      {
+        "id": "coder-agent",
+        "name": "Coder Subagent",
+        "type": "subagent",
+        "path": "packages/opencode/agent/subagents/code/coder-agent.md",
+        "description": "Subagent for executing coding subtasks in sequence",
+        "tags": ["coding", "implementation", "subtasks"],
+        "dependencies": [],
+        "category": "development"
+      },
+      {
+        "id": "code-reviewer",
+        "name": "Code Reviewer",
+        "type": "subagent",
+        "path": "packages/opencode/agent/subagents/code/reviewer.md",
+        "description": "Code review, security, and quality assurance subagent",
+        "tags": ["review", "security", "quality"],
+        "dependencies": [],
+        "category": "analysis"
+      },
+      {
+        "id": "tester",
+        "name": "Testing Subagent",
+        "type": "subagent",
+        "path": "packages/opencode/agent/subagents/code/tester.md",
+        "description": "Test authoring and TDD subagent",
+        "tags": ["testing", "tdd", "test-authoring"],
+        "dependencies": [],
+        "category": "quality"
+      },
+      {
+        "id": "documentation",
+        "name": "Documentation Subagent",
+        "type": "subagent",
+        "path": "packages/opencode/agent/subagents/core/documentation.md",
+        "description": "Documentation authoring subagent",
+        "tags": ["documentation", "authoring", "content"],
+        "dependencies": [],
+        "category": "documentation"
+      },
+      {
+        "id": "task-manager",
+        "name": "Task Manager",
+        "type": "subagent",
+        "path": "packages/opencode/agent/subagents/core/task-manager.md",
+        "description": "Context-aware task breakdown specialist transforming complex features into atomic, verifiable subtasks",
+        "tags": ["task-management", "breakdown", "planning"],
+        "dependencies": [],
+        "category": "automation"
+      },
+      {
+        "id": "image-specialist",
+        "name": "Image Specialist",
+        "type": "subagent",
+        "path": "packages/opencode/agent/subagents/utils/image-specialist.md",
+        "description": "Specialized subagent for image editing and analysis using Gemini AI tools",
+        "tags": ["image", "editing", "analysis", "gemini"],
+        "dependencies": ["tool:gemini"],
+        "category": "design"
+      }
+    ],
+    "commands": [
+      {
+        "id": "clean",
+        "name": "Clean Command",
+        "type": "command",
+        "path": "packages/opencode/command/clean.md",
+        "description": "Clean the codebase via Prettier, Import Sorter, ESLint, and TypeScript Compiler",
+        "tags": ["clean", "prettier", "eslint", "typescript"],
+        "dependencies": [],
+        "category": "quality"
+      },
+      {
+        "id": "commit",
+        "name": "Commit Command",
+        "type": "command",
+        "path": "packages/opencode/command/commit.md",
+        "description": "Git commit management and conventional commit formatting",
+        "tags": ["git", "commit", "conventional-commits"],
+        "dependencies": [],
+        "category": "automation"
+      },
+      {
+        "id": "context",
+        "name": "Context Command",
+        "type": "command",
+        "path": "packages/opencode/command/context.md",
+        "description": "Context file management and loading",
+        "tags": ["context", "loading", "management"],
+        "dependencies": [],
+        "category": "core"
+      },
+      {
+        "id": "optimize",
+        "name": "Optimize Command",
+        "type": "command",
+        "path": "packages/opencode/command/optimize.md",
+        "description": "Code optimization and performance improvements",
+        "tags": ["optimize", "performance", "improvement"],
+        "dependencies": [],
+        "category": "quality"
+      },
+      {
+        "id": "test",
+        "name": "Test Command",
+        "type": "command",
+        "path": "packages/opencode/command/test.md",
+        "description": "Testing framework execution and management",
+        "tags": ["test", "testing", "framework"],
+        "dependencies": [],
+        "category": "quality"
+      },
+      {
+        "id": "validate-repo",
+        "name": "Validate Repository",
+        "type": "command",
+        "path": "packages/opencode/command/validate-repo.md",
+        "description": "Comprehensive validation command that checks the entire OpenAgents repository for consistency",
+        "tags": ["validation", "repository", "consistency"],
+        "dependencies": [],
+        "category": "analysis"
+      },
+      {
+        "id": "worktrees",
+        "name": "Worktrees Command",
+        "type": "command",
+        "path": "packages/opencode/command/worktrees.md",
+        "description": "Git worktree management and operations",
+        "tags": ["git", "worktree", "management"],
+        "dependencies": [],
+        "category": "automation"
+      },
+      {
+        "id": "prompt-enhancer",
+        "name": "Prompt Enhancer",
+        "type": "command",
+        "path": "packages/opencode/command/prompt-engineering/prompt-enhancer.md",
+        "description": "AI prompt enhancement and optimization",
+        "tags": ["prompt", "enhancement", "ai", "optimization"],
+        "dependencies": [],
+        "category": "utilities"
+      }
+    ],
+    "tools": [
+      {
+        "id": "env",
+        "name": "Environment Tool",
+        "type": "tool",
+        "path": "packages/opencode/tool/env/index.ts",
+        "description": "Environment variable management and utilities",
+        "tags": ["environment", "variables", "management"],
+        "dependencies": [],
+        "category": "utilities"
+      },
+      {
+        "id": "gemini",
+        "name": "Gemini AI Tool",
+        "type": "tool",
+        "path": "packages/opencode/tool/gemini/index.ts",
+        "description": "Google Gemini AI integration and utilities",
+        "tags": ["gemini", "ai", "google", "integration"],
+        "dependencies": [],
+        "category": "utilities"
+      }
+    ],
+    "plugins": [
+      {
+        "id": "env-protection",
+        "name": "Environment Protection Plugin",
+        "type": "plugin",
+        "path": "packages/opencode/plugin/env-protection.ts",
+        "description": "Plugin for protecting sensitive environment variables",
+        "tags": ["environment", "protection", "security"],
+        "dependencies": [],
+        "category": "security"
+      },
+      {
+        "id": "notify",
+        "name": "Notification Plugin",
+        "type": "plugin",
+        "path": "packages/opencode/plugin/notify.ts",
+        "description": "Notification system plugin for alerts and messaging",
+        "tags": ["notification", "alerts", "messaging"],
+        "dependencies": [],
+        "category": "utilities"
+      }
+    ],
+    "contexts": [
+      {
+        "id": "code-standards",
+        "name": "Code Standards",
+        "type": "context",
+        "path": "packages/opencode/context/core/standards/code.md",
+        "description": "Code standards and best practices for development",
+        "tags": ["standards", "code", "best-practices"],
+        "dependencies": [],
+        "category": "quality"
+      },
+      {
+        "id": "docs-standards",
+        "name": "Documentation Standards",
+        "type": "context",
+        "path": "packages/opencode/context/core/standards/docs.md",
+        "description": "Documentation standards and guidelines",
+        "tags": ["standards", "documentation", "guidelines"],
+        "dependencies": [],
+        "category": "documentation"
+      },
+      {
+        "id": "tests-standards",
+        "name": "Testing Standards",
+        "type": "context",
+        "path": "packages/opencode/context/core/standards/tests.md",
+        "description": "Testing standards and methodologies",
+        "tags": ["standards", "testing", "methodologies"],
+        "dependencies": [],
+        "category": "quality"
+      },
+      {
+        "id": "patterns-standards",
+        "name": "Patterns Standards",
+        "type": "context",
+        "path": "packages/opencode/context/core/standards/patterns.md",
+        "description": "Design patterns and architectural standards",
+        "tags": ["standards", "patterns", "architecture"],
+        "dependencies": [],
+        "category": "development"
+      },
+      {
+        "id": "analysis-standards",
+        "name": "Analysis Standards",
+        "type": "context",
+        "path": "packages/opencode/context/core/standards/analysis.md",
+        "description": "Code analysis and review standards",
+        "tags": ["standards", "analysis", "review"],
+        "dependencies": [],
+        "category": "analysis"
+      },
+      {
+        "id": "context-guide",
+        "name": "Context Guide",
+        "type": "context",
+        "path": "packages/opencode/context/core/system/context-guide.md",
+        "description": "Guide for using and managing context files",
+        "tags": ["guide", "context", "management"],
+        "dependencies": [],
+        "category": "documentation"
+      },
+      {
+        "id": "delegation-workflow",
+        "name": "Delegation Workflow",
+        "type": "context",
+        "path": "packages/opencode/context/core/workflows/delegation.md",
+        "description": "Workflow standards for agent delegation and coordination",
+        "tags": ["workflow", "delegation", "coordination"],
+        "dependencies": [],
+        "category": "automation"
+      },
+      {
+        "id": "review-workflow",
+        "name": "Review Workflow",
+        "type": "context",
+        "path": "packages/opencode/context/core/workflows/review.md",
+        "description": "Code review workflow and standards",
+        "tags": ["workflow", "review", "standards"],
+        "dependencies": [],
+        "category": "analysis"
+      },
+      {
+        "id": "sessions-workflow",
+        "name": "Sessions Workflow",
+        "type": "context",
+        "path": "packages/opencode/context/core/workflows/sessions.md",
+        "description": "Session management and workflow standards",
+        "tags": ["workflow", "sessions", "management"],
+        "dependencies": [],
+        "category": "automation"
+      },
+      {
+        "id": "task-breakdown-workflow",
+        "name": "Task Breakdown Workflow",
+        "type": "context",
+        "path": "packages/opencode/context/core/workflows/task-breakdown.md",
+        "description": "Standards for breaking down complex tasks into manageable units",
+        "tags": ["workflow", "task-breakdown", "planning"],
+        "dependencies": [],
+        "category": "automation"
+      },
+      {
+        "id": "essential-patterns",
+        "name": "Essential Patterns",
+        "type": "context",
+        "path": "packages/opencode/context/core/essential-patterns.md",
+        "description": "Essential design patterns and implementation approaches",
+        "tags": ["patterns", "essential", "implementation"],
+        "dependencies": [],
+        "category": "development"
+      },
+      {
+        "id": "project-context",
+        "name": "Project Context",
+        "type": "context",
+        "path": "packages/opencode/context/project/project-context.md",
+        "description": "Project-specific context and configuration",
+        "tags": ["project", "context", "configuration"],
+        "dependencies": [],
+        "category": "core"
+      }
+    ],
+    "packages": [
+      {
+        "id": "core",
+        "name": "Core Package",
+        "type": "package",
+        "path": "packages/core",
+        "description": "Core utilities and shared functionality for the CLI ecosystem",
+        "tags": ["core", "utilities", "shared"],
+        "dependencies": [],
+        "category": "core"
+      },
+      {
+        "id": "docs",
+        "name": "Documentation Package",
+        "type": "package",
+        "path": "packages/docs",
+        "description": "Documentation site built with Astro for comprehensive project documentation",
+        "tags": ["docs", "astro", "documentation", "site"],
+        "dependencies": [],
+        "category": "documentation"
+      },
+      {
+        "id": "eslint",
+        "name": "ESLint Package",
+        "type": "package",
+        "path": "packages/eslint",
+        "description": "Comprehensive ESLint configurations for code quality and consistency",
+        "tags": ["eslint", "linting", "code-quality"],
+        "dependencies": [],
+        "category": "quality"
+      },
+      {
+        "id": "nx",
+        "name": "Nx Package",
+        "type": "package",
+        "path": "packages/nx",
+        "description": "Nx workspace configurations and build optimizations",
+        "tags": ["nx", "workspace", "build", "optimization"],
+        "dependencies": [],
+        "category": "core"
+      },
+      {
+        "id": "schemas",
+        "name": "Schemas Package",
+        "type": "package",
+        "path": "packages/schemas",
+        "description": "JSON schemas for configuration validation and type safety",
+        "tags": ["schemas", "json", "validation", "types"],
+        "dependencies": [],
+        "category": "development"
+      }
+    ],
+    "skills": [
+      {
+        "id": "canvas-design",
+        "name": "Canvas Design Skill",
+        "type": "skill",
+        "path": ".claude/skills/canvas-design",
+        "description": "Design tool for creating visual content with comprehensive font library",
+        "tags": ["design", "canvas", "fonts", "visual"],
+        "dependencies": [],
+        "category": "design"
+      },
+      {
+        "id": "frontend-design",
+        "name": "Frontend Design Skill",
+        "type": "skill",
+        "path": ".claude/skills/frontend-design",
+        "description": "Create distinctive, production-grade frontend interfaces with high design quality",
+        "tags": ["frontend", "design", "ui", "interfaces"],
+        "dependencies": [],
+        "category": "design"
+      },
+      {
+        "id": "mcp-builder",
+        "name": "MCP Builder Skill",
+        "type": "skill",
+        "path": ".claude/skills/mcp-builder",
+        "description": "Tools for building and evaluating Model Context Protocol servers",
+        "tags": ["mcp", "builder", "protocol", "servers"],
+        "dependencies": [],
+        "category": "development"
+      },
+      {
+        "id": "slack-gif-creator",
+        "name": "Slack GIF Creator",
+        "type": "skill",
+        "path": ".claude/skills/slack-gif-creator",
+        "description": "Create animated GIFs optimized for Slack messaging",
+        "tags": ["gif", "slack", "animation", "messaging"],
+        "dependencies": [],
+        "category": "design"
+      },
+      {
+        "id": "webapp-testing",
+        "name": "Web App Testing Skill",
+        "type": "skill",
+        "path": ".claude/skills/webapp-testing",
+        "description": "Comprehensive web application testing utilities and automation",
+        "tags": ["testing", "webapp", "automation", "utilities"],
+        "dependencies": [],
+        "category": "quality"
+      }
+    ],
+    "configs": [
+      {
+        "id": "env-example",
+        "name": "Environment Example",
+        "type": "config",
+        "path": "packages/opencode/.env.example",
+        "description": "Example environment configuration file with required variables",
+        "tags": ["environment", "config", "example"],
+        "dependencies": [],
+        "category": "core"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2025-12-05",
+    "totalComponents": 62,
+    "schemaVersion": "1.0.0",
+    "maintainers": [
+      {
+        "name": "Stevan Pavlovic",
+        "email": "hi@stevanpavlovic.com"
+      }
+    ]
+  },
+  "profiles": {
+    "essential": {
+      "name": "Essential",
+      "description": "Minimal setup with core functionality for basic development workflows",
+      "components": [
+        "openagent",
+        "opencoder",
+        "clean",
+        "commit",
+        "context",
+        "code-standards",
+        "docs-standards",
+        "tests-standards",
+        "core"
+      ],
+      "metadata": {
+        "useCase": "Basic development and maintenance",
+        "targetUsers": "Individual developers, small teams",
+        "complexity": "beginner"
+      }
+    },
+    "developer": {
+      "name": "Developer",
+      "description": "Full development environment with advanced coding and quality tools",
+      "components": [
+        "openagent",
+        "opencoder",
+        "build",
+        "cli-developer",
+        "debug",
+        "eslint-config",
+        "explore",
+        "generator-developer",
+        "prettier-config",
+        "schema-developer",
+        "build-agent",
+        "coder-agent",
+        "tester",
+        "task-manager",
+        "clean",
+        "commit",
+        "context",
+        "optimize",
+        "test",
+        "validate-repo",
+        "worktrees",
+        "prompt-enhancer",
+        "env",
+        "gemini",
+        "env-protection",
+        "notify",
+        "code-standards",
+        "docs-standards",
+        "tests-standards",
+        "patterns-standards",
+        "analysis-standards",
+        "context-guide",
+        "delegation-workflow",
+        "review-workflow",
+        "sessions-workflow",
+        "task-breakdown-workflow",
+        "essential-patterns",
+        "project-context",
+        "core",
+        "eslint",
+        "nx",
+        "schemas",
+        "canvas-design",
+        "frontend-design",
+        "webapp-testing",
+        "env-example"
+      ],
+      "metadata": {
+        "useCase": "Professional development with comprehensive tooling",
+        "targetUsers": "Professional developers, development teams",
+        "complexity": "intermediate"
+      }
+    },
+    "business": {
+      "name": "Business",
+      "description": "Business-focused setup with documentation and deployment tools",
+      "components": [
+        "openagent",
+        "docs-maintainer",
+        "docs",
+        "release-manager",
+        "review",
+        "documentation",
+        "clean",
+        "commit",
+        "context",
+        "validate-repo",
+        "env",
+        "notify",
+        "docs-standards",
+        "context-guide",
+        "project-context",
+        "core",
+        "frontend-design",
+        "env-example"
+      ],
+      "metadata": {
+        "useCase": "Business applications and documentation",
+        "targetUsers": "Business teams, product managers",
+        "complexity": "intermediate"
+      }
+    },
+    "full": {
+      "name": "Full",
+      "description": "Complete installation with all available components and tools",
+      "components": [
+        "openagent",
+        "opencoder",
+        "build",
+        "cli-developer",
+        "debug",
+        "docs-maintainer",
+        "docs",
+        "eslint-config",
+        "explore",
+        "general",
+        "generator-developer",
+        "git-committer",
+        "monorepo-maintainer",
+        "nx-workspace",
+        "plan",
+        "prettier-config",
+        "release-manager",
+        "review",
+        "schema-developer",
+        "security",
+        "build-agent",
+        "codebase-pattern-analyst",
+        "coder-agent",
+        "code-reviewer",
+        "tester",
+        "documentation",
+        "task-manager",
+        "image-specialist",
+        "clean",
+        "commit",
+        "context",
+        "optimize",
+        "test",
+        "validate-repo",
+        "worktrees",
+        "prompt-enhancer",
+        "env",
+        "gemini",
+        "env-protection",
+        "notify",
+        "code-standards",
+        "docs-standards",
+        "tests-standards",
+        "patterns-standards",
+        "analysis-standards",
+        "context-guide",
+        "delegation-workflow",
+        "review-workflow",
+        "sessions-workflow",
+        "task-breakdown-workflow",
+        "essential-patterns",
+        "project-context",
+
+        "core",
+        "eslint",
+        "nx",
+        "schemas",
+        "canvas-design",
+        "frontend-design",
+        "mcp-builder",
+        "slack-gif-creator",
+        "webapp-testing",
+        "env-example"
+      ],
+      "metadata": {
+        "useCase": "Complete development environment with all features",
+        "targetUsers": "Large teams, complex projects",
+        "complexity": "advanced"
+      }
+    },
+    "advanced": {
+      "name": "Advanced",
+      "description": "Advanced setup with experimental features and comprehensive tooling",
+      "components": [
+        "openagent",
+        "opencoder",
+        "build",
+        "cli-developer",
+        "debug",
+        "docs-maintainer",
+        "docs",
+        "eslint-config",
+        "explore",
+        "general",
+        "generator-developer",
+        "git-committer",
+        "monorepo-maintainer",
+        "nx-workspace",
+        "plan",
+        "prettier-config",
+        "release-manager",
+        "review",
+        "schema-developer",
+        "security",
+        "build-agent",
+        "codebase-pattern-analyst",
+        "coder-agent",
+        "code-reviewer",
+        "tester",
+        "documentation",
+        "task-manager",
+        "image-specialist",
+        "clean",
+        "commit",
+        "context",
+        "optimize",
+        "test",
+        "validate-repo",
+        "worktrees",
+        "prompt-enhancer",
+        "env",
+        "gemini",
+        "env-protection",
+        "notify",
+        "code-standards",
+        "docs-standards",
+        "tests-standards",
+        "patterns-standards",
+        "analysis-standards",
+        "context-guide",
+        "delegation-workflow",
+        "review-workflow",
+        "sessions-workflow",
+        "task-breakdown-workflow",
+        "essential-patterns",
+        "project-context",
+
+        "core",
+        "eslint",
+        "nx",
+        "schemas",
+        "canvas-design",
+        "frontend-design",
+        "mcp-builder",
+        "slack-gif-creator",
+        "webapp-testing",
+        "env-example"
+      ],
+      "metadata": {
+        "useCase": "Advanced development with experimental features",
+        "targetUsers": "Expert developers, research teams",
+        "complexity": "expert"
+      }
+    }
+  },
+  "repository": {
+    "name": "pjt",
+    "url": "https://github.com/pavstev/pjt",
+    "description": "A powerful cross-platform CLI tool for maintaining clean Git repositories with AI-assisted development capabilities"
+  },
+  "version": "1.0.0"
+}

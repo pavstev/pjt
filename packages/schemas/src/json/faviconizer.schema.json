@@ -1,0 +1,45 @@
+{
+  "$id": "FaviconizerGenerator",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "cli": "nx",
+  "properties": {
+    "appDescription": {
+      "description": "Description of the application",
+      "type": "string",
+      "x-prompt": "What is the description of your application?"
+    },
+    "appName": {
+      "description": "Name of the application",
+      "type": "string",
+      "x-prompt": "What is the name of your application?"
+    },
+    "appShortName": {
+      "description": "Short name of the application",
+      "type": "string",
+      "x-prompt": "What is the short name of your application?"
+    },
+    "backgroundColor": {
+      "default": "#000000",
+      "description": "Background color for the application (e.g., #000000)",
+      "type": "string"
+    },
+    "input": {
+      "description": "Path to the input image (e.g., logo.svg, logo.png)",
+      "type": "string",
+      "x-prompt": "What is the path to the input image?"
+    },
+    "output": {
+      "default": "dist/apps/assets/favicons",
+      "description": "Output directory for generated files",
+      "type": "string"
+    },
+    "themeColor": {
+      "default": "#ffffff",
+      "description": "Theme color for the application (e.g., #ffffff)",
+      "type": "string"
+    }
+  },
+  "required": ["input", "appName", "appShortName", "appDescription"],
+  "title": "Generate favicons and manifest files",
+  "type": "object"
+}

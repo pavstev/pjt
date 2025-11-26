@@ -1,0 +1,43 @@
+{
+  "author": {
+    "name": "Stevan Pavlovic",
+    "email": "hi@stevanpavlovic.com",
+    "url": "https://stevanpavlovic.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/pavstev/pjt/issues"
+  },
+  "dependencies": {
+    "consola": "^3.4.2",
+    "globify-gitignore": "^1.0.3",
+    "package-manager-detector": "^1.6.0",
+    "read-package-up": "^12.0.0",
+    "simple-git": "3.30.0",
+    "tinyexec": "^1.0.2",
+    "zod": "4.1.13"
+  },
+  "description": "Core utilities for pjt",
+  "devDependencies": {
+    "simple-git": "^3.30.0",
+    "typescript": "^5.9.3"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js",
+      "require": "./dist/src/index.js"
+    }
+  },
+  "files": ["./"],
+  "homepage": "https://pjt.stevanpavlovic.com",
+  "keywords": ["utilities", "cli", "pjt"],
+  "license": "MIT",
+  "main": "./src/index.ts",
+  "name": "@pjt/core",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavstev/pjt.git"
+  },
+  "types": "./src/index.ts",
+  "version": "1.0.0"
+}

@@ -1,0 +1,137 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "cacheDirectory": ".nx/cache",
+  "maxCacheSize": "10GB",
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "production": [
+      "default",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/.eslintrc.*",
+      "!{projectRoot}/eslint.config.*",
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/eslint.config.mjs",
+      "!{projectRoot}/src/test-setup.[jt]s",
+      "!{projectRoot}/test-setup.[jt]s",
+      "!{projectRoot}/jest.config.[jt]s"
+    ],
+    "sharedGlobals": []
+  },
+  "parallel": 6,
+  "plugins": [
+    "@nx/js",
+    "@nx/workspace",
+    {
+      "options": {
+        "build": {
+          "buildDepsName": "build-deps",
+          "configName": "tsconfig.lib.json",
+          "targetName": "build",
+          "watchDepsName": "watch-deps"
+        },
+        "typecheck": {
+          "targetName": "typecheck-alt"
+        }
+      },
+      "plugin": "@nx/js/typescript",
+      "exclude": ["packages/eslint/*"]
+    },
+    {
+      "plugin": "@nx/js/typescript",
+      "include": ["packages/eslint/*"],
+      "options": {
+        "typecheck": {
+          "targetName": "typecheck"
+        }
+      }
+    }
+  ],
+  "release": {
+    "changelog": {
+      "projectChangelogs": true
+    },
+    "git": {
+      "commit": true,
+      "commitMessage": "chore: release v{version}",
+      "push": true,
+      "tag": true
+    },
+    "version": {
+      "preVersionCommand": "pnpm all"
+    }
+  },
+  "sync": {
+    "applyChanges": true,
+    "globalGenerators": ["@pjt/nx:sync-package-props"]
+  },
+  "targetDefaults": {
+    "@nx/js:tsc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    },
+    "build": {
+      "cache": true,
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "dev": {
+      "cache": false
+    },
+    "format": {
+      "cache": true,
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/.prettierrc*",
+        "{workspaceRoot}/prettier.config.*"
+      ]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "cache": true,
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/.eslintrc.*",
+        "{workspaceRoot}/eslint.config.*",
+        "{workspaceRoot}/eslint.config.mjs",
+        "{workspaceRoot}/packages/eslint/src/**/*"
+      ],
+      "options": {
+        "fix": true,
+        "max-warnings": 0
+      }
+    },
+    "test": {
+      "cache": true,
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/jest.config.*",
+        "{workspaceRoot}/playwright.config.*"
+      ]
+    },
+    "typecheck": {
+      "cache": true,
+      "inputs": ["default", "^default"]
+    },
+    "@nx/jest:jest": {
+      "cache": true,
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "options": {
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "workspaceLayout": {
+    "appsDir": "packages",
+    "libsDir": "packages"
+  }
+}

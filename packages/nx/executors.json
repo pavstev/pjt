@@ -1,0 +1,10 @@
+{
+  "executors": {
+    "rsbuild": {
+      "implementation": "./src/tools/executors/rsbuild/rsbuild",
+      "schema": "./src/tools/executors/rsbuild/schema.json",
+      "description": "rsbuild executor",
+      "hasher": "./src/tools/executors/rsbuild/hasher"
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "generators": {
+    "configure-prettier": {
+      "factory": "./src/generators/configure-prettier/main",
+      "schema": "@pjt/schemas/configure-prettier.schema.json",
+      "description": "configure-prettier generator"
+    },
+    "cooper": {
+      "description": "Generate barrel files for Nx workspace projects",
+      "factory": "./src/generators/cooper/main",
+      "schema": "@pjt/schemas/cooper.schema.json"
+    },
+    "copy-schemas": {
+      "description": "Copies JSON schemas from remote URLs or local files to a specified output directory, supporting schema management for Nx workspaces and tools like Prettier, ESLint, and TypeScript.",
+      "factory": "./src/generators/copy-schemas/main",
+      "schema": "@pjt/schemas/copy-schemas.schema.json"
+    },
+    "export-generator-schemas": {
+      "description": "Exports Zod-based schemas from Nx generator files to JSON Schema format, generating individual schema files for each generator to enable validation and documentation.",
+      "factory": "./src/generators/export-generator-schemas/main",
+      "schema": "@pjt/schemas/export-generator-schemas.schema.json"
+    },
+    "faviconizer": {
+      "description": "Generate favicons and manifest files",
+      "factory": "./src/generators/faviconizer/main",
+      "schema": "@pjt/schemas/faviconizer.schema.json"
+    },
+    "git-wip-fixup": {
+      "description": "Automates the fixup of Work-In-Progress (WIP) commits in Git by identifying and amending commits with fixup commits, supporting dry-run mode and configurable commit limits.",
+      "factory": "./src/generators/git-wip-fixup/main",
+      "schema": "@pjt/schemas/git-wip-fixup.schema.json"
+    },
+    "schemator": {
+      "description": "Automatically generate TypeScript interfaces from JSON schemas",
+      "factory": "./src/generators/schemator/main",
+      "schema": "@pjt/schemas/schemator.schema.json"
+    },
+    "uncommentor": {
+      "description": "Create a new Nx library project with uncommentored template files",
+      "factory": "./src/generators/uncommentor/main",
+      "schema": "@pjt/schemas/uncommentor.schema.json"
+    },
+    "rsbuild-app": {
+      "description": "Generate a new Rsbuild application",
+      "factory": "./src/generators/rsbuild-app/main",
+      "schema": "./src/generators/rsbuild-app/schema.json"
+    },
+    "git-clean": {
+      "description": "Clean and reinstall dependencies",
+      "factory": "./src/generators/git-clean/main",
+      "schema": "./src/generators/git-clean/schema.json"
+    },
+    "loc": {
+      "description": "Count lines of code using cloc",
+      "factory": "./src/generators/loc/main",
+      "schema": "./src/generators/loc/schema.json"
+    },
+    "auto-commit": {
+      "description": "Automatically commit and push all changes",
+      "factory": "./src/generators/auto-commit/main",
+      "schema": "./src/generators/auto-commit/schema.json"
+    },
+    "commit-diff": {
+      "description": "Show commit diff stats with origin/main",
+      "factory": "./src/generators/commit-diff/main",
+      "schema": "./src/generators/commit-diff/schema.json"
+    },
+    "download-readmes": {
+      "description": "Download README files from configured repositories",
+      "factory": "./src/generators/download-readmes/main",
+      "schema": "./src/generators/download-readmes/schema.json"
+    },
+    "sync-package-props": {
+      "description": "Sync specified package.json properties from root to all packages",
+      "factory": "./src/generators/sync-package-props/main",
+      "schema": "./src/generators/sync-package-props/schema.json"
+    }
+  }
+}

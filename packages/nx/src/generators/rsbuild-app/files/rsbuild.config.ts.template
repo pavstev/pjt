@@ -1,0 +1,44 @@
+import { defineConfig } from '@rsbuild/core';
+<% if (style === 'css') { %>
+// Using CSS
+<% } else if (style === 'scss') { %>
+import { pluginSass } from '@rsbuild/plugin-sass';
+<% } else if (style === 'less') { %>
+import { pluginLess } from '@rsbuild/plugin-less';
+<% } else if (style === 'stylus') { %>
+import { pluginStylus } from '@rsbuild/plugin-stylus';
+<% } %>
+<% if (bundler === 'rsbuild') { %>
+import { pluginReact } from '@rsbuild/plugin-react';
+<% } %>
+
+export default defineConfig({
+  plugins: [
+<% if (bundler === 'rsbuild') { %>
+    pluginReact(),
+<% } %>
+<% if (style === 'scss') { %>
+    pluginSass(),
+<% } else if (style === 'less') { %>
+    pluginLess(),
+<% } else if (style === 'stylus') { %>
+    pluginStylus(),
+<% } %>
+  ],
+  source: {
+    entry: {
+      index: './src/index.<%= style %>',
+    },
+  },
+  output: {
+    distPath: {
+      root: 'dist',
+    },
+  },
+  html: {
+    template: './src/index.html',
+  },
+  server: {
+    port: 3000,
+  },
+});

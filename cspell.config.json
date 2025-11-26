@@ -1,0 +1,61 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "allowCompoundWords": false,
+  "cache": {
+    "cacheFormat": "universal",
+    "cacheStrategy": "metadata",
+    "useCache": true,
+    "cacheLocation": "node_modules/.cache/cspell"
+  },
+  "caseSensitive": false,
+  "dictionaries": [
+    "softwareTerms",
+    "typescript",
+    "node",
+    "html",
+    "npm",
+    "filetypes",
+    "bash",
+    "remarkrc",
+    "projectDictionary"
+  ],
+  "dictionaryDefinitions": [
+    {
+      "addWords": true,
+      "description": "Project-specific dictionary for custom words",
+      "name": "projectDictionary",
+      "noSuggest": false,
+      "path": "./project.dictionary.txt"
+    }
+  ],
+  "files": ["**/*"],
+  "ignorePaths": [
+    "*.code-workspace",
+    "**/*.{mdx,md}",
+    "pnpm-lock.yaml",
+    "node_modules/**",
+    "dist/**",
+    "build/**",
+    ".git/**",
+    "*.min.js",
+    "*.min.css",
+    "**/.config/**"
+  ],
+  "language": "en",
+  "languageSettings": [
+    {
+      "dictionaries": ["typescript", "node"],
+      "languageId": "typescript,javascript"
+    },
+    {
+      "dictionaries": ["css"],
+      "languageId": "css,scss,less"
+    },
+    {
+      "dictionaries": ["html"],
+      "languageId": "html"
+    }
+  ],
+  "useGitignore": true,
+  "words": []
+}

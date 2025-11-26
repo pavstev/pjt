@@ -1,0 +1,57 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "docs",
+  "projectType": "application",
+  "sourceRoot": "packages/docs/src",
+  "tags": [],
+   "targets": {
+     "lint": {
+       "executor": "@nx/eslint:lint",
+       "cache": true,
+       "inputs": [
+         "default",
+         "^default",
+         "{workspaceRoot}/.eslintrc.*",
+         "{workspaceRoot}/eslint.config.*",
+         "{workspaceRoot}/eslint.config.mjs",
+         "{workspaceRoot}/packages/eslint/src/**/*"
+       ],
+       "options": {
+         "fix": true,
+         "max-warnings": 0
+       }
+     },
+     "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec astro build",
+        "cwd": "{projectRoot}"
+      },
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec astro dev",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "preview": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec astro preview",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec astro check",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "e2e": {
+      "executor": "@nx/playwright:playwright"
+    }
+  }
+}

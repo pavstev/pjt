@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "outDir": "../dist/out-tsc",
+    "module": "esnext",
+    "moduleResolution": "node10",
+    "types": ["jest", "node"],
+    "allowJs": true
+  },
+  "extends": "./tsconfig.json",
+  "include": [
+    "jest.config.ts",
+    "jest.config.js",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts"
+  ]
+}

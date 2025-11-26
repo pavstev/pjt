@@ -1,0 +1,19 @@
+{
+  "$id": "GitClean",
+  "$schema": "https://json-schema.org/schema",
+  "properties": {
+    "dir": {
+      "default": ".",
+      "description": "Target directory",
+      "type": "string"
+    },
+    "hard": {
+      "default": false,
+      "description": "Force clean",
+      "type": "boolean"
+    }
+  },
+  "required": [],
+  "title": "Git Clean",
+  "type": "object"
+}

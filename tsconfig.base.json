@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["ES2022"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "target": "ES2022",
+    "paths": {
+      "@pjt/core": ["packages/core/dist/src/index.d.ts"],
+      "@pjt/prettier": ["packages/core/dist/prettier.d.ts"],
+      "@pjt/nx": ["dist/packages/nx/src/index.d.ts"],
+      "@pjt/schemas": ["packages/schemas/dist/index.d.ts"],
+      "@pjt/eslint": ["packages/eslint/src/index.d.ts"]
+    }
+  }
+}

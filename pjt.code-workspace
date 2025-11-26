@@ -1,0 +1,92 @@
+{
+  "extensions": {
+    "recommendations": [
+      "ms-vscode.vscode-typescript-next",
+      "esbenp.prettier-vscode",
+      "dbaeumer.vscode-eslint",
+      "christian-kohler.path-intellisense",
+      "ms-vscode.vscode-json"
+    ]
+  },
+  "folders": [
+    {
+      "name": "@pjt/monorepo",
+      "path": "."
+    },
+    {
+      "name": "@pjt/core",
+      "path": "packages/core"
+    },
+    {
+      "name": "@pjt/docs",
+      "path": "packages/docs"
+    },
+    {
+      "name": "@pjt/nx",
+      "path": "packages/nx"
+    },
+    {
+      "name": "@pjt/opencode",
+      "path": "packages/opencode"
+    },
+    {
+      "name": "@pjt/schemas",
+      "path": "packages/schemas"
+    }
+  ],
+  "settings": {
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "cSpell.words": [
+      "globify"
+    ],
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+      ".env": ".env.local, .env.production, .env.development, .env.test, .env.example",
+      ".gitignore": ".gitattributes, .gitmodules",
+      ".prettierrc*": "prettier.config.*.ts, prettier.config.mjs, prettier.config.cjs, .prettierignore",
+      "*.config.ts": "${capture}.config.*.ts, ${capture}.config.mjs, ${capture}.config.cjs",
+      "*.json": "${capture}.jsonc, ${capture}.json5",
+      "*.ts": "${capture}.js, ${capture}.mjs, ${capture}.cjs, ${capture}.test.ts, ${capture}.spec.ts, ${capture}.e2e.ts, ${capture}.d.ts, ${capture}.stories.ts",
+      "eslint.config.ts": "eslint.config.*.ts, eslint.config.mjs, eslint.config.cjs",
+      "knip.config.ts": "knip.config.*.ts, knip.config.mjs, knip.config.cjs",
+      "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, .nvmrc, .npmrc, pnpm-workspace.yaml",
+      "README.md": "CHANGELOG.md, LICENSE, CONTRIBUTING.md, CODE_OF_CONDUCT.md, SECURITY.md",
+      "tsconfig.json": "tsconfig.*.json, jsconfig.json"
+    },
+    "files.associations": {
+      "*.html.template": "html",
+      "*.ts.template": "typescript",
+      "*.tsx.template": "typescriptreact"
+    },
+    "files.exclude": {
+      ".claude/": true,
+      "dist/": true,
+      "node_modules/": true,
+      "packages/": true
+    },
+    "monorepoWorkspace.folders.prefix.apps": "",
+    "monorepoWorkspace.folders.prefix.libs": "",
+    "monorepoWorkspace.folders.prefix.root": "",
+    "monorepoWorkspace.folders.prefix.tools": "",
+    "monorepoWorkspace.folders.prefix.unknown": "",
+    "search.exclude": {
+      ".claude/": true,
+      "dist/": true,
+      "node_modules/": true,
+      "packages/": true,
+      "pnpm-lock.yaml": true
+    },
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "typescript.suggest.autoImports": true
+  }
+}

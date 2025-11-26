@@ -1,0 +1,21 @@
+{
+  "author": {
+    "name": "Stevan Pavlovic",
+    "email": "hi@stevanpavlovic.com",
+    "url": "https://stevanpavlovic.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/pavstev/pjt/issues"
+  },
+  "dependencies": {
+    "@opencode-ai/plugin": "1.0.133"
+  },
+  "homepage": "https://pjt.stevanpavlovic.com",
+  "license": "MIT",
+  "name": "@pjt/opencode",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavstev/pjt.git"
+  },
+  "version": "1.0.0"
+}

@@ -1,0 +1,12 @@
+sonarjs
+oxlint
+justfile
+slidev
+Faviconizer
+Schemator
+Uncommentor
+revparse
+jsonresume
+remarkrc
+barrelsby
+uncommentored

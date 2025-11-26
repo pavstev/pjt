@@ -1,0 +1,319 @@
+{
+  "$defs": {
+    "componentArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/componentDefinition"
+      }
+    },
+    "componentDefinition": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "type",
+        "path",
+        "description",
+        "tags",
+        "dependencies",
+        "category"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique component identifier",
+          "pattern": "^[a-z0-9-]+[a-z0-9]$"
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable component name"
+        },
+        "type": {
+          "type": "string",
+          "description": "Component type",
+          "enum": [
+            "agent",
+            "subagent",
+            "command",
+            "tool",
+            "plugin",
+            "context",
+            "package",
+            "skill",
+            "config"
+          ]
+        },
+        "path": {
+          "type": "string",
+          "description": "Relative path to component file/directory"
+        },
+        "description": {
+          "type": "string",
+          "description": "Component description",
+          "minLength": 10
+        },
+        "tags": {
+          "type": "array",
+          "description": "Component tags for search and filtering",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "minItems": 1
+        },
+        "dependencies": {
+          "type": "array",
+          "description": "Component dependencies (format: 'type:id')",
+          "items": {
+            "type": "string",
+            "pattern": "^(agent|subagent|command|tool|plugin|context|package|skill|config):[a-z0-9-]+[a-z0-9]$"
+          }
+        },
+        "category": {
+          "type": "string",
+          "description": "Component category",
+          "pattern": "^[a-z-]+[a-z]$"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Additional component metadata",
+          "properties": {
+            "version": {
+              "type": "string",
+              "pattern": "^\\d+\\.\\d+\\.\\d+$"
+            },
+            "author": {
+              "type": "string"
+            },
+            "license": {
+              "type": "string"
+            },
+            "requires": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "provides": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "profileDefinition": {
+      "type": "object",
+      "required": ["name", "description", "components"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Profile name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Profile description"
+        },
+        "components": {
+          "type": "array",
+          "description": "Component IDs included in this profile",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+[a-z0-9]$"
+          },
+          "minItems": 1
+        },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "useCase": {
+              "type": "string",
+              "description": "Primary use case for this profile"
+            },
+            "targetUsers": {
+              "type": "string",
+              "description": "Target user types"
+            },
+            "complexity": {
+              "type": "string",
+              "enum": ["beginner", "intermediate", "advanced", "expert"]
+            }
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Schema for the OpenAgents component registry",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Registry version (semantic versioning)",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "repository": {
+      "type": "object",
+      "description": "Repository information",
+      "required": ["name", "url", "description"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Repository name"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Repository URL"
+        },
+        "description": {
+          "type": "string",
+          "description": "Repository description"
+        }
+      }
+    },
+    "categories": {
+      "type": "object",
+      "description": "Component categories with descriptions",
+      "patternProperties": {
+        "^[a-z-]+[a-z]$": {
+          "type": "object",
+          "required": ["name", "description", "priority"],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Human-readable category name"
+            },
+            "description": {
+              "type": "string",
+              "description": "Category description"
+            },
+            "priority": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10,
+              "description": "Category priority (1-10, higher = more important)"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "type": "object",
+      "description": "All components organized by type",
+      "required": [
+        "agents",
+        "subagents",
+        "commands",
+        "tools",
+        "plugins",
+        "contexts",
+        "packages",
+        "skills",
+        "configs"
+      ],
+      "properties": {
+        "agents": {
+          "$ref": "#/$defs/componentArray"
+        },
+        "subagents": {
+          "$ref": "#/$defs/componentArray"
+        },
+        "commands": {
+          "$ref": "#/$defs/componentArray"
+        },
+        "tools": {
+          "$ref": "#/$defs/componentArray"
+        },
+        "plugins": {
+          "$ref": "#/$defs/componentArray"
+        },
+        "contexts": {
+          "$ref": "#/$defs/componentArray"
+        },
+        "packages": {
+          "$ref": "#/$defs/componentArray"
+        },
+        "skills": {
+          "$ref": "#/$defs/componentArray"
+        },
+        "configs": {
+          "$ref": "#/$defs/componentArray"
+        }
+      }
+    },
+    "profiles": {
+      "type": "object",
+      "description": "Installation profiles with component groupings",
+      "required": ["essential", "developer", "business", "full", "advanced"],
+      "properties": {
+        "essential": {
+          "$ref": "#/$defs/profileDefinition"
+        },
+        "developer": {
+          "$ref": "#/$defs/profileDefinition"
+        },
+        "business": {
+          "$ref": "#/$defs/profileDefinition"
+        },
+        "full": {
+          "$ref": "#/$defs/profileDefinition"
+        },
+        "advanced": {
+          "$ref": "#/$defs/profileDefinition"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Registry metadata",
+      "required": ["lastUpdated", "totalComponents", "schemaVersion"],
+      "properties": {
+        "lastUpdated": {
+          "type": "string",
+          "format": "date",
+          "description": "Last update date (YYYY-MM-DD)"
+        },
+        "totalComponents": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total number of components in registry"
+        },
+        "schemaVersion": {
+          "type": "string",
+          "description": "Schema version this registry conforms to"
+        },
+        "maintainers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "email"],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string",
+                "format": "email"
+              },
+              "role": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "version",
+    "repository",
+    "categories",
+    "components",
+    "profiles",
+    "metadata"
+  ],
+  "title": "OpenAgents Registry Schema",
+  "type": "object"
+}
