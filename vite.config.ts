@@ -5,6 +5,7 @@ export default defineConfig({
   plugins: [dts({ tsconfigPath: "tsconfig.build.json" })],
   build: {
     target: "node18",
+    ssr: true,
     lib: {
       entry: {
         index: "src/index.ts",

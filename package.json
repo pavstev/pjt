@@ -22,7 +22,7 @@
   },
   "main": "./dist/index.js",
   "bin": {
-    "pjt": "./dist/bin/pjt.js"
+    "pjt": "dist/bin/pjt.js"
   },
   "scripts": {
     "all": "pnpm lint && pnpm build && pnpm typecheck && pnpm test && pnpm knip",
