@@ -33,13 +33,13 @@
     "knip": "knip",
     "lint": "eslint . --fix --max-warnings 0",
     "prepublishOnly": "pnpm run build",
-    "test": "vitest run --coverage",
+    "test": "vitest run",
     "typecheck": "tsc --noEmit -p tsconfig.build.json"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@types/node": "^24.10.1",
-    "@vitest/coverage-v8": "^2.1.8",
+    "@vitest/coverage-v8": "^2.0.0",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-json-schema-validator": "^5.5.0",

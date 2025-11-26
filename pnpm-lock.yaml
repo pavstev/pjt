@@ -15,7 +15,7 @@ importers:
         specifier: ^24.10.1
         version: 24.10.1
       '@vitest/coverage-v8':
-        specifier: ^2.1.8
+        specifier: ^2.0.0
         version: 2.1.9(vitest@4.0.14(@types/node@24.10.1)(jiti@2.6.1)(yaml@2.8.1))
       eslint:
         specifier: ^9.39.1
