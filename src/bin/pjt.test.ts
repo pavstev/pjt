@@ -1,21 +1,21 @@
 import { describe, it, expect, vi } from "vitest";
 
-// Mock the package-json-tools module
-vi.mock("./package-json-tools.js", () => ({
-  packageJsonTools: vi.fn(),
+// Mock the index module
+vi.mock("../index.js", () => ({
+  gitCleanCommand: vi.fn(),
 }));
 
-import { packageJsonTools } from "./package-json-tools.js";
+import { gitCleanCommand } from "../index.js";
 
-const mockedPackageJsonTools = vi.mocked(packageJsonTools);
+const mockedGitCleanCommand = vi.mocked(gitCleanCommand);
 
 describe("pjt CLI", () => {
-  it("should call packageJsonTools when package-json-tools subcommand is executed", async () => {
-    mockedPackageJsonTools.mockResolvedValue();
+  it("should call gitCleanCommand when package-json-tools subcommand is executed", async () => {
+    mockedGitCleanCommand.mockResolvedValue();
 
-    await packageJsonTools();
+    await gitCleanCommand();
 
-    expect(mockedPackageJsonTools).toHaveBeenCalled();
+    expect(mockedGitCleanCommand).toHaveBeenCalled();
   });
 
   it("should have help option", () => {

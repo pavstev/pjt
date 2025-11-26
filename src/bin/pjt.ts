@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import { promises as fs } from "fs";
-import { packageJsonTools } from "./package-json-tools.js";
+import { promises as fs } from "node:fs";
+import { gitCleanCommand } from "../index.js";
 
 const main = async () => {
   const args = process.argv.slice(2);
@@ -10,7 +10,7 @@ const main = async () => {
     try {
       // Check if in git repository
       await fs.access(".git");
-      await packageJsonTools();
+      await gitCleanCommand();
     } catch (error) {
       if (
         error instanceof Error &&

@@ -75,6 +75,25 @@ const config = defineConfig([
     },
     rules: {
       "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+      "@typescript-eslint/no-restricted-imports": [
+        "error",
+        {
+          paths: [
+            {
+              name: "fs",
+              message: "Import from 'node:fs' instead",
+            },
+            {
+              name: "path",
+              message: "Import from 'node:path' instead",
+            },
+            {
+              name: "child_process",
+              message: "Import from 'node:child_process' instead",
+            },
+          ],
+        },
+      ],
       "arrow-body-style": ["error", "as-needed"],
       "func-style": ["error", "expression"],
       "no-else-return": "error",
