@@ -7,20 +7,16 @@ import { logger } from "./logger";
 
 export const validateDirectory = async (dir: string): Promise<void> => {
   if (!dir || typeof dir !== "string") {
-    throw new CliError("Invalid directory path");
+    throw new CliError(CliError.invalidDirectoryPath());
   }
   try {
     const stat = await fs.stat(dir);
     if (!stat.isDirectory()) {
-      throw new CliError(`${dir} is not a directory`);
+      throw new CliError(CliError.notADirectory(dir));
     }
   } catch (error) {
     if (error instanceof CliError) throw error;
-    throw new CliError(
-      `Directory ${dir} does not exist or is inaccessible`,
-      undefined,
-      { cause: error },
-    );
+    throw new CliError(CliError.directoryNotAccessible(dir), undefined, { cause: error });
   }
 };
 
@@ -53,7 +49,7 @@ export const execPromise = async (command: string): Promise<void> => {
     if (error instanceof Error && "stderr" in error && error.stderr) {
       logger.error(error.stderr as string);
     }
-    throw new CliError(`Command execution failed: ${command}`, "EXEC_ERROR", {
+    throw new CliError(CliError.commandExecutionFailed(command), "EXEC_ERROR", {
       cause: error,
     });
   }
@@ -86,8 +82,6 @@ export const getIgnorePatterns = async (): Promise<string[]> => {
     return entries.flat();
   } catch (error) {
     logger.error(`Failed to read ignore patterns: ${error}`);
-    throw new CliError("Failed to read ignore patterns", "IGNORE_READ_ERROR", {
-      cause: error,
-    });
+    throw new CliError(CliError.failedToReadIgnorePatterns(), "IGNORE_READ_ERROR", { cause: error });
   }
 };

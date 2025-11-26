@@ -22,6 +22,6 @@ export const removeEmptyDirectories = async (dir: string): Promise<void> => {
     }
   } catch (error) {
     logger.error(`Failed to remove empty directories in ${dir}: ${error}`);
-    throw new FsError(`Failed to process directory ${dir}`, { cause: error });
+    throw new FsError(FsError.failedToProcessDirectory(dir), { cause: error });
   }
 };

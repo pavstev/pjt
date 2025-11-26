@@ -7,9 +7,9 @@ export const checkGitRepository = async (): Promise<void> => {
     await fs.access(".git");
   } catch (error) {
     if (error instanceof Error && "code" in error && error.code === "ENOENT") {
-      throw new GitError("Not a git repository", { cause: error });
+      throw new GitError(GitError.notAGitRepository(), { cause: error });
     }
-    throw new CliError("Failed to check git repository", undefined, {
+    throw new CliError(CliError.failedToCheckGitRepository(), undefined, {
       cause: error,
     });
   }

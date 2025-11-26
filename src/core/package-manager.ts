@@ -11,9 +11,7 @@ export const pnpmInstall = async (): Promise<void> => {
       error instanceof Error &&
       error.message.includes("Command execution failed")
     ) {
-      throw new PackageManagerError("Package installation failed", {
-        cause: error,
-      });
+      throw new PackageManagerError(PackageManagerError.packageInstallationFailed(), { cause: error });
     }
     throw error;
   }

@@ -7,7 +7,7 @@ const main = async () => {
   const args = process.argv.slice(2);
   const commandName = args.length === 0 ? "package-json-tools" : args[0];
 
-  const command = commands.find(cmd => cmd.name === commandName);
+  const command = commands.get(commandName);
 
   if (!command) {
     console.error(`Unknown command: ${commandName}`);
