@@ -11,14 +11,14 @@
   "folders": [
     {
       "path": "."
-    },
+    }
   ],
   "settings": {
     "files.exclude": {
       "node_modules/": true,
       "specs/": true,
       ".specify/": true,
-      ".opencode/": true,
+      ".opencode/": true
     },
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.patterns": {
@@ -41,6 +41,6 @@
     },
     "typescript.preferences.importModuleSpecifier": "relative",
     "typescript.suggest.autoImports": true,
-    "emmet.includeLanguages": {},
+    "emmet.includeLanguages": {}
   }
 }
