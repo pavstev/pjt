@@ -1,6 +1,6 @@
 {
   "name": "pjt",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "private": false,
   "description": "A cross-platform tool to clean git repositories by removing empty directories, ignored files, and reinstalling dependencies.",
   "keywords": [
