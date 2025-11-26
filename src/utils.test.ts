@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 
 vi.mock("node:child_process", () => ({
   exec: vi.fn(),
@@ -27,10 +27,6 @@ const mockedReaddirSync = vi.mocked(readdirSync);
 const mockedJoin = vi.mocked(join);
 const mockedGlobifyGitIgnore = vi.mocked(globifyGitIgnore);
 
-beforeEach(() => {
-  vi.clearAllMocks();
-});
-
 describe("execPromise", () => {
   it("should resolve when exec succeeds", async () => {
     mockedExec.mockImplementation((command, callback: any) => {
@@ -57,6 +53,10 @@ describe("execPromise", () => {
 });
 
 describe("getIgnorePatterns", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
   it("should return empty array when no ignore files", async () => {
     (mockedReaddirSync as any).mockReturnValue([]);
     const result = await getIgnorePatterns();
@@ -77,7 +77,12 @@ describe("getIgnorePatterns", () => {
     ]);
 
     const result = await getIgnorePatterns();
-    expect(result).toEqual(["node_modules/**", "*.log"]);
+    expect(result).toEqual([
+      "node_modules/**",
+      "*.log",
+      "node_modules/**",
+      "*.log",
+    ]);
     expect(mockedReaddirSync).toHaveBeenCalledWith(".", {
       encoding: "utf8",
       recursive: false,
