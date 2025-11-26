@@ -1,31 +1,18 @@
 {
-  "author": {
-    "email": "hi@stevanpavlovic.com",
-    "name": "Stevan Pavlovic",
-    "url": "https://stevanpavlovic.com"
-  },
-  "bin": {
-    "pjt": "./dist/bin/pjt.js"
-  },
+  "name": "@pavstev/package-json-tools",
+  "version": "1.0.0",
   "description": "A cross-platform tool to clean git repositories by removing empty directories, ignored files, and reinstalling dependencies.",
-  "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@types/node": "^24.10.1",
-    "eslint": "^9.39.1",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-json-schema-validator": "^5.5.0",
-    "eslint-plugin-jsonc": "^2.21.0",
-    "eslint-plugin-playwright": "^2.3.0",
-    "eslint-plugin-prettier": "^5.5.4",
-    "globify-gitignore": "^1.0.3",
-    "jiti": "^2.6.1",
-    "knip": "^5.70.2",
-    "prettier": "^3.6.2",
-    "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-tailwindcss": "^0.7.1",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.48.0",
-    "vitest": "^4.0.14"
+  "keywords": [
+    "git",
+    "clean",
+    "pnpm",
+    "cross-platform"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Stevan Pavlovic",
+    "email": "hi@stevanpavlovic.com",
+    "url": "https://stevanpavlovic.com"
   },
   "exports": {
     ".": {
@@ -33,21 +20,39 @@
       "require": "./dist/index.js"
     }
   },
-  "keywords": ["git", "clean", "pnpm", "cross-platform"],
-  "license": "MIT",
   "main": "./dist/index.js",
-  "name": "@pavstev/package-json-tools",
+  "bin": {
+    "pjt": "./dist/bin/pjt.js"
+  },
   "scripts": {
+    "all": "pnpm lint && pnpm typecheck && pnpm build && pnpm test && pnpm knip",
     "build": "tsc -p tsconfig.build.json",
     "clean": "find . -type d -empty -delete && git clean -Xfd -e .env.local && pnpm i",
     "dev": "tsc --watch -p tsconfig.build.json",
     "format": "prettier --write .",
-    "test": "vitest",
-    "typecheck": "tsc --noEmit -p tsconfig.spec.json",
-    "lint": "eslint . --fix --max-warnings 0",
     "knip": "knip",
-    "all": "pnpm lint && pnpm typecheck && pnpm build && pnpm test && pnpm knip",
-    "prepublishOnly": "pnpm run build"
+    "lint": "eslint . --fix --max-warnings 0",
+    "prepublishOnly": "pnpm run build",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit -p tsconfig.spec.json"
   },
-  "version": "1.0.0"
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^24.10.1",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-json-schema-validator": "^5.5.0",
+    "eslint-plugin-jsonc": "^2.21.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globify-gitignore": "^1.0.3",
+    "jiti": "^2.6.1",
+    "knip": "^5.70.2",
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-packagejson": "^2.5.19",
+    "prettier-plugin-tailwindcss": "^0.7.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.48.0",
+    "vitest": "^4.0.14"
+  }
 }

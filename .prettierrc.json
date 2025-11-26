@@ -31,8 +31,8 @@
     {
       "files": ["package.json", "**/package.json"],
       "options": {
-        "parser": "json",
-        "plugins": []
+        "parser": "json-stringify",
+        "plugins": ["prettier-plugin-packagejson"]
       }
     },
     {
@@ -60,5 +60,9 @@
       }
     }
   ],
-  "plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"]
+  "plugins": [
+    "prettier-plugin-astro",
+    "prettier-plugin-tailwindcss",
+    "prettier-plugin-packagejson"
+  ]
 }

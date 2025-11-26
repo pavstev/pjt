@@ -2,7 +2,7 @@ import type { KnipConfig } from "knip";
 
 const config: KnipConfig = {
   entry: ["src/bin/*.ts", "src/index.ts"],
-  project: ["src/**/*", "tests/**/*"],
+  project: ["src/**/*"],
   ignore: ["dist/**", ".specify/**"],
 };
 

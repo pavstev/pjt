@@ -4,7 +4,7 @@ import { join } from "path";
 
 const execPromise = (command: string): Promise<void> =>
   new Promise((resolve, reject) => {
-    exec(command, (error) => {
+    exec(command, error => {
       if (error) {
         reject(error);
       } else {

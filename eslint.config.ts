@@ -35,7 +35,12 @@ const tsFiles = ["**/*.ts", "**/*.tsx"];
 
 const config = defineConfig([
   {
-    ignores: ["dist/", "node_modules/", ...(await getIgnorePatterns())],
+    ignores: [
+      "dist/",
+      "node_modules/",
+      "**/*.test.ts",
+      ...(await getIgnorePatterns()),
+    ],
   },
   eslint.configs.recommended,
   ...eslintPluginJsonc.configs["flat/recommended-with-jsonc"],
@@ -64,10 +69,6 @@ const config = defineConfig([
             "eslint.config.ts",
             "knip.config.ts",
             "vitest.config.ts",
-            "src/bin/package-json-tools.test.ts",
-            "src/index.test.ts",
-            "tests/bin/pjt.test.ts",
-            "tests/integration/project-analysis.test.ts",
           ],
         },
       },

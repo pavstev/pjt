@@ -5,7 +5,7 @@ const child_process_1 = require("child_process");
 const fs_1 = require("fs");
 const path_1 = require("path");
 const execPromise = (command) => new Promise((resolve, reject) => {
-    (0, child_process_1.exec)(command, (error) => {
+    (0, child_process_1.exec)(command, error => {
         if (error) {
             reject(error);
         }
