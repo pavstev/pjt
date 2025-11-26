@@ -1,11 +1,31 @@
 {
-  "name": "@pavstev/git-clean",
-  "version": "1.0.0",
-  "description": "A cross-platform tool to clean git repositories by removing empty directories, ignored files, and reinstalling dependencies.",
-  "main": "./dist/index.js",
-  "type": "module",
+  "author": {
+    "email": "hi@stevanpavlovic.com",
+    "name": "Stevan Pavlovic",
+    "url": "https://stevanpavlovic.com"
+  },
   "bin": {
-    "git-clean": "./dist/bin/git-clean.js"
+    "pjt": "./dist/bin/pjt.js"
+  },
+  "description": "A cross-platform tool to clean git repositories by removing empty directories, ignored files, and reinstalling dependencies.",
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^24.10.1",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-json-schema-validator": "^5.5.0",
+    "eslint-plugin-jsonc": "^2.21.0",
+    "eslint-plugin-playwright": "^2.3.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globify-gitignore": "^1.0.3",
+    "jiti": "^2.6.1",
+    "knip": "^5.70.2",
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.7.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.48.0",
+    "vitest": "^4.0.14"
   },
   "exports": {
     ".": {
@@ -13,22 +33,21 @@
       "require": "./dist/index.js"
     }
   },
-  "scripts": {
-    "build": "tsc",
-    "test": "vitest",
-    "prepublishOnly": "npm run build"
-  },
-  "keywords": [
-    "git",
-    "clean",
-    "pnpm",
-    "cross-platform"
-  ],
-  "author": "pavstev",
+  "keywords": ["git", "clean", "pnpm", "cross-platform"],
   "license": "MIT",
-  "devDependencies": {
-    "@types/node": "^24.10.1",
-    "typescript": "^5.9.3",
-    "vitest": "^4.0.14"
-  }
+  "main": "./dist/index.js",
+  "name": "@pavstev/package-json-tools",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "clean": "find . -type d -empty -delete && git clean -Xfd -e .env.local && pnpm i",
+    "dev": "tsc --watch -p tsconfig.build.json",
+    "format": "prettier --write .",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit -p tsconfig.spec.json",
+    "lint": "eslint . --fix --max-warnings 0",
+    "knip": "knip",
+    "all": "pnpm lint && pnpm typecheck && pnpm build && pnpm test && pnpm knip",
+    "prepublishOnly": "pnpm run build"
+  },
+  "version": "1.0.0"
 }

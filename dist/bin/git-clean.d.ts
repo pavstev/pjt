@@ -1,3 +1,2 @@
-#!/usr/bin/env node
-export {};
+export declare function gitClean(): Promise<void>;
 //# sourceMappingURL=git-clean.d.ts.map

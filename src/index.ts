@@ -1,8 +1,19 @@
-import { exec } from 'child_process';
-import { promises as fs } from 'fs';
-import { join } from 'path';
+import { exec } from "child_process";
+import { promises as fs } from "fs";
+import { join } from "path";
 
-export async function removeEmptyDirectories(dir: string): Promise<void> {
+const execPromise = (command: string): Promise<void> =>
+  new Promise((resolve, reject) => {
+    exec(command, (error) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve();
+      }
+    });
+  });
+
+export const removeEmptyDirectories = async (dir: string): Promise<void> => {
   const entries = await fs.readdir(dir, { withFileTypes: true });
   for (const entry of entries) {
     const fullPath = join(dir, entry.name);
@@ -15,36 +26,19 @@ export async function removeEmptyDirectories(dir: string): Promise<void> {
   if (remaining.length === 0) {
     await fs.rmdir(dir);
   }
-}
+};
 
-export async function gitClean(exclude: string[] = ['.env.local']): Promise<void> {
-  const excludeArgs = exclude.map(e => `-e ${e}`).join(' ');
+export const gitClean = async (
+  exclude: string[] = [".env.local"],
+): Promise<void> => {
+  const excludeArgs = exclude.map(e => `-e ${e}`).join(" ");
   const command = `git clean -Xfd ${excludeArgs}`;
-  return new Promise((resolve, reject) => {
-    exec(command, (error, stdout, stderr) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve();
-      }
-    });
-  });
-}
+  return execPromise(command);
+};
 
-export async function pnpmInstall(): Promise<void> {
-  return new Promise((resolve, reject) => {
-    exec('pnpm i', (error, stdout, stderr) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve();
-      }
-    });
-  });
-}
+export const pnpmInstall = async (): Promise<void> => execPromise("pnpm i");
 
-export async function gitCleanCommand(): Promise<void> {
-  await removeEmptyDirectories('.');
-  await gitClean();
+export const gitCleanCommand = async (): Promise<void> => {
+  await Promise.all([removeEmptyDirectories("."), gitClean()]);
   await pnpmInstall();
-}
+};

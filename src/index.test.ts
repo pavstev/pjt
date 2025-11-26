@@ -1,34 +1,49 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { exec } from 'child_process';
-import { promises as fs } from 'fs';
-import { join } from 'path';
-import { tmpdir } from 'os';
-import { removeEmptyDirectories, gitClean, pnpmInstall, gitCleanCommand } from './index.js';
+import {
+  describe,
+  it,
+  expect,
+  vi,
+  MockedFunction,
+  beforeEach,
+  afterEach,
+} from "vitest";
+import { exec } from "child_process";
+import { promises as fs } from "fs";
+import { join } from "path";
+import { tmpdir } from "os";
+import {
+  removeEmptyDirectories,
+  gitClean,
+  pnpmInstall,
+  gitCleanCommand,
+} from "./index.js";
 
 // Mock child_process.exec
-vi.mock('child_process', () => ({
+vi.mock("child_process", () => ({
   exec: vi.fn(),
 }));
 
 const mockedExec = vi.mocked(exec) as any;
 
-describe('removeEmptyDirectories', () => {
+describe("removeEmptyDirectories", () => {
   let tempDir: string;
 
   beforeEach(async () => {
-    tempDir = join(tmpdir(), 'test-git-clean-' + Date.now());
+    tempDir = join(tmpdir(), "test-package-json-tools-" + Date.now());
     await fs.mkdir(tempDir, { recursive: true });
   });
 
   afterEach(async () => {
     try {
       await fs.rm(tempDir, { recursive: true, force: true });
-    } catch {}
+    } catch {
+      // ignore
+    }
   });
 
-  it('should remove empty directories', async () => {
-    const emptyDir = join(tempDir, 'empty');
-    const nestedEmpty = join(emptyDir, 'nested');
+  it("should remove empty directories", async () => {
+    const emptyDir = join(tempDir, "empty");
+    const nestedEmpty = join(emptyDir, "nested");
     await fs.mkdir(nestedEmpty, { recursive: true });
 
     await removeEmptyDirectories(tempDir);
@@ -36,16 +51,16 @@ describe('removeEmptyDirectories', () => {
     // Check that empty dirs are removed
     try {
       await fs.access(emptyDir);
-      expect.fail('Empty directory should be removed');
+      expect.fail("Empty directory should be removed");
     } catch {
       // Expected
     }
   });
 
-  it('should not remove directories with files', async () => {
-    const dirWithFile = join(tempDir, 'withFile');
+  it("should not remove directories with files", async () => {
+    const dirWithFile = join(tempDir, "withFile");
     await fs.mkdir(dirWithFile);
-    await fs.writeFile(join(dirWithFile, 'file.txt'), 'content');
+    await fs.writeFile(join(dirWithFile, "file.txt"), "content");
 
     await removeEmptyDirectories(tempDir);
 
@@ -54,73 +69,98 @@ describe('removeEmptyDirectories', () => {
   });
 });
 
-describe('gitClean', () => {
+describe("gitClean", () => {
   beforeEach(() => {
     mockedExec.mockClear();
+    mockedExec.mockReset();
+    mockedExec.mockImplementation(() => {});
   });
 
-  it('should call git clean with default exclude', async () => {
-    mockedExec.mockImplementation((command: string, callback?: (error: any, stdout: string, stderr: string) => void) => {
-      if (callback) callback(null, '', '');
-    });
+  it("should call git clean with default exclude", async () => {
+    mockedExec.mockImplementation(
+      (
+        command: string,
+
+        callback?: (
+          error: Error | null,
+
+          stdout: string,
+
+          stderr: string,
+        ) => void,
+      ) => {
+        if (callback) callback(null, "", "");
+      },
+    );
 
     await gitClean();
 
-    expect(mockedExec).toHaveBeenCalledWith('git clean -Xfd -e .env.local', expect.any(Function));
+    expect(mockedExec).toHaveBeenCalledWith(
+      "git clean -Xfd -e .env.local",
+      expect.any(Function),
+    );
   });
 
-  it('should call git clean with custom excludes', async () => {
-    mockedExec.mockImplementation((command: string, callback?: (error: any, stdout: string, stderr: string) => void) => {
-      if (callback) callback(null, '', '');
-    });
+  it("should call git clean with custom excludes", async () => {
+    mockedExec.mockImplementation(
+      (
+        command: string,
+        callback?: (
+          error: Error | null,
+          stdout: string,
+          stderr: string,
+        ) => void,
+      ) => {
+        if (callback) callback(null, "", "");
+      },
+    );
 
-    await gitClean(['.env', 'node_modules']);
+    await gitClean([".env", "node_modules"]);
 
-    expect(mockedExec).toHaveBeenCalledWith('git clean -Xfd -e .env -e node_modules', expect.any(Function));
+    expect(mockedExec).toHaveBeenCalledWith(
+      "git clean -Xfd -e .env -e node_modules",
+      expect.any(Function),
+    );
   });
 
-  it('should reject on error', async () => {
-    mockedExec.mockImplementation((command: string, callback?: (error: any, stdout: string, stderr: string) => void) => {
-      if (callback) callback(new Error('git error'), '', '');
-    });
+  it("should reject on error", async () => {
+    mockedExec.mockImplementationOnce(
+      (
+        command: string,
+        callback?: (
+          error: Error | null,
+          stdout: string,
+          stderr: string,
+        ) => void,
+      ) => {
+        if (callback) callback(new Error("pnpm error"), "", "");
+      },
+    );
 
-    await expect(gitClean()).rejects.toThrow('git error');
+    await expect(pnpmInstall()).rejects.toThrow("pnpm error");
   });
 });
 
-describe('pnpmInstall', () => {
+describe("gitCleanCommand", () => {
   beforeEach(() => {
     mockedExec.mockClear();
+    mockedExec.mockReset();
+    mockedExec.mockImplementation(() => {});
   });
 
-  it('should call pnpm i', async () => {
-    mockedExec.mockImplementation((command: string, callback?: (error: any, stdout: string, stderr: string) => void) => {
-      if (callback) callback(null, '', '');
-    });
-
-    await pnpmInstall();
-
-    expect(mockedExec).toHaveBeenCalledWith('pnpm i', expect.any(Function));
-  });
-
-  it('should reject on error', async () => {
-    mockedExec.mockImplementation((command: string, callback?: (error: any, stdout: string, stderr: string) => void) => {
-      if (callback) callback(new Error('pnpm error'), '', '');
-    });
-
-    await expect(pnpmInstall()).rejects.toThrow('pnpm error');
-  });
-});
-
-describe('gitCleanCommand', () => {
-  beforeEach(() => {
-    mockedExec.mockClear();
-  });
-
-  it('should call all functions in sequence', async () => {
-    mockedExec.mockImplementation((command: string, callback?: (error: any, stdout: string, stderr: string) => void) => {
-      if (callback) callback(null, '', '');
-    });
+  it("should call all functions in sequence", async () => {
+    mockedExec.mockImplementation(
+      (
+        command: string,
+        callback?: (
+          error: Error | null,
+          stdout: string,
+          stderr: string,
+        ) => void,
+      ) => {
+        if (callback) callback(null, "", "");
+      },
+    );
 
     // Mock fs operations for removeEmptyDirectories
     const originalReaddir = fs.readdir;
@@ -130,8 +170,11 @@ describe('gitCleanCommand', () => {
 
     await gitCleanCommand();
 
-    expect(mockedExec).toHaveBeenCalledWith('git clean -Xfd -e .env.local', expect.any(Function));
-    expect(mockedExec).toHaveBeenCalledWith('pnpm i', expect.any(Function));
+    expect(mockedExec).toHaveBeenCalledWith(
+      "git clean -Xfd -e .env.local",
+      expect.any(Function),
+    );
+    expect(mockedExec).toHaveBeenCalledWith("pnpm i", expect.any(Function));
 
     // Restore
     fs.readdir = originalReaddir;
