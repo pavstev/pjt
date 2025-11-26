@@ -1,6 +1,7 @@
 {
   "name": "pjt",
   "version": "1.0.0",
+  "private": false,
   "description": "A cross-platform tool to clean git repositories by removing empty directories, ignored files, and reinstalling dependencies.",
   "keywords": [
     "git",
@@ -24,7 +25,6 @@
   "bin": {
     "pjt": "dist/bin/pjt.js"
   },
-  "private": false,
   "scripts": {
     "all": "pnpm lint && pnpm build && pnpm typecheck && pnpm test && pnpm knip",
     "build": "vite build && tsc --emitDeclarationOnly -p tsconfig.build.json",

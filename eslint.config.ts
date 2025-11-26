@@ -4,32 +4,8 @@ import eslintPluginJsonSchemaValidator from "eslint-plugin-json-schema-validator
 import eslintPluginJsonc from "eslint-plugin-jsonc";
 import prettier from "eslint-plugin-prettier";
 import { defineConfig } from "eslint/config";
-import { globifyGitIgnore } from "globify-gitignore";
-import { readdirSync } from "node:fs";
-import { join } from "node:path";
+import { getIgnorePatterns } from "./src/utils";
 import tseslint from "typescript-eslint";
-
-const getIgnorePatterns = async (): Promise<string[]> => {
-  const directory = import.meta.dirname;
-  const entries = await Promise.all(
-    readdirSync(".", {
-      encoding: "utf8",
-      recursive: false,
-    })
-      .filter((file: string) => /^\..(\w+)ignore$/.test(file))
-      .map(async (file: string) => {
-        const entries = await globifyGitIgnore(
-          join(directory, file),
-          directory,
-          true,
-        );
-
-        return entries.filter(e => e.included).map(e => e.glob);
-      }),
-  );
-
-  return entries.flat();
-};
 
 const tsFiles = ["**/*.ts", "**/*.tsx"];
 
