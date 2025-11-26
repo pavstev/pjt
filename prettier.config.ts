@@ -55,7 +55,7 @@ const config: Config = {
       },
     },
   ],
-  plugins: ["prettier-plugin-tailwindcss", "prettier-plugin-packagejson"],
+  plugins: ["prettier-plugin-packagejson"],
 };
 
 export default config;

@@ -1,10 +1,10 @@
-export enum LogLevel {
+enum LogLevel {
   INFO = "info",
   WARN = "warn",
   ERROR = "error",
 }
 
-export class Logger {
+class Logger {
   private level: LogLevel = LogLevel.INFO;
 
   setLevel(level: LogLevel): void {
