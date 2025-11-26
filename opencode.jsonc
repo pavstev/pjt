@@ -1,0 +1,67 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "plan": {
+      "disable": false
+    }
+  },
+  "experimental": {},
+  "keybinds": {},
+  "mcp": {
+    "playwright": {
+      "type": "local",
+      "command": ["npx", "@playwright/mcp@latest"],
+      "enabled": true
+    },
+    "shadcn": {
+      "type": "local",
+      "command": ["npx", "shadcn@latest", "mcp"],
+      "enabled": true
+    },
+    "lighthouse": {
+      "type": "local",
+      "command": ["npx", "-y", "@danielsogl/lighthouse-mcp@latest"],
+      "enabled": false
+    },
+    "Astro docs": {
+      "type": "remote",
+      "url": "https://mcp.docs.astro.build/mcp",
+      "enabled": true
+    },
+    "magicui": {
+      "type": "local",
+      "command": ["npx", "-y", "@magicuidesign/mcp@latest"],
+      "enabled": false
+    },
+    "eslint": {
+      "type": "local",
+      "command": ["npx", "-y", "@eslint/mcp@latest"],
+      "enabled": true
+    },
+    "nx": {
+      "type": "local",
+      "command": ["npx", "-y", "nx-mcp@latest"],
+      "enabled": true
+    },
+    "knip": {
+      "type": "local",
+      "command": ["npx", "-y", "@genar/knip-mcp-server@latest"],
+      "enabled": true,
+      "environment": {
+        "KNIP_PROJECT_ROOT": ".",
+        "KNIP_LOG_LEVEL": "info",
+        "KNIP_SAFE_MODE": "true"
+      }
+    },
+    "cloudflare-browser": {
+      "type": "remote",
+      "url": "https://browser.mcp.cloudflare.com/mcp",
+      "enabled": false
+    },
+    "cloudflare-workers-builds": {
+      "type": "remote",
+      "url": "https://builds.mcp.cloudflare.com/mcp",
+      "enabled": false
+    }
+  }
+}
