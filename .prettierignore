@@ -1,0 +1,14 @@
+# Add files here to ignore them from prettier formatting
+/dist
+/coverage
+/.nx/cache
+/.nx/workspace-data
+pnpm-lock.yaml
+*.sh
+.nvmrc
+.gitignore
+.npmignore
+.prettierignore
+.opencode/.gitignore
+.opencode/bun.lock
+opencodetmp/
