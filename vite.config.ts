@@ -10,6 +10,7 @@ export default defineConfig({
       entry: {
         index: "src/index.ts",
         "bin/pjt": "src/bin/pjt.ts",
+        "prettier-config": "src/prettier-config.ts",
       },
       formats: ["cjs"],
       fileName: (_format, entryName) => `${entryName}.js`,

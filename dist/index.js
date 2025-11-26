@@ -4,6 +4,7 @@ const node_fs = require("node:fs");
 const node_path = require("node:path");
 const node_child_process = require("node:child_process");
 const globifyGitignore = require("globify-gitignore");
+const prettierConfig = require("./prettier-config.js");
 const removeEmptyDirectories = async (dir) => {
   const entries = await node_fs.promises.readdir(dir, { withFileTypes: true });
   for (const entry of entries) {
@@ -49,68 +50,11 @@ const gitClean = async (exclude = [".env.local"]) => {
   return execPromise(command);
 };
 const pnpmInstall = async () => execPromise("pnpm i");
-const config = {
-  arrowParens: "avoid",
-  overrides: [
-    {
-      files: "*.jsonc",
-      options: {
-        trailingComma: "all"
-      }
-    },
-    {
-      files: "*.code-workspace",
-      options: {
-        parser: "jsonc",
-        trailingComma: "all"
-      }
-    },
-    {
-      files: ["*.json", "!package.json", "!**/package.json"],
-      options: {
-        parser: "json",
-        plugins: ["prettier-plugin-tailwindcss"]
-      }
-    },
-    {
-      files: ["package.json", "**/package.json"],
-      options: {
-        parser: "json-stringify",
-        plugins: ["prettier-plugin-packagejson"]
-      }
-    },
-    {
-      files: ["*.md", "**/*.md"],
-      options: {
-        parser: "markdown"
-      }
-    },
-    {
-      files: ["*.yaml", "*.yml", "**/*.yaml", "**/*.yml"],
-      options: {
-        parser: "yaml"
-      }
-    },
-    {
-      files: ["*.ts", "**/*.ts"],
-      options: {
-        parser: "typescript"
-      }
-    },
-    {
-      files: ["*.js", "**/*.js"],
-      options: {
-        parser: "babel"
-      }
-    }
-  ],
-  plugins: ["prettier-plugin-tailwindcss", "prettier-plugin-packagejson"]
-};
 const gitCleanCommand = async () => {
   await Promise.all([removeEmptyDirectories("."), gitClean()]);
   await pnpmInstall();
 };
+exports.prettierConfig = prettierConfig;
 exports.getIgnorePatterns = getIgnorePatterns;
 exports.gitCleanCommand = gitCleanCommand;
-exports.prettierConfig = config;
 //# sourceMappingURL=index.js.map

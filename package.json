@@ -19,15 +19,25 @@
     ".": {
       "import": "./dist/index.js",
       "require": "./dist/index.js"
-    }
+    },
+    "./prettier-config": {
+      "import": "./dist/prettier-config.js",
+      "require": "./dist/prettier-config.js"
+    },
+    "./prettier-config.json": "./dist/prettier-config.json"
   },
   "main": "./dist/index.js",
   "bin": {
     "pjt": "dist/bin/pjt.js"
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "all": "pnpm lint && pnpm build && pnpm typecheck && pnpm test && pnpm knip",
     "build": "vite build",
+    "postbuild": "node -e \"const config = require('./dist/prettier-config.js').default || require('./dist/prettier-config.js'); require('fs').writeFileSync('./dist/prettier-config.json', JSON.stringify(config, null, 2));\"",
     "clean": "find . -type d -empty -delete && git clean -Xfd -e .env.local && pnpm i",
     "dev": "tsc --watch -p tsconfig.build.json",
     "format": "prettier --write .",
