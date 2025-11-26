@@ -41,8 +41,6 @@
     },
     "typescript.preferences.importModuleSpecifier": "relative",
     "typescript.suggest.autoImports": true,
-    "emmet.includeLanguages": {
-      "astro": "html"
-    },
+    "emmet.includeLanguages": {},
   }
 }

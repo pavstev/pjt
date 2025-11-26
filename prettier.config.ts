@@ -4,12 +4,6 @@ const config: Config = {
   arrowParens: "avoid",
   overrides: [
     {
-      files: "*.astro",
-      options: {
-        parser: "astro",
-      },
-    },
-    {
       files: "*.jsonc",
       options: {
         trailingComma: "all",
@@ -61,11 +55,7 @@ const config: Config = {
       },
     },
   ],
-  plugins: [
-    "prettier-plugin-astro",
-    "prettier-plugin-tailwindcss",
-    "prettier-plugin-packagejson",
-  ],
+  plugins: ["prettier-plugin-tailwindcss", "prettier-plugin-packagejson"],
 };
 
 export default config;
