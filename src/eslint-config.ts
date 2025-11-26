@@ -51,7 +51,7 @@ export const tsRules: Config = {
     parser: tseslint.parser,
     parserOptions: {
       projectService: {
-        allowDefaultProject: ["vitest.config.ts", "prettier.config.ts"],
+        allowDefaultProject: ["*.ts"],
       },
     },
   },
