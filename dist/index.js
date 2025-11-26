@@ -5,6 +5,13 @@ const node_path = require("node:path");
 const node_child_process = require("node:child_process");
 const globifyGitignore = require("globify-gitignore");
 const prettierConfig = require("./prettier-config.js");
+const eslint = require("@eslint/js");
+const prettierConfig$1 = require("eslint-config-prettier");
+const eslintPluginJsonSchemaValidator = require("eslint-plugin-json-schema-validator");
+const eslintPluginJsonc = require("eslint-plugin-jsonc");
+const prettier = require("eslint-plugin-prettier");
+const config = require("eslint/config");
+const tseslint = require("typescript-eslint");
 const removeEmptyDirectories = async (dir) => {
   const entries = await node_fs.promises.readdir(dir, { withFileTypes: true });
   for (const entry of entries) {
@@ -50,11 +57,101 @@ const gitClean = async (exclude = [".env.local"]) => {
   return execPromise(command);
 };
 const pnpmInstall = async () => execPromise("pnpm i");
+const tsFiles = ["**/*.ts", "**/*.tsx"];
+const getIgnores = async () => ({
+  ignores: [
+    "dist/",
+    "node_modules/",
+    "**/*.test.ts",
+    ...await getIgnorePatterns()
+  ]
+});
+const recommended = eslint.configs.recommended;
+const jsonc = eslintPluginJsonc.configs["flat/recommended-with-jsonc"];
+const jsonSchema = eslintPluginJsonSchemaValidator.configs["flat/recommended"];
+const prettierConf = prettierConfig$1;
+const tsRecommended = tseslint.configs.recommended.map(
+  (config2) => ({
+    ...config2,
+    files: tsFiles
+  })
+);
+const prettierPlugin = {
+  files: ["**/*"],
+  plugins: {
+    prettier
+  },
+  rules: {
+    "prettier/prettier": ["error"]
+  }
+};
+const tsRules = {
+  files: tsFiles,
+  languageOptions: {
+    parser: tseslint.parser,
+    parserOptions: {
+      projectService: {
+        allowDefaultProject: ["vitest.config.ts", "prettier.config.ts"]
+      }
+    }
+  },
+  rules: {
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+    "@typescript-eslint/no-restricted-imports": [
+      "error",
+      {
+        paths: [
+          {
+            name: "fs",
+            message: "Import from 'node:fs' instead"
+          },
+          {
+            name: "path",
+            message: "Import from 'node:path' instead"
+          },
+          {
+            name: "child_process",
+            message: "Import from 'node:child_process' instead"
+          }
+        ]
+      }
+    ],
+    "arrow-body-style": ["error", "as-needed"],
+    "func-style": ["error", "expression"],
+    "no-else-return": "error",
+    "no-restricted-syntax": [
+      "error",
+      {
+        selector: "SwitchStatement",
+        message: "Switch statements are not allowed"
+      },
+      {
+        selector: "TSInterfaceDeclaration",
+        message: "Use type aliases instead of interfaces"
+      },
+      {
+        selector: "ImportNamespaceSpecifier",
+        message: "Use explicit imports instead of 'import * as'"
+      }
+    ]
+  }
+};
+const eslintConfig = async () => config.defineConfig([
+  await getIgnores(),
+  recommended,
+  ...jsonc,
+  ...jsonSchema,
+  prettierConf,
+  ...tsRecommended,
+  prettierPlugin,
+  tsRules
+]);
 const gitCleanCommand = async () => {
   await Promise.all([removeEmptyDirectories("."), gitClean()]);
   await pnpmInstall();
 };
 exports.prettierConfig = prettierConfig;
+exports.eslintConfig = eslintConfig;
 exports.getIgnorePatterns = getIgnorePatterns;
 exports.gitCleanCommand = gitCleanCommand;
 //# sourceMappingURL=index.js.map

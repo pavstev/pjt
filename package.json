@@ -24,7 +24,11 @@
       "import": "./dist/prettier-config.js",
       "require": "./dist/prettier-config.js"
     },
-    "./prettier-config.json": "./dist/prettier-config.json"
+    "./prettier-config.json": "./dist/prettier-config.json",
+    "./eslint-config": {
+      "import": "./dist/eslint-config.js",
+      "require": "./dist/eslint-config.js"
+    }
   },
   "main": "./dist/index.js",
   "bin": {

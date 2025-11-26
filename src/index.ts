@@ -9,4 +9,5 @@ export const gitCleanCommand = async (): Promise<void> => {
 };
 
 export { default as prettierConfig } from "./prettier-config.js";
+export { eslintConfig } from "./eslint-config.js";
 export { getIgnorePatterns };
