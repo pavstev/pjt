@@ -27,7 +27,7 @@
   },
   "scripts": {
     "all": "pnpm lint && pnpm build && pnpm typecheck && pnpm test && pnpm knip",
-    "build": "vite build && tsc --emitDeclarationOnly -p tsconfig.build.json",
+    "build": "vite build",
     "clean": "find . -type d -empty -delete && git clean -Xfd -e .env.local && pnpm i",
     "dev": "tsc --watch -p tsconfig.build.json",
     "format": "prettier --write .",
