@@ -1,4 +1,4 @@
-# Agent Guidelines for @pavstev/package-json-tools
+# Agent Guidelines for pjt
 
 ## Commands
 

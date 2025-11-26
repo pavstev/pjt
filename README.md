@@ -17,13 +17,13 @@ A cross-platform CLI tool for managing and cleaning git repositories, with a foc
 Install globally via npm:
 
 ```bash
-npm install -g @pavstev/package-json-tools
+npm install -g pjt
 ```
 
 Or with pnpm:
 
 ```bash
-pnpm add -g @pavstev/package-json-tools
+pnpm add -g pjt
 ```
 
 ## Requirements
