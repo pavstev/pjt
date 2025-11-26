@@ -18,7 +18,7 @@ export const gitClean = async (
       error instanceof Error &&
       error.message.includes("Command execution failed")
     ) {
-      throw new GitError("Git clean failed");
+      throw new GitError("Git clean failed", { cause: error });
     }
     throw error;
   }

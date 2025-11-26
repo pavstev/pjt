@@ -51,4 +51,23 @@ describe("gitClean", () => {
       "git clean -Xfd --dry-run -e .env.local",
     );
   });
+
+  it("should throw GitError when execPromise fails", async () => {
+    const mockExec = vi.mocked(execPromise);
+    const mockValidate = vi.mocked(validateGitCleanOptions);
+    mockExec.mockRejectedValue(new Error("Command execution failed"));
+    mockValidate.mockImplementation(() => {});
+
+    await expect(gitClean()).rejects.toThrow("Git clean failed");
+  });
+
+  it("should rethrow non-execution errors", async () => {
+    const mockExec = vi.mocked(execPromise);
+    const mockValidate = vi.mocked(validateGitCleanOptions);
+    const originalError = new Error("Some other error");
+    mockExec.mockRejectedValue(originalError);
+    mockValidate.mockImplementation(() => {});
+
+    await expect(gitClean()).rejects.toThrow(originalError);
+  });
 });

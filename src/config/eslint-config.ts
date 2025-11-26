@@ -2,7 +2,6 @@ import eslint from "@eslint/js";
 import prettierConfig from "eslint-config-prettier";
 import eslintPluginJsonSchemaValidator from "eslint-plugin-json-schema-validator";
 import eslintPluginJsonc from "eslint-plugin-jsonc";
-import prettier from "eslint-plugin-prettier";
 import { type Config } from "eslint/config";
 import tseslint from "typescript-eslint";
 import { getIgnorePatterns } from "../core/utils";
@@ -35,15 +34,7 @@ export const tsRecommended: Config[] = tseslint.configs.recommended.map(
   }),
 );
 
-export const prettierPlugin: Config = {
-  files: ["**/*"],
-  plugins: {
-    prettier,
-  },
-  rules: {
-    "prettier/prettier": ["error"],
-  },
-};
+
 
 export const tsRules: Config = {
   files: tsFiles,
@@ -106,7 +97,7 @@ export default async (): Promise<Config[]> => {
     ...jsonSchema,
     prettierConf,
     ...tsRecommended,
-    prettierPlugin,
+    // prettierPlugin,
     tsRules,
   ];
 };

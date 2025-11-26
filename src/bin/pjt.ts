@@ -9,16 +9,16 @@ const main = async () => {
 
   const command = commands.find(cmd => cmd.name === commandName);
 
-  if (command) {
-    try {
-      await command.handler();
-    } catch (error) {
-      handleError(error);
-    }
-  } else {
+  if (!command) {
     console.error(`Unknown command: ${commandName}`);
     console.error("Run --help for available commands");
     process.exit(1);
+  }
+
+  try {
+    await command.handler();
+  } catch (error) {
+    handleError(error);
   }
 };
 

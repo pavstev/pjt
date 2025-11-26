@@ -1,14 +1,14 @@
 import { Command } from "../../types";
-import { handlePackageJsonTools } from "./package-json-tools";
+import { handleGitClean } from "./git-clean";
 import { handleAiCommit } from "./ai-commit";
 import { printHelp } from "./help";
 import { printVersion } from "./version";
 
 export const commands: Command[] = [
   {
-    name: "package-json-tools",
+    name: "git-clean",
     description: "Clean and manage package.json related files",
-    handler: handlePackageJsonTools,
+    handler: handleGitClean,
   },
   {
     name: "ai-commit",

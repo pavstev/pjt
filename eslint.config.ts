@@ -8,7 +8,6 @@ export default await import("./src/config/eslint-config.js").then(async m =>
     ...m.jsonSchema,
     m.prettierConf,
     ...m.tsRecommended,
-    m.prettierPlugin,
     m.tsRules,
   ]),
 );

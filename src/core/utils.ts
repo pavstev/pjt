@@ -1,7 +1,7 @@
-import { exec } from "node:child_process";
 import { readdirSync, promises as fs } from "node:fs";
 import { join } from "node:path";
 import { globifyGitIgnore } from "globify-gitignore";
+import { execa } from "execa";
 import { CliError } from "../types";
 import { logger } from "./logger";
 
@@ -16,7 +16,11 @@ export const validateDirectory = async (dir: string): Promise<void> => {
     }
   } catch (error) {
     if (error instanceof CliError) throw error;
-    throw new CliError(`Directory ${dir} does not exist or is inaccessible`);
+    throw new CliError(
+      `Directory ${dir} does not exist or is inaccessible`,
+      undefined,
+      { cause: error },
+    );
   }
 };
 
@@ -39,22 +43,21 @@ export const validateGitCleanOptions = (options: unknown): void => {
  * @returns A promise that resolves when the command completes successfully.
  * @throws CliError if the command execution fails.
  */
-export const execPromise = (command: string): Promise<void> =>
-  new Promise((resolve, reject) => {
-    logger.info(`Executing: ${command}`);
-    exec(command, (error, stdout, stderr) => {
-      if (error) {
-        logger.error(`Command failed: ${command}`);
-        if (stderr) logger.error(stderr);
-        reject(
-          new CliError(`Command execution failed: ${command}`, "EXEC_ERROR"),
-        );
-      } else {
-        if (stdout) logger.info(stdout.trim());
-        resolve();
-      }
+export const execPromise = async (command: string): Promise<void> => {
+  logger.info(`Executing: ${command}`);
+  try {
+    const result = await execa(command, { shell: true }) as { stdout: string };
+    if (result.stdout) logger.info(result.stdout.trim());
+  } catch (error) {
+    logger.error(`Command failed: ${command}`);
+    if (error instanceof Error && "stderr" in error && error.stderr) {
+      logger.error(error.stderr as string);
+    }
+    throw new CliError(`Command execution failed: ${command}`, "EXEC_ERROR", {
+      cause: error,
     });
-  });
+  }
+};
 
 export const getIgnorePatterns = async (): Promise<string[]> => {
   try {
@@ -83,6 +86,8 @@ export const getIgnorePatterns = async (): Promise<string[]> => {
     return entries.flat();
   } catch (error) {
     logger.error(`Failed to read ignore patterns: ${error}`);
-    throw new CliError("Failed to read ignore patterns", "IGNORE_READ_ERROR");
+    throw new CliError("Failed to read ignore patterns", "IGNORE_READ_ERROR", {
+      cause: error,
+    });
   }
 };

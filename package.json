@@ -56,6 +56,7 @@
     "typecheck": "tsc --noEmit -p tsconfig.build.json"
   },
   "dependencies": {
+    "execa": "^9.5.2",
     "globify-gitignore": "^1.0.3"
   },
   "devDependencies": {
