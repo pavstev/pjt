@@ -18,22 +18,22 @@
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
+      "import": "./dist/index.cjs",
+      "require": "./dist/index.cjs"
     },
     "./prettier-config": {
-      "import": "./dist/prettier-config.js",
-      "require": "./dist/prettier-config.js"
+      "import": "./dist/prettier-config.cjs",
+      "require": "./dist/prettier-config.cjs"
     },
     "./prettier-config.json": "./dist/prettier-config.json",
     "./eslint-config": {
-      "import": "./dist/eslint-config.js",
-      "require": "./dist/eslint-config.js"
+      "import": "./dist/eslint-config.cjs",
+      "require": "./dist/eslint-config.cjs"
     }
   },
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
   "bin": {
-    "pjt": "dist/bin/pjt.js"
+    "pjt": "dist/bin/pjt.cjs"
   },
   "files": [
     "dist",

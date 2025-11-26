@@ -11,6 +11,7 @@ export default defineConfig({
         index: "src/index.ts",
         "bin/pjt": "src/bin/pjt.ts",
         "prettier-config": "src/config/prettier-config.ts",
+        "eslint-config": "src/config/eslint-config.ts",
       },
       formats: ["cjs"],
       fileName: (_format, entryName) => `${entryName}.js`,
