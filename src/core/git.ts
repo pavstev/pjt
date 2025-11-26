@@ -1,4 +1,4 @@
-import { execPromise } from "./utils.js";
+import { execPromise } from "./utils";
 
 export const gitClean = async (
   exclude: string[] = [".env.local"],

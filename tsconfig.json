@@ -11,7 +11,13 @@
     "strict": true,
     "target": "ES2022"
   },
-  "include": ["vite.config.ts", "eslint.config.ts", "knip.config.ts"],
+
+  "exclude": [
+    "vite.config.ts",
+    "eslint.config.ts",
+    "knip.config.ts",
+    "prettier.config.ts"
+  ],
   "references": [
     { "path": "./tsconfig.build.json" },
     { "path": "./tsconfig.spec.json" }

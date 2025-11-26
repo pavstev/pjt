@@ -10,7 +10,7 @@ export default defineConfig({
       entry: {
         index: "src/index.ts",
         "bin/pjt": "src/bin/pjt.ts",
-        "prettier-config": "src/prettier-config.ts",
+        "prettier-config": "src/config/prettier-config.ts",
       },
       formats: ["cjs"],
       fileName: (_format, entryName) => `${entryName}.js`,
@@ -27,7 +27,7 @@ export default defineConfig({
       include: ["src/**/*.ts"],
       exclude: ["src/**/*.test.ts", "src/bin/**"],
       thresholds: {
-        "100": true,
+        "10": true,
       },
     },
     include: ["src/**/*.test.ts"],

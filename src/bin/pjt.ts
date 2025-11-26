@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-import { handlePackageJsonTools } from "./commands/package-json-tools.js";
-import { handleAiCommit } from "./commands/ai-commit.js";
-import { printHelp } from "./commands/help.js";
-import { printVersion } from "./commands/version.js";
+import { handlePackageJsonTools } from "./commands/package-json-tools";
+import { handleAiCommit } from "./commands/ai-commit";
+import { printHelp } from "./commands/help";
+import { printVersion } from "./commands/version";
 
 const main = async () => {
   const args = process.argv.slice(2);

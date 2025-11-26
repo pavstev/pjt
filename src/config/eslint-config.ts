@@ -5,7 +5,7 @@ import eslintPluginJsonc from "eslint-plugin-jsonc";
 import prettier from "eslint-plugin-prettier";
 import { type Config } from "eslint/config";
 import tseslint from "typescript-eslint";
-import { getIgnorePatterns } from "./utils";
+import { getIgnorePatterns } from "../core/utils";
 
 const tsFiles = ["**/*.ts", "**/*.tsx"];
 

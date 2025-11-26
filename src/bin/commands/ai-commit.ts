@@ -1,5 +1,5 @@
-import { execPromise } from "../../utils.js";
-import { checkGitRepository, handleError } from "../cli-utils.js";
+import { execPromise } from "../../core/utils";
+import { checkGitRepository, handleError } from "../cli-utils";
 
 export const handleAiCommit = async (): Promise<void> => {
   try {

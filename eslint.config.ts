@@ -1,6 +1,6 @@
 import { defineConfig } from "eslint/config";
 
-export default await import("./src/eslint-config.js").then(async m =>
+export default await import("./src/config/eslint-config.js").then(async m =>
   defineConfig([
     await m.getIgnores(),
     m.recommended,
