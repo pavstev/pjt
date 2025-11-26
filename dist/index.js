@@ -10,7 +10,6 @@ const prettierConfig$1 = require("eslint-config-prettier");
 const eslintPluginJsonSchemaValidator = require("eslint-plugin-json-schema-validator");
 const eslintPluginJsonc = require("eslint-plugin-jsonc");
 const prettier = require("eslint-plugin-prettier");
-const config = require("eslint/config");
 const tseslint = require("typescript-eslint");
 const removeEmptyDirectories = async (dir) => {
   const entries = await node_fs.promises.readdir(dir, { withFileTypes: true });
@@ -71,8 +70,8 @@ const jsonc = eslintPluginJsonc.configs["flat/recommended-with-jsonc"];
 const jsonSchema = eslintPluginJsonSchemaValidator.configs["flat/recommended"];
 const prettierConf = prettierConfig$1;
 const tsRecommended = tseslint.configs.recommended.map(
-  (config2) => ({
-    ...config2,
+  (config) => ({
+    ...config,
     files: tsFiles
   })
 );
@@ -136,22 +135,26 @@ const tsRules = {
     ]
   }
 };
-const eslintConfig = async () => config.defineConfig([
-  await getIgnores(),
-  recommended,
-  ...jsonc,
-  ...jsonSchema,
-  prettierConf,
-  ...tsRecommended,
-  prettierPlugin,
-  tsRules
-]);
+const eslintConfig = async () => {
+  const ignores = await getIgnores();
+  return [
+    ignores,
+    recommended,
+    ...jsonc,
+    ...jsonSchema,
+    prettierConf,
+    ...tsRecommended,
+    prettierPlugin,
+    tsRules
+  ];
+};
 const gitCleanCommand = async () => {
   await Promise.all([removeEmptyDirectories("."), gitClean()]);
   await pnpmInstall();
 };
 exports.prettierConfig = prettierConfig;
 exports.eslintConfig = eslintConfig;
+exports.execPromise = execPromise;
 exports.getIgnorePatterns = getIgnorePatterns;
 exports.gitCleanCommand = gitCleanCommand;
 //# sourceMappingURL=index.js.map
