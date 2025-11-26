@@ -20,6 +20,14 @@ export default defineConfig({
     minify: false,
   },
   test: {
+    coverage: {
+      provider: "v8",
+      clean: true,
+      include: ["src/**/*.test.ts"],
+      thresholds: {
+        "100": true,
+      },
+    },
     include: ["src/**/*.test.ts", "tests/**/*.test.ts"],
   },
 });
