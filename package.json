@@ -24,6 +24,7 @@
   "bin": {
     "pjt": "dist/bin/pjt.js"
   },
+  "private": false,
   "scripts": {
     "all": "pnpm lint && pnpm build && pnpm typecheck && pnpm test && pnpm knip",
     "build": "vite build && tsc --emitDeclarationOnly -p tsconfig.build.json",
