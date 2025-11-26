@@ -3,7 +3,7 @@ Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 const node_fs = require("node:fs");
 const node_path = require("node:path");
 const node_child_process = require("node:child_process");
-require("globify-gitignore");
+const globifyGitignore = require("globify-gitignore");
 const removeEmptyDirectories = async (dir) => {
   const entries = await node_fs.promises.readdir(dir, { withFileTypes: true });
   for (const entry of entries) {
@@ -26,6 +26,23 @@ const execPromise = (command) => new Promise((resolve, reject) => {
     }
   });
 });
+const getIgnorePatterns = async () => {
+  const directory = process.cwd();
+  const entries = await Promise.all(
+    node_fs.readdirSync(".", {
+      encoding: "utf8",
+      recursive: false
+    }).filter((file) => /^\..(\w+)ignore$/.test(file)).map(async (file) => {
+      const entries2 = await globifyGitignore.globifyGitIgnore(
+        node_path.join(directory, file),
+        directory,
+        true
+      );
+      return entries2.filter((e) => e.included).map((e) => e.glob);
+    })
+  );
+  return entries.flat();
+};
 const gitClean = async (exclude = [".env.local"]) => {
   const excludeArgs = exclude.map((e) => `-e ${e}`).join(" ");
   const command = `git clean -Xfd ${excludeArgs}`;
@@ -93,6 +110,7 @@ const gitCleanCommand = async () => {
   await Promise.all([removeEmptyDirectories("."), gitClean()]);
   await pnpmInstall();
 };
+exports.getIgnorePatterns = getIgnorePatterns;
 exports.gitCleanCommand = gitCleanCommand;
 exports.prettierConfig = config;
 //# sourceMappingURL=index.js.map
