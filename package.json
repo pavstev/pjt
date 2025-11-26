@@ -38,6 +38,9 @@
     "test": "vitest run --coverage",
     "typecheck": "tsc --noEmit -p tsconfig.build.json"
   },
+  "dependencies": {
+    "globify-gitignore": "^1.0.3"
+  },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@types/node": "^24.10.1",
@@ -47,7 +50,6 @@
     "eslint-plugin-json-schema-validator": "^5.5.0",
     "eslint-plugin-jsonc": "^2.21.0",
     "eslint-plugin-prettier": "^5.5.4",
-    "globify-gitignore": "^1.0.3",
     "jiti": "^2.6.1",
     "knip": "^5.70.2",
     "prettier": "^3.6.2",
