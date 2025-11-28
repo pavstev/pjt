@@ -10,35 +10,47 @@ import { logger } from "../lib/logger";
 
 const utils = new CliUtils(logger);
 const commandExecutor = new CommandExecutor(logger);
-const git = new Git(commandExecutor, logger);
+const git = new Git(logger);
 const cli = cac("pjt");
 
 const defaultCommand = getDefaultCommand();
 if (defaultCommand) {
-  cli
-    .command("", defaultCommand.description)
-    .action(
-      utils.createCommandHandler(() =>
-        defaultCommand.handler(utils, git, commandExecutor),
-      ),
-    );
+  const command = cli.command("", defaultCommand.description);
+  if (defaultCommand.options) {
+    defaultCommand.options.forEach(opt => {
+      const flag =
+        opt.type === "boolean" ? `--${opt.name}` : `--${opt.name} <value>`;
+      command.option(flag, opt.description);
+    });
+  }
+  command.action(
+    utils.createCommandHandler((options = {}) =>
+      defaultCommand.handler(utils, git, commandExecutor, options),
+    ),
+  );
 }
 
 commandRegistry.forEach(cmd => {
-  cli
-    .command(cmd.name, cmd.description)
-    .action(
-      utils.createCommandHandler(() =>
-        cmd.handler(utils, git, commandExecutor),
-      ),
-    );
+  const command = cli.command(cmd.name, cmd.description);
+  if (cmd.options) {
+    cmd.options.forEach(opt => {
+      const flag =
+        opt.type === "boolean" ? `--${opt.name}` : `--${opt.name} <value>`;
+      command.option(flag, opt.description);
+    });
+  }
+  command.action(
+    utils.createCommandHandler((options = {}) =>
+      cmd.handler(utils, git, commandExecutor, options),
+    ),
+  );
 });
 
 cli
   .command("completions", "Generate shell completions")
   .option("--shell <shell>", "Shell type (bash, zsh, fish)")
   .action(options => {
-    const shell = options.shell || "bash";
+    const shell = options.shell ?? "bash";
     try {
       console.log(generateCompletions(shell));
     } catch (error) {

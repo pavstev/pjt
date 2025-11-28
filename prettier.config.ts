@@ -20,14 +20,13 @@ const config: Config = {
       files: ["*.json", "!package.json", "!**/package.json"],
       options: {
         parser: "json",
-        plugins: ["prettier-plugin-sort-json"],
       },
     },
     {
       files: ["package.json", "**/package.json"],
       options: {
         parser: "json-stringify",
-        plugins: ["prettier-plugin-packagejson", "prettier-plugin-sort-json"],
+        plugins: ["prettier-plugin-packagejson"],
       },
     },
     {

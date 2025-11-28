@@ -1,63 +1,30 @@
-import { unlink, writeFile } from "node:fs/promises";
-import { execa } from "execa";
-import consola from "consola";
 import { CommandExecutor } from "../lib/command-executor";
 import { CliUtils } from "../lib/cli-utils";
 import { Git } from "../lib/git";
-
-export type CommandDefinition = {
-  name: string;
-  description: string;
-  handler: (
-    utils: CliUtils,
-    git: Git,
-    executor: CommandExecutor,
-  ) => Promise<void>;
-  isDefault?: boolean;
-};
+import { CommandDefinition, CommandHandler } from "../lib/types";
 
 const createNpmScriptHandler =
-  (scriptName: string) =>
+  (scriptName: string): CommandHandler =>
   async (_utils: CliUtils, _git: Git, executor: CommandExecutor) => {
-    await executor.exec(`npm run ${scriptName}`);
+    await executor.exec(scriptName);
   };
 
 export const commandRegistry: CommandDefinition[] = [
   {
     name: "git-clean",
     description: "Clean and manage package.json related files",
-    handler: async (utils, git) => {
+    handler: async (utils, git, _executor, options = {}): Promise<void> => {
       await utils.checkGitRepository();
-      await git.clean();
+      await git.clean({ dryRun: options.dryRun as boolean });
     },
     isDefault: true,
-  },
-  {
-    name: "ai-commit",
-    description: "Generate AI-powered commit messages",
-    handler: async (utils, _git, executor) => {
-      await utils.checkGitRepository();
-      await executor.exec("git add .");
-      const diff = (await execa("git diff --cached", { shell: true })).stdout;
-      if (!diff.trim()) {
-        consola.info("No changes to commit.");
-        return;
-      }
-      const diffFile = "/tmp/ai-commit-diff.txt";
-      await writeFile(diffFile, diff);
-      const message = (
-        await execa(
-          `opencode run "Generate an optimized, concise commit message for these changes" -f "${diffFile}"`,
-          { shell: true },
-        )
-      ).stdout;
-      await unlink(diffFile);
-      await executor.exec(
-        `git commit -m "${message.trim().replace(/"/g, '\\"')}"`,
-      );
-      await executor.exec("git push --force");
-      consola.info("AI commit and push completed.");
-    },
+    options: [
+      {
+        name: "dry-run",
+        description: "Show what would be cleaned without actually cleaning",
+        type: "boolean",
+      },
+    ],
   },
   {
     name: "format",
@@ -86,5 +53,5 @@ export const commandRegistry: CommandDefinition[] = [
   },
 ];
 
-export const getDefaultCommand = () =>
+export const getDefaultCommand = (): CommandDefinition | undefined =>
   commandRegistry.find(cmd => cmd.isDefault);

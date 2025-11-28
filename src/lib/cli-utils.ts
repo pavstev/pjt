@@ -1,5 +1,5 @@
 import { promises as fs } from "node:fs";
-import { CliError, CliErrorMessages } from "./types";
+import { CliError, CliErrorMessages, ActionHandler } from "./types";
 import { Logger } from "./logger";
 
 export class CliUtils {
@@ -37,10 +37,12 @@ export class CliUtils {
     process.exit(1);
   }
 
-  public createCommandHandler(handler: () => Promise<void>) {
-    return async () => {
+  public createCommandHandler(
+    handler: ActionHandler,
+  ): (options?: Record<string, unknown>) => Promise<void> {
+    return async (options?: Record<string, unknown>) => {
       try {
-        await handler();
+        await handler(options);
       } catch (error) {
         this.handleError(error);
       }

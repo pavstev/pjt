@@ -1,9 +1,10 @@
+/// <reference types="vitest" />
 import { defineConfig } from "vitest/config";
 import dts from "vite-plugin-dts";
 import pkg from "./package.json";
 import { generateEntry } from "./src/lib/build-utils";
 
-const nodeVersion = pkg.engines.node.match(/(\d+)/)?.[1] || "18";
+const nodeVersion = pkg.engines.node.match(/(\d+)/)?.[1] ?? "18";
 
 export default defineConfig({
   plugins: [dts({ tsconfigPath: "tsconfig.build.json" })],
@@ -13,7 +14,7 @@ export default defineConfig({
     lib: {
       entry: generateEntry(pkg.exports),
       formats: ["cjs"],
-      fileName: (_format, entryName) => `${entryName}.js`,
+      fileName: (_format: string, entryName: string) => `${entryName}.js`,
     },
     outDir: pkg.main.split("/")[1],
     sourcemap: true,

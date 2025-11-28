@@ -36,9 +36,8 @@ export class FileSystem {
       const entries = await fs.readdir(dir, { withFileTypes: true });
       for (const entry of entries) {
         const fullPath = join(dir, entry.name);
-        if (entry.isDirectory()) {
-          await this.removeEmptyDirectories(fullPath);
-        }
+        if (!entry.isDirectory()) continue;
+        await this.removeEmptyDirectories(fullPath);
       }
       // After processing subdirs, check if current dir is empty
       const remaining = await fs.readdir(dir);

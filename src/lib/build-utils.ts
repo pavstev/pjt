@@ -1,8 +1,9 @@
 import type { LibraryOptions } from "vite";
+import { ExportConfig } from "./types";
 
-type Exports = LibraryOptions['entry'];
+type Exports = LibraryOptions["entry"];
 
-export const generateEntry = (exports: Record<string, string | { require?: string }>) => {
+export const generateEntry = (exports: ExportConfig): Exports => {
   const entry: Exports = {};
   for (const [_key, value] of Object.entries(exports)) {
     let path: string | undefined;
@@ -13,11 +14,14 @@ export const generateEntry = (exports: Record<string, string | { require?: strin
       path = value.require;
     }
 
-    if (path && path.endsWith(".cjs")) {
+    if (path?.endsWith(".cjs")) {
       const entryKey = path.replace("./dist/", "").replace(".cjs", "");
-      const srcPath = entryKey.includes("/")
-        ? `src/${entryKey}.ts`
-        : `src/${entryKey}/index.ts`;
+      const srcPath =
+        entryKey === "index"
+          ? `src/${entryKey}.ts`
+          : entryKey.includes("/")
+            ? `src/${entryKey}.ts`
+            : `src/${entryKey}/index.ts`;
       entry[entryKey] = srcPath;
     }
   }

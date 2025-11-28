@@ -41,6 +41,7 @@
     },
     "typescript.preferences.importModuleSpecifier": "relative",
     "typescript.suggest.autoImports": true,
-    "emmet.includeLanguages": {}
+    "emmet.includeLanguages": {},
+    "cSpell.words": ["globify"]
   }
 }

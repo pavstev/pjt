@@ -1,5 +1,12 @@
 import consola from "consola";
-import { LogLevel } from "./types";
+import { LogLevel, LogLevelPriorities } from "./types";
+
+const LOG_LEVEL_PRIORITIES: LogLevelPriorities = {
+  debug: 0,
+  info: 1,
+  warn: 2,
+  error: 3,
+};
 
 export class Logger {
   private level: LogLevel = this.getInitialLevel();
@@ -17,13 +24,7 @@ export class Logger {
   }
 
   private getLevelPriority(level: LogLevel): number {
-    const priorities: Record<LogLevel, number> = {
-      debug: 0,
-      info: 1,
-      warn: 2,
-      error: 3,
-    };
-    return priorities[level];
+    return LOG_LEVEL_PRIORITIES[level];
   }
 
   debug(message: string): void {

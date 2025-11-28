@@ -11,3 +11,4 @@ pnpm-lock.yaml
 .prettierignore
 .opencode/.gitignore
 .opencode/bun.lock
+opencodetmp/

@@ -1,13 +1,13 @@
 import { FileSystem } from "../lib/fs";
 import { logger } from "../lib/logger";
 
-const fileSystem = new FileSystem(logger);
+const fs = new FileSystem(logger);
 
-export const getIgnores = async () => ({
+export const getIgnores = async (): Promise<{ ignores: string[] }> => ({
   ignores: [
     "dist/",
     "node_modules/",
     "**/*.test.ts",
-    ...(await fileSystem.getIgnorePatterns()),
+    ...(await fs.getIgnorePatterns()),
   ],
 });

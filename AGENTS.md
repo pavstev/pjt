@@ -120,6 +120,7 @@ npm run test -- --coverage
 - Automated releases via CI/CD
 
 ## Active Technologies
+
 - TypeScript 5.9+ with strict mode enabled + Vite 7.2+, ESLint 9.39+, Prettier 3.6+, Vitest 4.0+ (001-optimize-src-configs)
 - File system (analysis of source files and configs) (001-optimize-src-configs)
 

@@ -1,12 +1,26 @@
-import { CommandExecutor } from "./command-executor";
+import { simpleGit } from "simple-git";
 import { GitCleanOptions, CliError, CliErrorMessages } from "./types";
 import { Logger } from "./logger";
 
 export class Git {
-  constructor(
-    private commandExecutor: CommandExecutor,
-    private logger: Logger,
-  ) {}
+  private git = simpleGit();
+
+  constructor(private logger: Logger) {}
+
+  // Uses simple-git library instead of shell commands for better cross-platform support
+
+  get gitInstance(): ReturnType<typeof simpleGit> {
+    return this.git;
+  }
+
+  async isGitRepository(): Promise<boolean> {
+    try {
+      await this.git.revparse(["--git-dir"]);
+      return true;
+    } catch {
+      return false;
+    }
+  }
 
   validateGitCleanOptions(options: unknown): void {
     if (typeof options !== "object" || options === null) {
@@ -25,10 +39,11 @@ export class Git {
     this.validateGitCleanOptions(options);
     try {
       const { exclude = [".env.local"], dryRun = false } = options;
-      const excludeArgs = exclude.map(e => `-e ${e}`).join(" ");
-      const dryFlag = dryRun ? "--dry-run " : "";
-      const command = `git clean -Xfd ${dryFlag}${excludeArgs}`;
-      await this.commandExecutor.exec(command);
+      const args = ["clean"];
+      if (dryRun) args.push("--dry-run");
+      args.push("-Xfd");
+      exclude.forEach(pattern => args.push("-e", pattern));
+      await this.git.raw(args);
       this.logger.info("Git clean completed successfully");
     } catch (error) {
       if (error instanceof CliError) {
