@@ -23,7 +23,12 @@ const config: KnipConfig = {
         "autoprefixer",
         "postcss",
       ],
-      ignoreFiles: [".source/source.config.mjs", ".source/**", "out/**"],
+      ignoreFiles: [
+        ".source/source.config.mjs",
+        ".source/**",
+        "out/**",
+        "source.config.ts",
+      ],
     },
   },
 };
