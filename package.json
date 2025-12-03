@@ -1,6 +1,6 @@
 {
   "name": "pjt",
-  "version": "1.0.26",
+  "version": "1.0.27",
   "private": false,
   "description": "A powerful cross-platform CLI tool for maintaining clean Git repositories. Removes empty directories, ignored files, and reinstalls dependencies with support for npm, pnpm, and yarn.",
   "keywords": [
