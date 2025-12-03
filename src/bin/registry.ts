@@ -51,6 +51,66 @@ export const commandRegistry: CommandDefinition[] = [
     description: "Run tests",
     handler: createNpmScriptHandler("test"),
   },
+  {
+    name: "npm-clean-versions",
+    description: "Delete all npm versions except 1.00",
+    handler: async (utils, _git, executor, options = {}): Promise<void> => {
+      const dryRun = options.dryRun as boolean;
+      const packageJson = await import("../../package.json");
+      const packageName = packageJson.name;
+
+      // Get all versions
+      const versionsOutput = (await executor.execNpmCommand(
+        ["view", packageName, "versions", "--json"],
+        true,
+      )) as string;
+      const versions = JSON.parse(versionsOutput);
+
+      // Filter out version 1.00
+      const versionsToDelete = versions.filter(
+        (version: string) => version !== "1.00",
+      );
+
+      if (versionsToDelete.length === 0) {
+        console.log(
+          "No versions to delete (only 1.00 exists or no versions found)",
+        );
+        return;
+      }
+
+      console.log(
+        `Found ${versionsToDelete.length} versions to delete: ${versionsToDelete.join(", ")}`,
+      );
+
+      if (dryRun) {
+        console.log("Dry run mode - would delete the following versions:");
+        versionsToDelete.forEach((version: string) => {
+          console.log(`  npm unpublish ${packageName}@${version}`);
+        });
+        return;
+      }
+
+      // Delete each version
+      for (const version of versionsToDelete) {
+        try {
+          await executor.execNpmCommand([
+            "unpublish",
+            `${packageName}@${version}`,
+          ]);
+          console.log(`Successfully deleted version ${version}`);
+        } catch (error) {
+          console.error(`Failed to delete version ${version}: ${error}`);
+        }
+      }
+    },
+    options: [
+      {
+        name: "dry-run",
+        description: "Show what would be deleted without actually deleting",
+        type: "boolean",
+      },
+    ],
+  },
 ];
 
 export const getDefaultCommand = (): CommandDefinition | undefined =>
