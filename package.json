@@ -45,7 +45,7 @@
     "README.md"
   ],
   "scripts": {
-    "all": "pnpm format && pnpm lint && pnpm build && pnpm typecheck && pnpm test && pnpm knip",
+    "all": "pnpm format && pnpm lint && pnpm build && pnpm typecheck && pnpm test && pnpm knip && pnpm docs:build",
     "build": "unbuild",
     "clean": "find . -type d -empty -delete && git clean -Xfd -e .env.local && pnpm i",
     "dev": "tsc --watch -p tsconfig.build.json",

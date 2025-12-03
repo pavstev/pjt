@@ -1,6 +1,6 @@
 import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
-import { RootProvider } from 'fumadocs-ui/provider';
+import { RootProvider } from 'fumadocs-ui/provider/next';
 import './globals.css';
 
 const inter = Inter({
