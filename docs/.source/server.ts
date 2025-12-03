@@ -1,1 +1,0 @@
-export { docs } from './index';

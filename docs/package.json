@@ -1,35 +1,17 @@
 {
   "name": "docs",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
+  "type": "module",
   "scripts": {
-    "prebuild": "node scripts/copy-readme.js",
-    "build": "next build",
-    "deploy": "rm -rf out .next && next build && echo '' > out/.nojekyll && echo 'pjt.stevanpavlovic.com' > out/CNAME && pnpm exec gh-pages -d out --dotfiles",
-    "dev": "next dev",
-    "postinstall": "fumadocs-mdx",
-    "lint": "next lint",
-    "start": "next start"
-  },
-  "dependencies": {
-    "fumadocs-core": "^15.0.0",
-    "fumadocs-mdx": "^11.6.1",
-    "fumadocs-ui": "^15.0.0",
-    "next": "^15.3.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
   },
   "devDependencies": {
-    "@types/mdx": "^2.0.13",
-    "@types/node": "^24.10.1",
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
-    "autoprefixer": "^10.4.22",
-    "eslint": "^9.39.1",
-    "eslint-config-next": "^16.0.6",
-    "gh-pages": "^6.3.0",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.17",
-    "typescript": "^5.9.3"
+    "astro": "^4.0.0"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.37.0"
   }
 }
