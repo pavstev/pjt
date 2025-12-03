@@ -15,15 +15,6 @@ const config: KnipConfig = {
         "src/eslint/config.ts",
       ],
     },
-    docs: {
-      ignoreDependencies: [],
-      ignoreFiles: [
-        ".source/source.config.mjs",
-        ".source/**",
-        "out/**",
-        "source.config.ts",
-      ],
-    },
   },
 };
 

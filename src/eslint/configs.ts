@@ -32,11 +32,19 @@ export const markdownConf: Config[] = [
     plugins: {
       markdown,
     },
-    language: "markdown/commonmark",
+    processor: "markdown/markdown",
     rules: {
       "markdown/no-html": "error",
+      "no-irregular-whitespace": "off",
+      "no-trailing-spaces": "off",
+      "eol-last": "off",
     },
   },
 ];
 
-export const mdxConf: Config[] = [eslintPluginMdx.configs.flat];
+export const mdxConf: Config[] = [
+  {
+    ...eslintPluginMdx.configs.flat,
+    files: ["**/*.mdx"],
+  },
+];
