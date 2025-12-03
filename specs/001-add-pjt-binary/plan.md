@@ -7,18 +7,18 @@
 
 ## Summary
 
-Primary requirement: Export a single binary "pjt" with subcommand "package-json-tools" for cleaning git repositories, using a proper CLI library found online. Analyze the project and add any missing parts for functionality.
+Primary requirement: Export a single binary "pjt" with subcommand "pjt" for cleaning git repositories, using a proper CLI library found online. Analyze the project and add any missing parts for functionality.
 
 ## Technical Context
 
-**Language/Version**: TypeScript 5.9+  
-**Primary Dependencies**: CLI library [NEEDS CLARIFICATION: commander, yargs, or similar for Node.js CLI]  
-**Storage**: N/A  
-**Testing**: Vitest  
+**Language/Version**: TypeScript 5.9+
+**Primary Dependencies**: CLI library [NEEDS CLARIFICATION: commander, yargs, or similar for Node.js CLI]
+**Storage**: N/A
+**Testing**: Vitest
 **Target Platform**: Cross-platform (Linux, macOS, Windows)
-**Project Type**: CLI tool  
-**Performance Goals**: Fast execution for git repository cleaning operations  
-**Constraints**: Cross-platform file system operations, proper error handling via stderr  
+**Project Type**: CLI tool
+**Performance Goals**: Fast execution for git repository cleaning operations
+**Constraints**: Cross-platform file system operations, proper error handling via stderr
 **Scale/Scope**: Single binary with extensible subcommand architecture
 
 ## Constitution Check
@@ -51,7 +51,7 @@ specs/[###-feature]/
 src/
 ├── bin/
 │   ├── pjt.ts          # Main CLI entry point with subcommands
-│   └── package-json-tools.ts    # Git-clean subcommand implementation
+│   └── pjt.ts    # Git-clean subcommand implementation
 ├── index.ts            # Library entry point
 └── lib/
     └── cli.ts          # CLI utility functions
@@ -59,12 +59,12 @@ src/
 tests/
 ├── bin/
 │   ├── pjt.test.ts     # CLI integration tests
-│   └── package-json-tools.test.ts # Existing package-json-tools tests
+│   └── pjt.test.ts # Existing pjt tests
 ├── integration/
 └── unit/
 ```
 
-**Structure Decision**: Single project structure selected as this is a CLI tool. Main binary moved from "package-json-tools" to "pjt" with subcommands. Existing package-json-tools.ts refactored as subcommand handler.
+**Structure Decision**: Single project structure selected as this is a CLI tool. Main binary moved from "pjt" to "pjt" with subcommands. Existing pjt.ts refactored as subcommand handler.
 
 ## Complexity Tracking
 

@@ -1,12 +1,12 @@
 # CLI Interface Contract: Code Analysis and Optimization
 
-**Version**: 1.0.0  
-**Date**: Thu Nov 27 2025  
+**Version**: 1.0.0
+**Date**: Thu Nov 27 2025
 **Feature**: 001-optimize-src-configs
 
 ## Overview
 
-This contract defines the command-line interface for code analysis and optimization functionality. The interface follows the existing CLI patterns in the package-json-tools project.
+This contract defines the command-line interface for code analysis and optimization functionality. The interface follows the existing CLI patterns in the pjt project.
 
 ## Commands
 

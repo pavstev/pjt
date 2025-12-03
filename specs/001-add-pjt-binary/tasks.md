@@ -33,7 +33,7 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [x] T004 Refactor existing src/bin/package-json-tools.ts to export gitClean function
+- [x] T004 Refactor existing src/bin/pjt.ts to export gitClean function
 - [x] T005 Create src/lib/cli.ts for CLI utility functions
 - [x] T006 Update src/index.ts to export CLI functionality
 
@@ -43,20 +43,20 @@
 
 ## Phase 3: User Story 1 - Execute PJT Git-Clean Command (Priority: P1) 🎯 MVP
 
-**Goal**: Enable users to run "pjt package-json-tools" to clean git repositories
+**Goal**: Enable users to run "pjt pjt" to clean git repositories
 
-**Independent Test**: Run `pjt package-json-tools` in a git repo and verify untracked files are removed
+**Independent Test**: Run `pjt pjt` in a git repo and verify untracked files are removed
 
 ### Tests for User Story 1 ⚠️
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [x] T007 [P] [US1] Unit test for gitClean function in src/bin/package-json-tools.test.ts
-- [x] T008 [P] [US1] Integration test for pjt package-json-tools command in tests/bin/pjt.test.ts
+- [x] T007 [P] [US1] Unit test for gitClean function in src/bin/pjt.test.ts
+- [x] T008 [P] [US1] Integration test for pjt pjt command in tests/bin/pjt.test.ts
 
 ### Implementation for User Story 1
 
-- [ ] T009 [US1] Implement package-json-tools subcommand in src/bin/pjt.ts
+- [ ] T009 [US1] Implement pjt subcommand in src/bin/pjt.ts
 - [x] T010 [US1] Add error handling for non-git directories in src/bin/pjt.ts
 - [x] T011 [US1] Add help and version options to src/bin/pjt.ts
 
@@ -149,11 +149,11 @@
 
 ```bash
 # Launch all tests for User Story 1 together:
-Task: "Unit test for gitClean function in src/bin/package-json-tools.test.ts"
-Task: "Integration test for pjt package-json-tools command in tests/bin/pjt.test.ts"
+Task: "Unit test for gitClean function in src/bin/pjt.test.ts"
+Task: "Integration test for pjt pjt command in tests/bin/pjt.test.ts"
 
 # Launch implementation tasks sequentially:
-Task: "Implement package-json-tools subcommand in src/bin/pjt.ts"
+Task: "Implement pjt subcommand in src/bin/pjt.ts"
 Task: "Add error handling for non-git directories in src/bin/pjt.ts"
 Task: "Add help and version options to src/bin/pjt.ts"
 ```

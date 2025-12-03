@@ -2,7 +2,7 @@
 
 ## Overview
 
-The `pjt` binary provides a command-line interface for package.json tools, starting with package-json-tools functionality.
+The `pjt` binary provides a command-line interface for package.json tools, starting with pjt functionality.
 
 ## Commands
 
@@ -20,7 +20,7 @@ The `pjt` binary provides a command-line interface for package.json tools, start
 - **Output**: Version string from package.json
 - **Exit Code**: 0
 
-### pjt package-json-tools
+### pjt pjt
 
 - **Description**: Clean git repository
 - **Arguments**: None

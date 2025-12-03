@@ -1,6 +1,6 @@
 {
-  "name": "@pavstev/package-json-tools",
-  "version": "1.0.18",
+  "name": "pjt",
+  "version": "1.0.19",
   "private": false,
   "description": "A powerful cross-platform CLI tool for maintaining clean Git repositories. Removes empty directories, ignored files, and reinstalls dependencies with support for npm, pnpm, and yarn.",
   "keywords": [
@@ -14,13 +14,13 @@
     "tool",
     "maintenance"
   ],
-  "homepage": "https://github.com/pavstev/package-json-tools",
+  "homepage": "https://github.com/pavstev/pjt",
   "bugs": {
-    "url": "https://github.com/pavstev/package-json-tools/issues"
+    "url": "https://github.com/pavstev/pjt/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pavstev/package-json-tools.git"
+    "url": "git+https://github.com/pavstev/pjt.git"
   },
   "license": "MIT",
   "author": {
@@ -42,7 +42,6 @@
       "import": "./dist/prettier.cjs",
       "require": "./dist/prettier.cjs"
     },
-    "./prettier.json": "./dist/prettier.json",
     "./eslint": {
       "import": "./dist/eslint.cjs",
       "require": "./dist/eslint.cjs"
@@ -60,7 +59,6 @@
   "scripts": {
     "all": "pnpm format && pnpm lint && pnpm build && pnpm typecheck && pnpm test && pnpm knip",
     "build": "vite build",
-    "postbuild": "tsx scripts/postbuild.ts",
     "clean": "find . -type d -empty -delete && git clean -Xfd -e .env.local && pnpm i",
     "dev": "tsc --watch -p tsconfig.build.json",
     "format": "prettier --write .",

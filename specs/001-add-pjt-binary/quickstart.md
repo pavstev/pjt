@@ -3,9 +3,9 @@
 ## Installation
 
 ```bash
-npm install -g @pavstev/package-json-tools
+npm install -g pjt
 # or
-pnpm add -g @pavstev/package-json-tools
+pnpm add -g pjt
 ```
 
 ## Usage
@@ -13,7 +13,7 @@ pnpm add -g @pavstev/package-json-tools
 ### Clean a git repository
 
 ```bash
-pjt package-json-tools
+pjt pjt
 ```
 
 ### Show help
@@ -33,7 +33,7 @@ pjt --version
 In a git repository with untracked files:
 
 ```bash
-$ pjt package-json-tools
+$ pjt pjt
 Removed: node_modules/
 Removed: .env
 Repository cleaned.
@@ -42,6 +42,6 @@ Repository cleaned.
 In a non-git directory:
 
 ```bash
-$ pjt package-json-tools
+$ pjt pjt
 Error: Not a git repository
 ```

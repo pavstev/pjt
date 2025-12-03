@@ -1,13 +1,13 @@
 # Quickstart: Code Analysis and Optimization
 
-**Date**: Thu Nov 27 2025  
-**Feature**: 001-optimize-src-configs  
-**Audience**: Developers using package-json-tools CLI
+**Date**: Thu Nov 27 2025
+**Feature**: 001-optimize-src-configs
+**Audience**: Developers using pjt CLI
 
 ## Prerequisites
 
 - Node.js 18.0.0 or higher
-- pjt CLI installed (`npm install -g @pavstev/package-json-tools`)
+- pjt CLI installed (`npm install -g pjt`)
 - Project with TypeScript/JavaScript source code
 
 ## Quick Analysis
@@ -82,7 +82,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "18"
-      - run: npm install -g @pavstev/package-json-tools
+      - run: npm install -g pjt
       - run: pjt analyze --format json --report-file analysis.json
       - uses: actions/upload-artifact@v4
         with:

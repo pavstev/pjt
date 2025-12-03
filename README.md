@@ -1,298 +1,211 @@
 # pjt
 
-[![npm version](https://badge.fury.io/js/%40pavstev%2Fpackage-json-tools.svg)](https://badge.fury.io/js/%40pavstev%2Fpackage-json-tools)
+[![npm version](https://img.shields.io/npm/v/pjt.svg)](https://www.npmjs.com/package/pjt)
+[![npm downloads](https://img.shields.io/npm/dm/pjt.svg)](https://www.npmjs.com/package/pjt)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org/)
+[![Node.js Version](https://img.shields.io/node/v/pjt)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9+-blue.svg)](https://www.typescriptlang.org/)
+[![CI](https://github.com/pavstev/pjt/workflows/CI/badge.svg)](https://github.com/pavstev/pjt/actions)
 
-A powerful, cross-platform CLI tool for managing and cleaning Git repositories, with specialized focus on package.json workflows and dependency management.
+> A modern, cross-platform CLI tool that supercharges your development workflow with intelligent Git repository cleaning and project maintenance commands.
 
-## Table of Contents
+## ✨ Features
 
-- [Features](#features)
-- [Installation](#installation)
-- [Requirements](#requirements)
-- [Quick Start](#quick-start)
-- [Usage](#usage)
-- [API](#api)
-- [Configuration](#configuration)
-- [Contributing](#contributing)
-- [License](#license)
-- [Author](#author)
+- **🧹 Smart Git Cleaning** - Remove untracked files, cache directories, and build artifacts safely
+- **⚡ Development Workflow** - Run format, lint, build, test, and knip commands with a single tool
+- **🔄 Cross-Platform** - Works seamlessly on Linux, macOS, and Windows
+- **📦 Package Management** - Intelligent dependency cleaning and reinstallation
+- **🚀 TypeScript First** - Built with TypeScript 5.9+ and strict mode for reliability
+- **🛡️ Safe Operations** - Dry-run mode and confirmation prompts prevent accidents
+- **🎯 Zero Config** - Works out of the box with sensible defaults
+- **🔧 Extensible** - Easy to integrate into existing workflows
 
-## Features
+## 📦 Installation
 
-- **🧹 Git Repository Cleaning**: Intelligently remove untracked files, empty directories, and cache folders
-- **📦 Dependency Management**: Automatic reinstallation of dependencies after cleaning
-- **🔄 Cross-Platform**: Seamless operation on Linux, macOS, and Windows
-- **⚡ TypeScript Built**: Fully typed with strict mode for maximum reliability
-- **🛠️ Extensible CLI**: Modular command structure for easy extension
-- **🚀 Fast Execution**: Optimized performance with minimal overhead
-- **📋 Package Manager Support**: Works with npm, pnpm, and yarn
-- **🔒 Safe Operations**: Dry-run modes and confirmation prompts for destructive actions
-
-## Installation
-
-### Global Installation
-
-Install globally via npm:
+### Global (Recommended)
 
 ```bash
-npm install -g @pavstev/package-json-tools
+npm install -g pjt
+# or
+pnpm add -g pjt
+# or
+yarn global add pjt
 ```
 
-Or with pnpm:
+### Local (Project-specific)
 
 ```bash
-pnpm add -g @pavstev/package-json-tools
+npm install --save-dev pjt
+# or
+pnpm add -D pjt
+# or
+yarn add -D pjt
 ```
 
-### Local Installation
+## 🚀 Quick Start
 
-For project-specific use:
-
-```bash
-npm install --save-dev @pavstev/package-json-tools
-```
-
-Or with pnpm:
+Clean your Git repository and refresh dependencies:
 
 ```bash
-pnpm add -D @pavstev/package-json-tools
-```
-
-## Requirements
-
-- **Node.js**: 18.0.0 or higher
-- **Git**: 2.0+ (for repository operations)
-- **Package Manager**: npm, pnpm, or yarn (detected automatically)
-
-## Quick Start
-
-1. Install globally: `npm install -g @pavstev/package-json-tools`
-2. Navigate to your project: `cd my-project`
-3. Clean your repository: `pjt`
-
-That's it! Your repository is now clean and dependencies are fresh.
-
-## Usage
-
-### Basic Commands
-
-#### Clean Git Repository
-
-Clean the current git repository by removing untracked files and empty directories, then reinstall dependencies:
-
-```bash
+cd your-project
 pjt
 ```
 
-**Example Output:**
+That's it! Your repository is now clean and ready for development.
 
-```
-🔍 Scanning repository...
-🗑️  Removed: node_modules/
-🗑️  Removed: .cache/
-🗑️  Removed: dist/
-📦 Reinstalling dependencies...
-✅ Repository cleaned successfully.
-```
+## 📖 Usage
 
-#### Show Help
+### Core Commands
 
-Display available commands and options:
+#### Clean Repository (Default)
+
+Remove untracked files and refresh dependencies:
 
 ```bash
-pjt --help
+pjt
+# or explicitly
+pjt git-clean
 ```
 
-**Output:**
+#### Development Workflow
 
-```
-Usage: pjt [options] [command]
-
-pjt CLI
-
-Options:
-  -V, --version   output the version number
-  -h, --help      display help for command
-
-Commands:
-  git-clean       Clean and manage package.json related files (default)
-  ai-commit       Generate AI-powered commit messages
-  format          Format code using the project's formatter
-  knip            Check for unused dependencies and files
-  lint            Lint the codebase
-  build           Build the project
-  test            Run tests
-  completions     Generate shell completions
-  help [command]  display help for command
-```
-
-#### Show Version
+Run common development tasks:
 
 ```bash
-pjt --version
+pjt format    # Format code with Prettier
+pjt lint      # Lint with ESLint
+pjt build     # Build the project
+pjt test      # Run tests with Vitest
+pjt knip      # Check for unused dependencies
 ```
 
-### Advanced Usage
+#### Package Management
 
-#### Dry Run Mode
-
-Preview what would be cleaned without making changes:
+Clean up old npm package versions:
 
 ```bash
-pjt --dry-run
-```
-
-#### Force Mode
-
-Skip confirmation prompts (use with caution):
-
-```bash
-pjt --force
-```
-
-#### Error Handling
-
-If run outside a git repository:
-
-```bash
-$ pjt
-❌ Error: Not a git repository
-```
-
-If no package.json found:
-
-```bash
-$ pjt
-❌ Error: No package.json found in current directory
+pjt npm-clean-versions --dry-run  # Preview what would be deleted
+pjt npm-clean-versions            # Actually delete old versions
 ```
 
 ### Command Options
 
-| Option      | Description                       | Default |
-| ----------- | --------------------------------- | ------- |
-| `--dry-run` | Preview changes without executing | `false` |
-| `--force`   | Skip confirmation prompts         | `false` |
-| `--verbose` | Show detailed output              | `false` |
-| `--quiet`   | Suppress non-error output         | `false` |
+| Option      | Description                       | Example         |
+| ----------- | --------------------------------- | --------------- |
+| `--dry-run` | Preview changes without executing | `pjt --dry-run` |
+| `--help`    | Show help information             | `pjt --help`    |
+| `--version` | Show version number               | `pjt --version` |
 
-## API
+### Shell Completions
 
-### Programmatic Usage
+Generate shell completions for better DX:
 
-You can also use pjt programmatically in your Node.js applications:
+```bash
+# Bash
+pjt completions --shell bash >> ~/.bashrc
+
+# Zsh
+pjt completions --shell zsh >> ~/.zshrc
+
+# Fish
+pjt completions --shell fish > ~/.config/fish/completions/pjt.fish
+```
+
+## 🔧 API
+
+Use pjt programmatically in your Node.js applications:
 
 ```typescript
-import { cleanRepository } from "@pavstev/package-json-tools";
+import { Git, CliUtils, CommandExecutor, logger } from "pjt";
 
-async function cleanMyRepo() {
-  try {
-    await cleanRepository({
-      dryRun: false,
-      force: false,
-      verbose: true,
-    });
-    console.log("Repository cleaned!");
-  } catch (error) {
-    console.error("Cleaning failed:", error);
-  }
-}
+const git = new Git(logger);
+const utils = new CliUtils(logger);
+const executor = new CommandExecutor(logger);
+
+// Clean repository programmatically
+await git.clean({ dryRun: false });
+
+// Execute npm scripts
+await executor.exec("build");
 ```
 
 ### TypeScript Types
 
 ```typescript
-interface CleanOptions {
+import type { GitCleanOptions, LogLevel, CommandDefinition } from "pjt";
+
+interface GitCleanOptions {
+  exclude?: string[];
   dryRun?: boolean;
-  force?: boolean;
-  verbose?: boolean;
-  quiet?: boolean;
 }
 
-interface CleanResult {
-  removedFiles: string[];
-  removedDirs: string[];
-  reinstalled: boolean;
-}
+type LogLevel = "debug" | "info" | "warn" | "error";
 ```
 
-## Configuration
+## ⚙️ Configuration
 
 ### Prettier Configuration
 
-pjt includes a comprehensive Prettier configuration that can be used in your projects:
+Use pjt's battle-tested Prettier config in your projects:
 
 ```javascript
 // prettier.config.js
-module.exports = require("@pavstev/package-json-tools/prettier-config");
+module.exports = require("pjt/prettier");
 ```
-
-Or for TypeScript projects:
 
 ```typescript
 // prettier.config.ts
-import config from "@pavstev/package-json-tools/prettier-config";
+import config from "pjt/prettier";
 export default config;
 ```
 
-### Environment Variables
+This config includes:
 
-| Variable      | Description                    | Default |
-| ------------- | ------------------------------ | ------- |
-| `PJT_DRY_RUN` | Enable dry-run mode globally   | `false` |
-| `PJT_FORCE`   | Enable force mode globally     | `false` |
-| `PJT_VERBOSE` | Enable verbose output globally | `false` |
+- TypeScript, JavaScript, JSON, YAML, and Markdown support
+- Package.json formatting with `prettier-plugin-packagejson`
+- Consistent formatting for VS Code workspace files
 
-## Contributing
+## 🤝 Contributing
 
-We welcome contributions! Here's how to get started:
+We welcome contributions! Here's how to get involved:
 
 ### Development Setup
 
-1. **Fork the repository**
-2. **Clone your fork**:
-   ```bash
-   git clone https://github.com/your-username/package-json-tools.git
-   cd package-json-tools
-   ```
-3. **Install dependencies**:
-   ```bash
-   pnpm install
-   ```
-4. **Build the project**:
-   ```bash
-   npm run build
-   ```
-5. **Run tests**:
-   ```bash
-   npm run test
-   ```
+```bash
+git clone https://github.com/pavstev/pjt.git
+cd pjt
+pnpm install
+pnpm build
+pnpm test
+```
 
-### Development Workflow
+### Development Commands
 
-1. Create a feature branch: `git checkout -b feature/your-feature`
-2. Make your changes
-3. Add tests for new functionality
-4. Ensure all tests pass: `npm run test`
-5. Run linting: `npm run lint`
-6. Format code: `npm run format`
-7. Commit your changes using conventional commits
-8. Submit a pull request
+```bash
+pnpm all        # Run all checks (format, lint, build, typecheck, test, knip)
+pnpm format     # Format code
+pnpm lint       # Lint code
+pnpm typecheck  # Type check
+pnpm test       # Run tests
+pnpm build      # Build project
+```
 
-### Code Style
+### Guidelines
 
-- **Language**: TypeScript with strict mode
-- **Formatting**: Prettier (included configuration)
-- **Linting**: ESLint
-- **Testing**: Vitest with 100% coverage
-- **Commits**: Conventional commits
+- **Code Style**: Follow the existing TypeScript patterns
+- **Testing**: Add tests for new features
+- **Commits**: Use conventional commits
+- **PRs**: Ensure CI passes and add a clear description
 
-## License
+## 📄 License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+MIT © [Stevan Pavlovic](https://github.com/pavstev)
 
-## Author
+## 🙏 Acknowledgments
 
-**pavstev** - [GitHub](https://github.com/pavstev) | [npm](https://www.npmjs.com/~pavstev)
+Built with ❤️ using:
+
+- [cac](https://github.com/cacjs/cac) - CLI framework
+- [consola](https://github.com/unjs/consola) - Logging
+- [simple-git](https://github.com/steveukx/git-js) - Git operations
+- [globify-gitignore](https://github.com/mrmlnc/globify-gitignore) - File globbing

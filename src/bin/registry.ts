@@ -2,6 +2,41 @@ import { CommandExecutor } from "../lib/command-executor";
 import { CliUtils } from "../lib/cli-utils";
 import { Git } from "../lib/git";
 import { CommandDefinition, CommandHandler } from "../lib/types";
+import { spawn } from "node:child_process";
+
+const execCommand = (command: string, args: string[]): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    const child = spawn(command, args, {
+      stdio: "inherit",
+      shell: false, // Don't use shell to avoid argument parsing issues
+    });
+    child.on("close", code => {
+      if (code === 0) {
+        resolve();
+      } else {
+        reject(new Error(`Command failed: ${command} ${args.join(" ")}`));
+      }
+    });
+    child.on("error", reject);
+  });
+};
+
+const execShellCommand = (command: string): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    const child = spawn(command, [], {
+      stdio: "inherit",
+      shell: true,
+    });
+    child.on("close", code => {
+      if (code === 0) {
+        resolve();
+      } else {
+        reject(new Error(`Command failed: ${command}`));
+      }
+    });
+    child.on("error", reject);
+  });
+};
 
 const createNpmScriptHandler =
   (scriptName: string): CommandHandler =>
@@ -53,44 +88,53 @@ export const commandRegistry: CommandDefinition[] = [
   },
   {
     name: "npm-clean-versions",
-    description: "Delete all npm versions except 1.00",
-    handler: async (utils, _git, executor, options = {}): Promise<void> => {
+    description: "Clean npm versions, commit changes, and republish",
+    handler: async (utils, git, executor, options = {}): Promise<void> => {
       const dryRun = options.dryRun as boolean;
       const packageJson = await import("../../package.json");
       const packageName = packageJson.name;
 
-      // Get all versions
+      // Get all published versions
       const versionsOutput = (await executor.execNpmCommand(
         ["view", packageName, "versions", "--json"],
         true,
       )) as string;
-      const versions = JSON.parse(versionsOutput);
+      const publishedVersions = JSON.parse(versionsOutput);
 
-      // Filter out version 1.00
-      const versionsToDelete = versions.filter(
-        (version: string) => version !== "1.00",
-      );
-
-      if (versionsToDelete.length === 0) {
-        console.log(
-          "No versions to delete (only 1.00 exists or no versions found)",
-        );
+      if (publishedVersions.length === 0) {
+        console.log("No published versions found");
         return;
       }
 
+      // Sort versions and keep the latest published one
+      const sortedVersions = publishedVersions.sort((a: string, b: string) =>
+        a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" }),
+      );
+      const latestPublishedVersion = sortedVersions[sortedVersions.length - 1];
+      const versionsToDelete = publishedVersions.filter(
+        (version: string) => version !== latestPublishedVersion,
+      );
+
+      console.log(
+        `Keeping latest published version: ${latestPublishedVersion}`,
+      );
       console.log(
         `Found ${versionsToDelete.length} versions to delete: ${versionsToDelete.join(", ")}`,
       );
 
       if (dryRun) {
-        console.log("Dry run mode - would delete the following versions:");
+        console.log("Dry run mode - would:");
         versionsToDelete.forEach((version: string) => {
-          console.log(`  npm unpublish ${packageName}@${version}`);
+          console.log(`  - Delete version ${version}`);
         });
+        console.log(
+          `  - Commit changes with message "chore: clean npm versions, keep ${latestPublishedVersion}"`,
+        );
+        console.log("  - Bump version and republish");
         return;
       }
 
-      // Delete each version
+      // Delete old versions
       for (const version of versionsToDelete) {
         try {
           await executor.execNpmCommand([
@@ -101,6 +145,46 @@ export const commandRegistry: CommandDefinition[] = [
         } catch (error) {
           console.error(`Failed to delete version ${version}: ${error}`);
         }
+      }
+
+      // Commit changes if any versions were deleted
+      if (versionsToDelete.length > 0) {
+        try {
+          await execCommand("git", ["add", "."]);
+          await execShellCommand(
+            `git commit -m "chore: clean npm versions, keep ${latestPublishedVersion}"`,
+          );
+          console.log("Committed version cleanup");
+        } catch (error) {
+          console.error(`Failed to commit changes: ${error}`);
+        }
+      }
+
+      // Bump to next patch version and republish
+      try {
+        const versionParts = latestPublishedVersion.split(".");
+        const newVersion = `${versionParts[0]}.${versionParts[1]}.${parseInt(versionParts[2]) + 1}`;
+
+        console.log(
+          `Bumping version from ${latestPublishedVersion} to ${newVersion}`,
+        );
+        await executor.execNpmCommand(
+          ["version", newVersion, "--no-git-tag-version"],
+          false,
+        );
+
+        console.log(`Publishing version ${newVersion}...`);
+        await executor.execNpmCommand(["publish"], false);
+        console.log(`Successfully published version ${newVersion}`);
+
+        // Commit the version bump
+        await execCommand("git", ["add", "."]);
+        await execShellCommand(
+          `git commit -m "chore: bump version to ${newVersion}"`,
+        );
+        console.log(`Committed version bump to ${newVersion}`);
+      } catch (error) {
+        console.error(`Failed to republish: ${error}`);
       }
     },
     options: [

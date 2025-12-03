@@ -6,7 +6,7 @@ Sync Impact Report:
 - Follow-up TODOs: None
 -->
 
-# package-json-tools CLI Tool Constitution
+# pjt CLI Tool Constitution
 
 ## Core Principles
 

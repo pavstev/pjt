@@ -12,12 +12,12 @@ This feature adds a CLI binary with subcommand architecture. No persistent data 
 - **Purpose**: Main executable providing subcommands
 - **Attributes**:
   - Version: From package.json
-  - Subcommands: Array of available commands (e.g., package-json-tools)
+  - Subcommands: Array of available commands (e.g., pjt)
 - **Validation**: Must be executable and handle --help
 
 ### Git-Clean Subcommand
 
-- **Name**: package-json-tools
+- **Name**: pjt
 - **Purpose**: Cleans git repository by removing untracked files
 - **Attributes**:
   - Target directory: Current working directory or specified path

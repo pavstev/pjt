@@ -15,12 +15,12 @@
 
 **Decision**: Use package.json "bin" field to export the binary, with TypeScript compilation to CommonJS.
 
-**Rationale**: Standard Node.js practice for CLI tools. The project already uses this pattern (current "package-json-tools" binary), so extending to "pjt" with subcommands is straightforward.
+**Rationale**: Standard Node.js practice for CLI tools. The project already uses this pattern (current "pjt" binary), so extending to "pjt" with subcommands is straightforward.
 
 **Alternatives Considered**: None needed; this is the established pattern in the codebase.
 
 ## Missing Project Parts Analysis
 
-**Decision**: Add Commander.js dependency, update package.json bin field to "pjt", refactor existing package-json-tools.ts as subcommand handler, create main pjt.ts entry point.
+**Decision**: Add Commander.js dependency, update package.json bin field to "pjt", refactor existing pjt.ts as subcommand handler, create main pjt.ts entry point.
 
 **Rationale**: Based on current project structure, these are the minimal additions to fulfill the requirements. No other missing parts identified in core dependencies or build setup.
