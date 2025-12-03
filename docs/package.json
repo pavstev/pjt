@@ -5,7 +5,7 @@
   "scripts": {
     "prebuild": "node scripts/copy-readme.js",
     "build": "next build",
-    "deploy": "rm -rf out .next && next build && echo '' > out/.nojekyll && pnpm exec gh-pages -d out --dotfiles",
+    "deploy": "rm -rf out .next && next build && echo '' > out/.nojekyll && echo 'pjt.stevanpavlovic.com' > out/CNAME && pnpm exec gh-pages -d out --dotfiles",
     "dev": "next dev",
     "postinstall": "fumadocs-mdx",
     "lint": "next lint",

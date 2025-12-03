@@ -55,7 +55,7 @@
     "knip": "knip --config knip.config.ts",
     "lint": "eslint src --fix --max-warnings 0 --cache",
     "prepublishOnly": "pnpm build",
-    "release": "pnpm version patch && pnpm publish",
+    "release": "pnpm all && pnpm version patch && pnpm publish",
     "test": "vitest run --passWithNoTests",
     "typecheck": "tsc --noEmit -p tsconfig.build.json"
   },
