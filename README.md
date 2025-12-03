@@ -7,14 +7,13 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9+-blue.svg)](https://www.typescriptlang.org/)
 [![CI](https://github.com/pavstev/pjt/workflows/CI/badge.svg)](https://github.com/pavstev/pjt/actions)
 
-> A modern, cross-platform CLI tool that supercharges your development workflow with intelligent Git repository cleaning and project maintenance commands.
+> A modern, cross-platform CLI tool that supercharges your development workflow with intelligent npm version management and project maintenance commands.
 
 ## ✨ Features
 
-- **🧹 Smart Git Cleaning** - Remove untracked files, cache directories, and build artifacts safely
+- **📦 Smart NPM Version Management** - Clean old npm versions safely, keeping recent ones
 - **⚡ Development Workflow** - Run format, lint, build, test, and knip commands with a single tool
 - **🔄 Cross-Platform** - Works seamlessly on Linux, macOS, and Windows
-- **📦 Package Management** - Intelligent dependency cleaning and reinstallation
 - **🚀 TypeScript First** - Built with TypeScript 5.9+ and strict mode for reliability
 - **🛡️ Safe Operations** - Dry-run mode and confirmation prompts prevent accidents
 - **🎯 Zero Config** - Works out of the box with sensible defaults
@@ -57,14 +56,14 @@ That's it! Your repository is now clean and ready for development.
 
 ### Core Commands
 
-#### Clean Repository (Default)
+#### NPM Version Cleanup (Default)
 
-Remove untracked files and refresh dependencies:
+Clean old npm versions, commit changes, and republish:
 
 ```bash
 pjt
 # or explicitly
-pjt git-clean
+pjt npm-clean-versions
 ```
 
 #### Development Workflow
@@ -77,15 +76,6 @@ pjt lint      # Lint with ESLint
 pjt build     # Build the project
 pjt test      # Run tests with Vitest
 pjt knip      # Check for unused dependencies
-```
-
-#### Package Management
-
-Clean up old npm package versions:
-
-```bash
-pjt npm-clean-versions --dry-run  # Preview what would be deleted
-pjt npm-clean-versions            # Actually delete old versions
 ```
 
 ### Command Options

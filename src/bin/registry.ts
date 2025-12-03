@@ -106,20 +106,27 @@ export const commandRegistry: CommandDefinition[] = [
         return;
       }
 
-      // Sort versions and keep the latest published one
+      // Smart version management: Keep last 3 versions for safety
+      const KEEP_VERSIONS = 3;
       const sortedVersions = publishedVersions.sort((a: string, b: string) =>
         a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" }),
       );
-      const latestPublishedVersion = sortedVersions[sortedVersions.length - 1];
-      const versionsToDelete = publishedVersions.filter(
-        (version: string) => version !== latestPublishedVersion,
+
+      const versionsToKeep = sortedVersions.slice(-KEEP_VERSIONS);
+      const versionsToDelete = sortedVersions.slice(0, -KEEP_VERSIONS);
+
+      console.log(`📦 Found ${publishedVersions.length} published versions`);
+      console.log(
+        `🛡️  Keeping last ${KEEP_VERSIONS} versions: ${versionsToKeep.join(", ")}`,
       );
 
+      if (versionsToDelete.length === 0) {
+        console.log("✅ No old versions to clean up");
+        return;
+      }
+
       console.log(
-        `Keeping latest published version: ${latestPublishedVersion}`,
-      );
-      console.log(
-        `Found ${versionsToDelete.length} versions to delete: ${versionsToDelete.join(", ")}`,
+        `🗑️  Will delete ${versionsToDelete.length} old versions: ${versionsToDelete.join(", ")}`,
       );
 
       if (dryRun) {
@@ -128,7 +135,7 @@ export const commandRegistry: CommandDefinition[] = [
           console.log(`  - Delete version ${version}`);
         });
         console.log(
-          `  - Commit changes with message "chore: clean npm versions, keep ${latestPublishedVersion}"`,
+          `  - 📝 Commit cleanup: "chore: clean npm versions, keep ${versionsToKeep.join(", ")}"`,
         );
         console.log("  - Bump version and republish");
         return;
@@ -152,7 +159,7 @@ export const commandRegistry: CommandDefinition[] = [
         try {
           await execCommand("git", ["add", "."]);
           await execShellCommand(
-            `git commit -m "chore: clean npm versions, keep ${latestPublishedVersion}"`,
+            `git commit -m "chore: clean npm versions, keep ${versionsToKeep.join(", ")}"`,
           );
           console.log("Committed version cleanup");
         } catch (error) {
@@ -162,12 +169,11 @@ export const commandRegistry: CommandDefinition[] = [
 
       // Bump to next patch version and republish
       try {
-        const versionParts = latestPublishedVersion.split(".");
+        const latestVersion = versionsToKeep[versionsToKeep.length - 1];
+        const versionParts = latestVersion.split(".");
         const newVersion = `${versionParts[0]}.${versionParts[1]}.${parseInt(versionParts[2]) + 1}`;
 
-        console.log(
-          `Bumping version from ${latestPublishedVersion} to ${newVersion}`,
-        );
+        console.log(`Bumping version from ${latestVersion} to ${newVersion}`);
         await executor.execNpmCommand(
           ["version", newVersion, "--no-git-tag-version"],
           false,
