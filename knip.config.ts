@@ -3,25 +3,25 @@ import type { KnipConfig } from "knip";
 const config: KnipConfig = {
   workspaces: {
     ".": {
-      entry: ["src/main.ts"],
+      entry: ["src/main.ts", "src/eslint/index.ts", "src/index.ts"],
       project: [
+        "src/lib/**/*.ts",
         "src/eslint/**/*.ts",
         "src/prettier/**/*.ts",
-        "src/lib/**/*.ts",
       ],
       ignoreDependencies: ["globify-gitignore"],
       ignoreFiles: [
         "src/index.ts",
         "src/lib/completions.ts",
         "src/lib/fs.ts",
+        "src/eslint/config.ts",
         "src/prettier/config.ts",
         "src/prettier/index.ts",
-        "src/eslint/config.ts",
       ],
     },
     docs: {
-      entry: ["index.md"],
-      project: ["**/*.md"],
+      entry: ["src/content/docs/index.md"],
+      project: ["src/**/*.md"],
     },
   },
 };

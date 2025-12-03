@@ -49,5 +49,3 @@ export class Logger {
     consola.error(message);
   }
 }
-
-const logger = new Logger();

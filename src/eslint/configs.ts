@@ -1,6 +1,7 @@
 import eslint from "@eslint/js";
 import eslintPluginJsonSchemaValidator from "eslint-plugin-json-schema-validator";
 import eslintPluginJsonc from "eslint-plugin-jsonc";
+// @ts-expect-error eslint-config-prettier has no types
 import eslintConfigPrettier from "eslint-config-prettier";
 import { type Config } from "eslint/config";
 import tseslint from "typescript-eslint";
@@ -30,9 +31,9 @@ export const markdownConf: Config[] = [
   {
     files: ["**/*.md"],
     plugins: {
-      markdown,
+      markdown: markdown as any, // eslint-disable-line @typescript-eslint/no-explicit-any
     },
-    processor: "markdown/markdown",
+    language: "markdown/commonmark",
     rules: {
       "markdown/no-html": "error",
       "no-irregular-whitespace": "off",
