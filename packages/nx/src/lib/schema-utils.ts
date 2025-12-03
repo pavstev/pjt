@@ -37,6 +37,7 @@ export const processSchemaEntry = async (
   if (url.startsWith("https://")) {
     // Remote URL
     try {
+      // eslint-disable-next-line n/no-unsupported-features/node-builtins
       const response = await fetch(url);
       if (!response.ok) return;
 

@@ -80,13 +80,13 @@ export const createCliUtils = (logger: Logger): CliUtils => ({
     throw error;
   },
 
-  setupCommand(
+  setupCommand: (
     command: unknown,
     cmdDefinition: CommandDefinition,
     utils: CliUtils,
     git: Git,
     commandExecutor: CommandExecutor,
-  ) {
+  ) => {
     if (cmdDefinition.options) {
       this.addCommandOptions(command, cmdDefinition.options);
     }
