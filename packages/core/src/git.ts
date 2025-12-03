@@ -1,17 +1,42 @@
 import { spawn } from "node:child_process";
 import { simpleGit } from "simple-git";
-import { Logger } from "./logger";
-import { CliError, CliErrorMessages, GitCleanOptions } from "./types";
+
+import type { Logger } from "./logger";
+import type { GitCleanOptions } from "./types";
+
+import { CliError, CliErrorMessages } from "./types";
 
 export class Git {
-  private git = simpleGit();
+  get gitInstance(): ReturnType<typeof simpleGit> {
+    return this.git;
+  }
 
-  constructor(private logger: Logger) {}
+  private git = simpleGit();
 
   // Uses simple-git library instead of shell commands for better cross-platform support
 
-  get gitInstance(): ReturnType<typeof simpleGit> {
-    return this.git;
+  constructor(private logger: Logger) {}
+
+  async clean(options: GitCleanOptions = {}): Promise<void> {
+    this.validateGitCleanOptions(options);
+    try {
+      const { dryRun = false, exclude = [".env.local"] } = options;
+      const args = ["clean"];
+      if (dryRun) args.push("--dry-run");
+
+      args.push("-Xfd");
+      for (const pattern of exclude) {
+        args.push("-e", pattern);
+      }
+      await this.git.raw(args);
+      this.logger.info("Git clean completed successfully");
+    } catch (error) {
+      if (error instanceof CliError) {
+        throw error;
+      }
+
+      throw new CliError(CliErrorMessages.GIT_CLEAN_FAILED, { cause: error });
+    }
   }
 
   async isGitRepository(): Promise<boolean> {
@@ -27,36 +52,22 @@ export class Git {
     if (typeof options !== "object" || options === null) {
       throw new CliError("options must be an object");
     }
+
     const opts = options as Record<string, unknown>;
     if (opts.exclude !== undefined && !Array.isArray(opts.exclude)) {
       throw new CliError("exclude must be an array of strings");
     }
+
     if (opts.dryRun !== undefined && typeof opts.dryRun !== "boolean") {
       throw new CliError("dryRun must be a boolean");
-    }
-  }
-
-  async clean(options: GitCleanOptions = {}): Promise<void> {
-    this.validateGitCleanOptions(options);
-    try {
-      const { exclude = [".env.local"], dryRun = false } = options;
-      const args = ["clean"];
-      if (dryRun) args.push("--dry-run");
-      args.push("-Xfd");
-      exclude.forEach(pattern => args.push("-e", pattern));
-      await this.git.raw(args);
-      this.logger.info("Git clean completed successfully");
-    } catch (error) {
-      if (error instanceof CliError) {
-        throw error;
-      }
-      throw new CliError(CliErrorMessages.GIT_CLEAN_FAILED, { cause: error });
     }
   }
 }
 
 /**
  * Execute a git command and return stdout
+ * @param args - Git command arguments
+ * @returns Promise resolving to stdout string
  */
 const executeGitCommand = async (args: string[]): Promise<string> =>
   new Promise<string>((resolve, reject) => {
@@ -83,6 +94,8 @@ const executeGitCommand = async (args: string[]): Promise<string> =>
 
 /**
  * Check if git tracks any files matching the given patterns
+ * @param patterns - Array of file patterns to check
+ * @returns Promise resolving to true if any files are tracked
  */
 export const checkGitTrackedFiles = async (
   patterns: string[],
@@ -103,6 +116,7 @@ export const checkGitTrackedFiles = async (
 
 /**
  * Check if JSDoc comments exist in JS/TS files
+ * @returns Promise resolving to true if JSDoc comments are found
  */
 export const checkJSDocPresence = async (): Promise<boolean> => {
   try {

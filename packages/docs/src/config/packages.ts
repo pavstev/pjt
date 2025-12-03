@@ -1,10 +1,10 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import fs from "node:fs";
+import path from "node:path";
 
 type PackageConfig = {
-  customContent?: (pkgJson: Record<string, unknown>, pkgPath: string) => string;
   additionalSections?: string[];
-}
+  customContent?: (pkgJson: Record<string, unknown>, pkgPath: string) => string;
+};
 
 export const packageConfigs: Record<string, PackageConfig> = {
   cli: {
@@ -41,16 +41,19 @@ pjt --dir /path/to/project
   },
   core: {
     customContent: (pkgJson: Record<string, unknown>, pkgPath: string) => {
-      const indexPath = path.join(pkgPath, 'src/index.ts');
-      let exportsSection = '';
+      const indexPath = path.join(pkgPath, "src/index.ts");
+      let exportsSection = "";
 
       if (fs.existsSync(indexPath)) {
-        const indexContent = fs.readFileSync(indexPath, 'utf-8');
-        const exports = indexContent.split('\n').filter(line => line.startsWith('export')).map(line => line.trim());
+        const indexContent = fs.readFileSync(indexPath, "utf-8");
+        const exports = indexContent
+          .split("\n")
+          .filter(line => line.startsWith("export"))
+          .map(line => line.trim());
         exportsSection = `
 ## Exported Modules
 
-${exports.map(exp => `- \`${exp}\``).join('\n')}
+${exports.map(exp => `- \`${exp}\``).join("\n")}
 `;
       }
 
@@ -72,16 +75,19 @@ ${exportsSection}
   },
   eslint: {
     customContent: (pkgJson: Record<string, unknown>, pkgPath: string) => {
-      const indexPath = path.join(pkgPath, 'src/index.ts');
-      let exportsSection = '';
+      const indexPath = path.join(pkgPath, "src/index.ts");
+      let exportsSection = "";
 
       if (fs.existsSync(indexPath)) {
-        const indexContent = fs.readFileSync(indexPath, 'utf-8');
-        const exports = indexContent.split('\n').filter(line => line.includes('export')).map(line => line.trim());
+        const indexContent = fs.readFileSync(indexPath, "utf-8");
+        const exports = indexContent
+          .split("\n")
+          .filter(line => line.includes("export"))
+          .map(line => line.trim());
         exportsSection = `
 ## Exported Configurations
 
-${exports.map(exp => `- \`${exp}\``).join('\n')}
+${exports.map(exp => `- \`${exp}\``).join("\n")}
 `;
       }
 
@@ -100,6 +106,21 @@ ${exportsSection}
 - **mdxConf**: MDX linting
 `;
     },
+  },
+  nx: {
+    customContent: () => `
+Nx generators for configuring PJT tools in your workspace.
+
+## Generators
+
+- **configure-prettier**: Configure Prettier in your Nx workspace
+
+## Usage
+
+\`\`\`bash
+nx generate @pjt/nx:configure-prettier
+\`\`\`
+`,
   },
   prettier: {
     customContent: () => `
@@ -120,21 +141,6 @@ Or in package.json:
 {
   "prettier": "@pjt/prettier"
 }
-\`\`\`
-`,
-  },
-  nx: {
-    customContent: () => `
-Nx generators for configuring PJT tools in your workspace.
-
-## Generators
-
-- **configure-prettier**: Configure Prettier in your Nx workspace
-
-## Usage
-
-\`\`\`bash
-nx generate @pjt/nx:configure-prettier
 \`\`\`
 `,
   },

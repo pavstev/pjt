@@ -11,12 +11,12 @@
     "playwright": {
       "type": "local",
       "command": ["npx", "@playwright/mcp@latest"],
-      "enabled": true
+      "enabled": false
     },
     "shadcn": {
       "type": "local",
       "command": ["npx", "shadcn@latest", "mcp"],
-      "enabled": true
+      "enabled": false
     },
     "lighthouse": {
       "type": "local",
@@ -26,7 +26,7 @@
     "Astro docs": {
       "type": "remote",
       "url": "https://mcp.docs.astro.build/mcp",
-      "enabled": true
+      "enabled": false
     },
     "magicui": {
       "type": "local",
@@ -36,7 +36,7 @@
     "eslint": {
       "type": "local",
       "command": ["npx", "-y", "@eslint/mcp@latest"],
-      "enabled": true
+      "enabled": false
     },
     "nx": {
       "type": "local",

@@ -51,7 +51,8 @@
       "excludeFiles": ["package.json"],
       "files": ["*.code-workspace", "*.json", "*.json5", "*.jsonc"],
       "options": {
-        "parser": "json"
+        "parser": "json",
+        "plugins": ["prettier-plugin-sort-json"]
       }
     },
     {
@@ -138,7 +139,6 @@
     "prettier-plugin-css-order",
     "prettier-plugin-ember-template-tag",
     "prettier-plugin-ignored",
-    "prettier-plugin-jsdoc",
     "prettier-plugin-multiline-arrays",
     "prettier-plugin-organize-attributes",
     "prettier-plugin-organize-imports",

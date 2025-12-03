@@ -1,32 +1,42 @@
+import type { Config } from "eslint/config";
+
+import { getIgnorePatterns, Logger } from "@pjt/core";
 import { defineConfig } from "eslint/config";
-import type { ConfigArray } from "typescript-eslint";
 
-import { getIgnores } from "../ignores";
-import { tsRules } from "../rules";
-import { prettierConf, recommended, tsRecommended } from "./base";
-import { jsonc, jsonSchema } from "./json";
-import { markdownConf, mdxConf } from "./markdown";
-import { nxDependencyChecks, nxPluginChecks } from "./nx";
+import { astro } from "./astro";
+import { cspellConfig } from "./cspell";
+import { globalsConfig } from "./globals";
+import { js } from "./js";
+import { mdxConfig } from "./mdx";
+import { nx } from "./nx";
+import { oxlintConfig } from "./oxlint";
+import { perfectionistConfig } from "./perfectionist";
+import { prettierConfigModule } from "./prettier";
+import { schema } from "./schema";
+import { source } from "./source";
 
-export const defaultConfig = async (): Promise<ConfigArray> =>
+export const defaultConfig = async (): Promise<Config[]> =>
   defineConfig([
-    await getIgnores(),
-    recommended,
-    ...jsonc,
-    ...jsonSchema,
-    prettierConf,
-    ...tsRecommended,
-    tsRules,
     {
-      files: ["**/e2e/**/*.ts"],
-      rules: {
-        "@typescript-eslint/no-confusing-void-expression": "off",
-        "@typescript-eslint/prefer-nullish-coalescing": "off",
-        "@typescript-eslint/no-unnecessary-condition": "off",
-      },
+      ignores: [
+        ...(await getIgnorePatterns(new Logger())),
+        "dist/",
+        "build/",
+        "out/",
+        ".nx/",
+        "node_modules/",
+        "**/package.json",
+      ],
     },
-    ...markdownConf,
-    ...mdxConf,
-    ...nxDependencyChecks,
-    ...nxPluginChecks,
+    ...globalsConfig,
+    ...js,
+    ...nx,
+    ...schema,
+    ...source,
+    ...astro,
+    ...perfectionistConfig,
+    ...oxlintConfig,
+    ...prettierConfigModule,
+    ...mdxConfig,
+    ...cspellConfig,
   ]);

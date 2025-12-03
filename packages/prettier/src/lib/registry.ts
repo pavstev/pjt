@@ -1,63 +1,63 @@
-import { checkGitTrackedFiles, checkJSDocPresence } from "@pjt/core";
+import type {
+  PluginDefinition,
+  PluginDefinitions,
+  PluginRegistry,
+} from "@pjt/schemas";
+
+import { checkGitTrackedFiles, objectEntries } from "@pjt/core";
 import { readPackageUp } from "read-package-up";
-import pluginDefinitions from "../schema/prettier-plugins.json";
-import type { PluginDefinition, PluginRegistry } from "../schema/schema";
 
-const { $schema: _, ...definitions } = pluginDefinitions;
-const validatedDefinitions = definitions as Record<string, PluginDefinition>;
+import * as _plugins from "../schema/prettier-plugins.json";
 
-export const createPluginRegistry = async (): Promise<PluginRegistry> => {
-  const plugins = validatedDefinitions;
+const plugins = _plugins as PluginDefinitions;
 
-  return {
-    plugins,
+export const createPluginRegistry = (): PluginRegistry => ({
+  getInstalledPlugins: async (packageJsonPath: string): Promise<string[]> => {
+    const result = await readPackageUp({ cwd: packageJsonPath });
+    if (!result) {
+      return [];
+    }
 
-    async getRequiredPlugins(): Promise<string[]> {
-      const requiredPlugins: string[] = [];
+    const { packageJson } = result;
 
-      for (const [name, plugin] of Object.entries(plugins)) {
-        if (plugin.condition === "always") {
-          requiredPlugins.push(name);
-        } else if (plugin.condition === "never") {
-          // Skip plugins with "never" condition
-          continue;
-        } else {
-          let shouldInstall = false;
+    return Object.entries(plugins)
+      .filter(
+        ([name]) =>
+          packageJson.devDependencies?.[name] ??
+          packageJson.dependencies?.[name],
+      )
+      .map(([name]) => name);
+  },
 
-          if (name === "prettier-plugin-jsdoc") {
-            shouldInstall = await checkJSDocPresence();
-          } else if (plugin.filePatterns) {
-            shouldInstall = await checkGitTrackedFiles(plugin.filePatterns);
-          }
+  getPluginDefinitions: (): PluginDefinition[] =>
+    Object.values(plugins) as PluginDefinition[],
 
-          if (shouldInstall) {
-            requiredPlugins.push(name);
-          }
-        }
+  getRequiredPlugins: async (): Promise<string[]> => {
+    const requiredPlugins: string[] = [];
+
+    const shouldInstallPlugin = async (
+      name: string,
+      plugin: PluginDefinition,
+    ): Promise<boolean> => {
+      if (plugin.condition === "always") return true;
+
+      if (plugin.condition === "never") return false;
+
+      if (plugin.filePatterns) {
+        return await checkGitTrackedFiles(plugin.filePatterns);
       }
 
-      return requiredPlugins;
-    },
+      return false;
+    };
 
-    async getInstalledPlugins(packageJsonPath: string): Promise<string[]> {
-      const result = await readPackageUp({ cwd: packageJsonPath });
-      if (!result) {
-        return [];
+    for (const [name, plugin] of objectEntries(plugins)) {
+      if (await shouldInstallPlugin(name, plugin)) {
+        requiredPlugins.push(name);
       }
+    }
 
-      const { packageJson } = result;
+    return requiredPlugins;
+  },
 
-      return Object.entries(plugins)
-        .filter(
-          ([name]) =>
-            packageJson.devDependencies?.[name] ??
-            packageJson.dependencies?.[name],
-        )
-        .map(([name]) => name);
-    },
-
-    getPluginDefinitions(): PluginDefinition[] {
-      return Object.values(plugins);
-    },
-  };
-};
+  plugins,
+});

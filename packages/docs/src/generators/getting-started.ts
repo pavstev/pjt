@@ -1,6 +1,9 @@
-import { markdownToHtml } from '../utils/markdown.js';
+import { markdownToHtml } from "../utils/markdown.js";
 
-export const generateGettingStartedPage = async (): Promise<{ html: string; data: Record<string, unknown> }> => {
+export const generateGettingStartedPage = async (): Promise<{
+  data: Record<string, unknown>;
+  html: string;
+}> => {
   const markdown = `---
 title: Getting Started
 description: Learn how to install and use PJT
@@ -50,10 +53,10 @@ Explore the [CLI guide](./guides/cli) for detailed usage instructions.
   const html = await markdownToHtml(markdown);
 
   return {
-    html,
     data: {
-      title: 'Getting Started',
-      description: 'Learn how to install and use PJT',
+      description: "Learn how to install and use PJT",
+      title: "Getting Started",
     },
+    html,
   };
-}
+};

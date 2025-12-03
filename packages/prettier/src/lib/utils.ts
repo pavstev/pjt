@@ -1,4 +1,4 @@
-import type { ConfigOverrides } from "../schema/schema";
+import type { ConfigOverrides } from "@pjt/schemas";
 
 const createOverrideKey = (override: ConfigOverrides): string =>
   `${override.files.sort().join(",")}-${override.excludeFiles?.sort().join(",") ?? ""}`;
@@ -13,7 +13,7 @@ export const deduplicateOverrides = (
     if (!seen.has(key)) {
       seen.set(key, { ...override });
     } else {
-      const existing = seen.get(key)!;
+      const existing = seen.get(key) as ConfigOverrides;
       existing.options = { ...existing.options, ...override.options };
     }
   }

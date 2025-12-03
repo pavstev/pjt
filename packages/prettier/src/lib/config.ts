@@ -1,20 +1,14 @@
+import type { BaseConfigOptions, ConfigOverrides } from "@pjt/schemas";
 import type { Config } from "prettier";
-import type {
-  BaseConfigOptions,
-  ConfigOverrides,
-  PluginDefinition,
-} from "../schema/schema";
+
 import { deduplicateOverrides } from "./utils";
 
 export const createBaseConfig = (options: BaseConfigOptions): Config => {
-  const { plugins, pluginDefinitions = [], overrides = [] } = options;
+  const { overrides = [], pluginDefinitions = [], plugins } = options;
 
   const pluginOverrides = pluginDefinitions
-    .filter(
-      (plugin): plugin is PluginDefinition & { overrides: ConfigOverrides[] } =>
-        Boolean(plugin.overrides),
-    )
-    .flatMap(plugin => plugin.overrides);
+    .filter(plugin => plugin.overrides !== null)
+    .flatMap(plugin => plugin.overrides as ConfigOverrides[]);
 
   const uniqueOverrides = deduplicateOverrides([
     ...pluginOverrides,
@@ -22,7 +16,6 @@ export const createBaseConfig = (options: BaseConfigOptions): Config => {
   ]);
 
   return {
-    plugins,
     arrowParens: "avoid",
     bracketSameLine: false,
     bracketSpacing: true,
@@ -32,6 +25,7 @@ export const createBaseConfig = (options: BaseConfigOptions): Config => {
     insertPragma: false,
     jsxSingleQuote: false,
     overrides: uniqueOverrides,
+    plugins,
     printWidth: 80,
     proseWrap: "preserve",
     quoteProps: "consistent",

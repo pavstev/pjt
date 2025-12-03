@@ -1,21 +1,19 @@
 import markdown from "@eslint/markdown";
-import { type Config } from "eslint/config";
-
-// eslint-disable-next-line no-restricted-syntax
 import * as eslintPluginMdx from "eslint-plugin-mdx";
+import { type Config } from "eslint/config";
 
 export const markdownConf: Config[] = [
   {
     files: ["**/*.md"],
+    language: "markdown/commonmark",
     plugins: {
       markdown: markdown as any, // eslint-disable-line @typescript-eslint/no-explicit-any
     },
-    language: "markdown/commonmark",
     rules: {
+      "eol-last": "off",
       "markdown/no-html": "error",
       "no-irregular-whitespace": "off",
       "no-trailing-spaces": "off",
-      "eol-last": "off",
     },
   },
 ];

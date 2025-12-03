@@ -5,7 +5,7 @@ import tseslint from "typescript-eslint";
 
 import { tsFiles } from "../constants";
 
-export const recommended: Config = eslint.configs.recommended;
+export const recommended = eslint.configs.recommended as Config;
 
 export const tsRecommended: Config[] = tseslint.configs.recommended.map(
   config => ({

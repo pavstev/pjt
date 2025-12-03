@@ -1,19 +1,41 @@
 import { promises as fs } from "node:fs";
-import { CommandExecutor } from "./command-executor";
-import { Git } from "./git";
-import { Logger } from "./logger";
-import {
-  ActionHandler,
-  CliError,
-  CliErrorMessages,
-  CommandDefinition,
-  CommandOption,
-} from "./types";
 
-export class CliUtils {
-  constructor(private logger: Logger) {}
+import type { CommandExecutor } from "./command-executor";
+import type { Git } from "./git";
+import type { Logger } from "./logger";
+import type { ActionHandler, CommandDefinition, CommandOption } from "./types";
 
-  public async checkGitRepository(): Promise<void> {
+import { CliError, CliErrorMessages } from "./types";
+
+export type CliUtils = {
+  addCommandOptions(command: unknown, options: CommandOption[]): void;
+  checkGitRepository(): Promise<void>;
+  createCommandHandler(
+    handler: ActionHandler,
+  ): (options?: Record<string, unknown>) => Promise<void>;
+  handleError(error: unknown): never;
+  setupCommand(
+    command: unknown,
+    cmdDefinition: CommandDefinition,
+    utils: CliUtils,
+    git: Git,
+    commandExecutor: CommandExecutor,
+  ): void;
+};
+
+export const createCliUtils = (logger: Logger): CliUtils => ({
+  addCommandOptions(command: unknown, options: CommandOption[]) {
+    for (const opt of options) {
+      const flag =
+        opt.type === "boolean" ? `--${opt.name}` : `--${opt.name} <value>`;
+      (command as { option: (flag: string, desc: string) => void }).option(
+        flag,
+        opt.description,
+      );
+    }
+  },
+
+  async checkGitRepository() {
     try {
       await fs.access(".git");
     } catch (error) {
@@ -26,28 +48,14 @@ export class CliUtils {
           cause: error,
         });
       }
+
       throw new CliError(CliErrorMessages.FAILED_TO_CHECK_GIT_REPOSITORY, {
         cause: error,
       });
     }
-  }
+  },
 
-  public handleError(error: unknown): never {
-    if (error instanceof CliError) {
-      this.logger.error(`${error.name}: ${error.message}`);
-      process.exit(1);
-    }
-    if (error instanceof Error) {
-      this.logger.error(`Error: ${error.message}`);
-      process.exit(1);
-    }
-    this.logger.error(`Error: ${String(error)}`);
-    process.exit(1);
-  }
-
-  public createCommandHandler(
-    handler: ActionHandler,
-  ): (options?: Record<string, unknown>) => Promise<void> {
+  createCommandHandler(handler: ActionHandler) {
     return async (options?: Record<string, unknown>) => {
       try {
         await handler(options);
@@ -55,32 +63,38 @@ export class CliUtils {
         this.handleError(error);
       }
     };
-  }
+  },
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public addCommandOptions(command: any, options: CommandOption[]): void {
-    options.forEach(opt => {
-      const flag =
-        opt.type === "boolean" ? `--${opt.name}` : `--${opt.name} <value>`;
-      command.option(flag, opt.description);
-    });
-  }
+  handleError(error: unknown) {
+    if (error instanceof CliError) {
+      logger.error(`${error.name}: ${error.message}`);
+      throw error;
+    }
 
-  public setupCommand(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    command: any,
+    if (error instanceof Error) {
+      logger.error(`Error: ${error.message}`);
+      throw error;
+    }
+
+    logger.error(`Error: ${String(error)}`);
+    throw error;
+  },
+
+  setupCommand(
+    command: unknown,
     cmdDefinition: CommandDefinition,
     utils: CliUtils,
     git: Git,
     commandExecutor: CommandExecutor,
-  ): void {
+  ) {
     if (cmdDefinition.options) {
       this.addCommandOptions(command, cmdDefinition.options);
     }
-    command.action(
+
+    (command as { action: (fn: () => Promise<void>) => void }).action(
       this.createCommandHandler((options = {}) =>
         cmdDefinition.handler(utils, git, commandExecutor, options),
       ),
     );
-  }
-}
+  },
+});

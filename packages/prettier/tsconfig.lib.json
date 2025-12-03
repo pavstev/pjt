@@ -4,9 +4,11 @@
     "declaration": true,
     "module": "commonjs",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "@pjt/core": ["../core/src"]
+      "@pjt/core": ["../core/src"],
+      "@pjt/schemas": ["../schemas/src"]
     }
   },
   "exclude": [
@@ -16,5 +18,5 @@
     "src/**/*.test.ts"
   ],
   "extends": "../../tsconfig.base.json",
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "src/**/*.json"]
 }

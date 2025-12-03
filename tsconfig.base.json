@@ -5,9 +5,10 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["ES2022"],
-    "module": "ES2022",
+    "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
+    "rootDir": ".",
     "skipLibCheck": true,
     "strict": true,
     "strictNullChecks": true,
@@ -20,6 +21,7 @@
       "@pjt/cli": ["packages/cli/src/index.ts"],
       "@pjt/nx": ["packages/nx/src/index.ts"],
       "@pjt/packages": ["packages/src/index.ts"],
+      "@pjt/schemas": ["packages/schemas/src/index.ts"],
       "@pjt/pjt-nx": ["pjt-nx/src/index.ts"]
     }
   }

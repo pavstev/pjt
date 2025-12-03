@@ -1,69 +1,70 @@
+import type {
+  PluginCondition,
+  PluginDefinition,
+  PluginDefinitions,
+} from "@pjt/schemas";
+
 import { consola } from "consola";
 // @ts-expect-error - libnpmsearch doesn't have types
 import libnpmsearch from "libnpmsearch";
 import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import type {
-  PluginCondition,
-  PluginDefinition,
-  PluginDefinitions,
-} from "../schema/schema";
 
 type NpmPackage = {
+  date: Date | null;
+  description: null | string;
+  keywords: null | string[];
+  maintainers: Array<{ email: string; username: string }> | null;
   name: string;
   version: string;
-  description: string | null;
-  maintainers: Array<{ username: string; email: string }> | null;
-  keywords: string[] | null;
-  date: Date | null;
 };
 
 type SearchOptions = {
-  limit?: number;
   interactive?: boolean;
+  limit?: number;
 };
 
 const FILE_PATTERN_MAPPINGS: Partial<Record<string, string[]>> = {
-  xml: ["*.xml"],
-  json: ["*.json", "*.jsonc", "*.json5"],
-  yaml: ["*.yaml", "*.yml"],
-  toml: ["*.toml"],
-  py: ["*.py"],
-  sql: ["*.sql"],
-  sh: ["*.sh", "*.zsh", "*.bash"],
-  dockerfile: ["*.dockerfile", "*.Dockerfile"],
   astro: ["*.astro"],
-  svelte: ["*.svelte"],
-  vue: ["*.vue"],
-  md: ["*.md", "*.mdx", "*.svx"],
   css: ["*.css", "*.scss", "*.sass", "*.less"],
-  prisma: ["*.prisma"],
+  dockerfile: ["*.dockerfile", "*.Dockerfile"],
+  json: ["*.json", "*.jsonc", "*.json5"],
   just: ["justfile", "*.just"],
+  md: ["*.md", "*.mdx", "*.svx"],
+  prisma: ["*.prisma"],
+  py: ["*.py"],
+  sh: ["*.sh", "*.zsh", "*.bash"],
+  sql: ["*.sql"],
+  svelte: ["*.svelte"],
+  toml: ["*.toml"],
+  vue: ["*.vue"],
+  xml: ["*.xml"],
+  yaml: ["*.yaml", "*.yml"],
 };
 
 const PARSER_MAPPINGS: Record<string, string> = {
-  xml: "xml",
-  json: "json",
-  yaml: "yaml",
-  toml: "toml",
-  py: "py",
-  sql: "sql",
-  sh: "shell",
-  dockerfile: "dockerfile",
   astro: "astro",
-  svelte: "svelte",
-  vue: "vue",
-  md: "markdown",
   css: "css",
-  prisma: "prisma",
-  ts: "typescript",
-  js: "babel",
+  dockerfile: "dockerfile",
   html: "html",
+  js: "babel",
+  json: "json",
+  md: "markdown",
+  prisma: "prisma",
+  py: "py",
+  sh: "shell",
+  sql: "sql",
+  svelte: "svelte",
+  toml: "toml",
+  ts: "typescript",
+  vue: "vue",
+  xml: "xml",
+  yaml: "yaml",
 };
 
 const detectFilePatterns = (
   name: string,
-  keywords: string[] | null,
+  keywords: null | string[],
 ): string[] | undefined => {
   const lowerName = name.toLowerCase();
   const allKeywords = [
@@ -148,7 +149,8 @@ const getCondition = (name: string): PluginCondition => {
   return "git-tracked";
 };
 
-const generatePluginTemplate = (pkg: NpmPackage): PluginDefinition | null => {
+// eslint-disable-next-line sonarjs/cognitive-complexity
+const generatePluginTemplate = (pkg: NpmPackage): null | PluginDefinition => {
   const filePatterns = detectFilePatterns(pkg.name, pkg.keywords);
   const parser = getParserName(filePatterns);
   const condition = getCondition(pkg.name);
@@ -164,11 +166,11 @@ const generatePluginTemplate = (pkg: NpmPackage): PluginDefinition | null => {
   }
 
   // Add overrides if we have parser information
-  if (parser && filePatterns) {
+  if (filePatterns) {
     template.overrides = [
       {
         files: filePatterns,
-        options: { parser },
+        options: {},
       },
     ];
   }
@@ -282,20 +284,20 @@ const loadExistingPlugins = async (): Promise<PluginDefinitions> => {
   }
 };
 
-const mergePluginTemplates = async (
+const mergePluginTemplates = (
   existing: PluginDefinitions,
   newTemplates: Record<string, PluginDefinition>,
-): Promise<{
-  merged: PluginDefinitions;
+): {
   added: string[];
+  merged: Record<string, PluginDefinition>;
   skipped: string[];
-}> => {
-  const merged = { ...existing };
+} => {
+  const merged = { ...(existing || {}) };
   const added: string[] = [];
   const skipped: string[] = [];
 
   for (const [name, template] of Object.entries(newTemplates)) {
-    if (existing[name as keyof PluginDefinitions]) {
+    if (existing?.[name as keyof PluginDefinitions]) {
       skipped.push(name);
       consola.info(`Skipping existing plugin: ${name}`);
     } else {
@@ -305,7 +307,7 @@ const mergePluginTemplates = async (
     }
   }
 
-  return { merged, added, skipped };
+  return { added, merged, skipped };
 };
 
 const writePluginsFile = async (plugins: PluginDefinitions): Promise<void> => {
@@ -319,17 +321,18 @@ const writePluginsFile = async (plugins: PluginDefinitions): Promise<void> => {
   // Create backup
   try {
     const existingContent = await readFile(pluginsPath, "utf-8");
-    const backupPath = pluginsPath + ".backup";
+    const backupPath = `${pluginsPath}.backup`;
     await writeFile(backupPath, existingContent);
     consola.info(`Created backup: ${backupPath}`);
   } catch {
     // File might not exist yet, that's okay
   }
 
-  await writeFile(pluginsPath, JSON.stringify(content, null, 2) + "\n");
+  await writeFile(pluginsPath, `${JSON.stringify(content, null, 2)}\n`);
   consola.success(`Updated plugins file: ${pluginsPath}`);
 };
 
+// eslint-disable-next-line sonarjs/cognitive-complexity
 const main = async (): Promise<void> => {
   const args = process.argv.slice(2);
   const options: SearchOptions = {
@@ -364,10 +367,12 @@ const main = async (): Promise<void> => {
 
     // Load existing plugins
     const existing = await loadExistingPlugins();
-    consola.info(`Loaded ${Object.keys(existing).length} existing plugins`);
+    consola.info(
+      `Loaded ${Object.keys(existing || {}).length} existing plugins`,
+    );
 
     // Merge templates
-    const { merged, added, skipped } = await mergePluginTemplates(
+    const { added, merged, skipped } = mergePluginTemplates(
       existing,
       newTemplates,
     );
@@ -381,9 +386,9 @@ const main = async (): Promise<void> => {
 
       if (options.interactive) {
         consola.info("\n🔍 New plugins to be added:");
-        added.forEach(name => {
+        for (const name of added) {
           consola.info(`  - ${name}`);
-        });
+        }
 
         // In a real implementation, you'd add interactive prompts here
         consola.info("Interactive mode not fully implemented - proceeding...");
@@ -395,10 +400,10 @@ const main = async (): Promise<void> => {
     }
   } catch (error) {
     consola.error("Error:", error);
-    process.exit(1);
+    throw error;
   }
 };
 
 if (require.main === module) {
-  main();
+  void main();
 }

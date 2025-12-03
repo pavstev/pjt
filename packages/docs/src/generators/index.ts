@@ -1,6 +1,8 @@
-import { markdownToHtml } from '../utils/markdown.js';
+import { markdownToHtml } from "../utils/markdown.js";
 
-export const generateIndexPage = async (packages: string[]): Promise<{ html: string; data: Record<string, unknown> }> => {
+export const generateIndexPage = async (
+  packages: string[],
+): Promise<{ data: Record<string, unknown>; html: string }> => {
   const markdown = `---
 title: Welcome to PJT
 description: A powerful cross-platform CLI tool for maintaining clean Git repositories
@@ -19,7 +21,7 @@ PJT is a powerful cross-platform CLI tool designed to help you maintain clean Gi
 
 ## Packages
 
-${packages.map(pkg => `- [${pkg}](./guides/${pkg})`).join('\n')}
+${packages.map(pkg => `- [${pkg}](./guides/${pkg})`).join("\n")}
 
 ## Getting Started
 
@@ -39,10 +41,11 @@ pjt
   const html = await markdownToHtml(markdown);
 
   return {
-    html,
     data: {
-      title: 'Welcome to PJT',
-      description: 'A powerful cross-platform CLI tool for maintaining clean Git repositories',
+      description:
+        "A powerful cross-platform CLI tool for maintaining clean Git repositories",
+      title: "Welcome to PJT",
     },
+    html,
   };
-}
+};

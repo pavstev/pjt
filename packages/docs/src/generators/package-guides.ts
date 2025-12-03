@@ -1,21 +1,25 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import { markdownToHtml } from '../utils/markdown.js';
-import { packageConfigs } from '../config/packages.js';
+import fs from "node:fs";
+import path from "node:path";
 
-export const generatePackageGuide = async (pkg: string, packagesDir: string): Promise<{ html: string; data: Record<string, unknown> } | null> => {
+import { packageConfigs } from "../config/packages.js";
+import { markdownToHtml } from "../utils/markdown.js";
+
+export const generatePackageGuide = async (
+  pkg: string,
+  packagesDir: string,
+): Promise<null | { data: Record<string, unknown>; html: string }> => {
   const pkgPath = path.join(packagesDir, pkg);
-  const pkgJsonPath = path.join(pkgPath, 'package.json');
+  const pkgJsonPath = path.join(pkgPath, "package.json");
 
   if (!fs.existsSync(pkgJsonPath)) return null;
 
-  const pkgJson = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf-8'));
+  const pkgJson = JSON.parse(fs.readFileSync(pkgJsonPath, "utf-8"));
   const title = (pkgJson.name as string) || pkg;
-  const description = (pkgJson.description as string) || '';
+  const description = (pkgJson.description as string) || "";
   const keywords = (pkgJson.keywords as string[] | undefined) ?? [];
-  const homepage = (pkgJson.homepage as string | undefined) ?? '';
+  const homepage = (pkgJson.homepage as string | undefined) ?? "";
 
-  let customContent = '';
+  let customContent = "";
   const config = packageConfigs[pkg];
 
   if (config.customContent) {
@@ -31,9 +35,9 @@ description: ${description}
 
 ${description}
 
-${homepage ? `**Homepage:** ${homepage}` : ''}
+${homepage ? `**Homepage:** ${homepage}` : ""}
 
-${keywords.length ? `**Keywords:** ${keywords.join(', ')}` : ''}
+${keywords.length ? `**Keywords:** ${keywords.join(", ")}` : ""}
 
 ## Installation
 
@@ -49,10 +53,10 @@ ${customContent}
   const html = await markdownToHtml(markdown);
 
   return {
-    html,
     data: {
-      title,
       description,
+      title,
     },
+    html,
   };
-}
+};

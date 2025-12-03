@@ -2,7 +2,6 @@ import type { KnipConfig } from "knip";
 
 const config: KnipConfig = {
   ignore: [
-    "repokit/**/*",
     "packages/nx/package.json",
     "packages/core/package.json",
     "packages/prettier/jest.config.cts",

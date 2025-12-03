@@ -98,9 +98,7 @@ const releaseLocally = async (
     options.dryRun,
   );
 
-  const outputPath = (
-    project.targets?.build?.options as { outputPath?: string }
-  ).outputPath;
+  const outputPath = project.targets?.build?.options?.outputPath;
   if (!outputPath) {
     throw new Error("Could not find outputPath in project configuration");
   }
@@ -172,9 +170,7 @@ const releaseToNpm = async (
     options.dryRun,
   );
 
-  const outputPath = (
-    project.targets?.build?.options as { outputPath?: string }
-  ).outputPath;
+  const outputPath = project.targets?.build?.options?.outputPath;
 
   execSyncOrDryRun(
     `${NPM_PUBLISH_COMMAND} ${outputPath}`,

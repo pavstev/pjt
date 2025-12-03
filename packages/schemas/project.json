@@ -1,9 +1,33 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "// targets": "to see all targets run: nx show project schemas --web",
   "name": "schemas",
   "projectType": "library",
   "sourceRoot": "packages/schemas/src",
-  "tags": [],
-  "targets": {}
+  "tags": ["scope:universal"],
+  "targets": {
+    "generate-schema": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx src/scripts/generate-schema.ts",
+        "cwd": "{projectRoot}"
+      },
+      "cache": true,
+      "inputs": [
+        "{projectRoot}/src/scripts/generate-schema.ts",
+        "{projectRoot}/src/schema.ts",
+        "^default"
+      ],
+      "outputs": ["{projectRoot}/src/prettier-plugins.schema.json"]
+    },
+    "build": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "main": "packages/schemas/src/index.ts",
+        "tsConfig": "packages/schemas/tsconfig.lib.json",
+        "outputPath": "packages/schemas/dist"
+      },
+      "dependsOn": ["generate-schema"],
+      "outputs": ["{projectRoot}/dist"]
+    }
+  }
 }

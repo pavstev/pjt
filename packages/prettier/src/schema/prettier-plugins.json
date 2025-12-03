@@ -1,5 +1,4 @@
 {
-  "$schema": "./prettier-plugins.schema.json",
   "@prettier/plugin-oxc": {
     "condition": "always",
     "description": "Fast JavaScript/TypeScript formatter using oxlc",
@@ -92,11 +91,6 @@
     "condition": "always",
     "description": "Ignore code blocks formatting"
   },
-  "prettier-plugin-jsdoc": {
-    "condition": "git-tracked",
-    "filePatterns": ["*.js", "*.ts", "*.tsx"],
-    "description": "JSDoc comment formatter"
-  },
   "prettier-plugin-json": {
     "condition": "git-tracked",
     "filePatterns": ["*.json", "*.jsonc", "*.json5", "*.code-workspace"],
@@ -106,7 +100,8 @@
         "excludeFiles": ["package.json"],
         "files": ["*.json", "*.jsonc", "*.json5", "*.code-workspace"],
         "options": {
-          "parser": "json"
+          "parser": "json",
+          "plugins": ["prettier-plugin-sort-package-json"]
         }
       }
     ]
@@ -160,7 +155,8 @@
       {
         "files": ["package.json"],
         "options": {
-          "parser": "json"
+          "parser": "json",
+          "plugins": ["prettier-plugin-packagejson"]
         }
       }
     ]
@@ -214,11 +210,6 @@
     "condition": "git-tracked",
     "filePatterns": ["*.json"],
     "description": "JSON key sorting"
-  },
-  "prettier-plugin-sort-package-json": {
-    "condition": "git-tracked",
-    "filePatterns": ["package.json"],
-    "description": "package.json key sorting"
   },
   "prettier-plugin-sql": {
     "condition": "git-tracked",

@@ -1,0 +1,122 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": {
+    "type": "object",
+    "properties": {
+      "condition": {
+        "type": "string",
+        "enum": ["always", "git-tracked", "never"]
+      },
+      "description": {
+        "type": "string",
+        "minLength": 1
+      },
+      "filePatterns": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "overrides": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "excludeFiles": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "files": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "options": {
+              "type": "object",
+              "properties": {
+                "arrowParens": {
+                  "type": "string",
+                  "enum": ["always", "avoid"]
+                },
+                "bracketSameLine": {
+                  "type": "boolean"
+                },
+                "bracketSpacing": {
+                  "type": "boolean"
+                },
+                "embeddedLanguageFormatting": {
+                  "type": "string",
+                  "enum": ["auto", "off"]
+                },
+                "endOfLine": {
+                  "type": "string",
+                  "enum": ["lf", "crlf", "cr", "auto"]
+                },
+                "experimentalOperatorPosition": {
+                  "type": "string",
+                  "enum": ["start", "end"]
+                },
+                "experimentalTernaries": {
+                  "type": "boolean"
+                },
+                "jsxSingleQuote": {
+                  "type": "boolean"
+                },
+                "parser": {
+                  "type": "string"
+                },
+                "printWidth": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "quoteProps": {
+                  "type": "string",
+                  "enum": ["as-needed", "consistent", "preserve"]
+                },
+                "semi": {
+                  "type": "boolean"
+                },
+                "singleAttributePerLine": {
+                  "type": "boolean"
+                },
+                "singleQuote": {
+                  "type": "boolean"
+                },
+                "tabWidth": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "trailingComma": {
+                  "type": "string",
+                  "enum": ["all", "es5", "none"]
+                },
+                "useTabs": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": {}
+            }
+          },
+          "required": ["files", "options"],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": ["condition"],
+    "additionalProperties": false
+  },
+  "properties": {
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

@@ -22,28 +22,23 @@
       "path": "packages/core"
     },
     {
-      "name": "📦 @pjt/docs",
-      "path": "packages/docs"
-    },
-    {
-      "name": "📦 @pjt/eslint",
-      "path": "packages/eslint"
-    },
-    {
       "name": "📦 @pjt/nx",
       "path": "packages/nx"
     },
     {
       "name": "📦 @pjt/prettier",
       "path": "packages/prettier"
+    },
+    {
+      "name": "📦 @pjt/schemas",
+      "path": "packages/schemas"
     }
   ],
   "settings": {
     "files.exclude": {
       "node_modules/": true,
       "dist/": true,
-      "packages/": true,
-      "repokit/": true
+      "packages/": true
     },
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.patterns": {
@@ -67,6 +62,14 @@
     "typescript.preferences.importModuleSpecifier": "relative",
     "typescript.suggest.autoImports": true,
     "emmet.includeLanguages": {},
-    "cSpell.words": ["globify"]
+    "cSpell.words": [
+      "globify"
+    ],
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
   }
 }

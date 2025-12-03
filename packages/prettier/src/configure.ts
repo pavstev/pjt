@@ -1,25 +1,26 @@
-import { dirname, join } from "node:path";
 import type { Config } from "prettier";
-import { readPackageUp } from "read-package-up";
 
 import { installPackages } from "@pjt/core";
+import { dirname, join } from "node:path";
+import { readPackageUp } from "read-package-up";
+
 import { createBaseConfig } from "./lib/config";
 import { createPluginRegistry } from "./lib/registry";
 
 type Options = {
   cwd: string;
-  writeFile: (file: string, data: string) => Promise<void>;
   logger: {
     log: (data: string, ...rest: unknown[]) => void;
   };
+  writeFile: (file: string, data: string) => Promise<void>;
 };
 
 export const configure = async ({
   cwd,
-  writeFile,
   logger,
+  writeFile,
 }: Options): Promise<void> => {
-  const pluginRegistry = await createPluginRegistry();
+  const pluginRegistry = createPluginRegistry();
   const requiredPlugins = await pluginRegistry.getRequiredPlugins();
   await installPackages(requiredPlugins);
 
@@ -36,8 +37,8 @@ export const configure = async ({
   );
   const pluginDefinitions = pluginRegistry.getPluginDefinitions();
   const config = createBaseConfig({
-    plugins: installedPlugins,
     pluginDefinitions,
+    plugins: installedPlugins,
   });
 
   const prettierConfigPath = join(
@@ -66,12 +67,12 @@ export const configure = async ({
 export const createConfig = async (
   packageJsonPath: string,
 ): Promise<Config> => {
-  const pluginRegistry = await createPluginRegistry();
+  const pluginRegistry = createPluginRegistry();
   const installedPlugins =
     await pluginRegistry.getInstalledPlugins(packageJsonPath);
   const pluginDefinitions = pluginRegistry.getPluginDefinitions();
   return createBaseConfig({
-    plugins: installedPlugins,
     pluginDefinitions,
+    plugins: installedPlugins,
   });
 };

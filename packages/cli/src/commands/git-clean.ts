@@ -5,42 +5,42 @@ import { exec } from "tinyexec";
 import { z } from "zod";
 
 const schema = z.object({
+  dir: z.string().default(process.cwd()),
   dryRun: z.boolean().default(false),
   hard: z.boolean().default(false),
-  dir: z.string().default(process.cwd()),
 });
 
 const gitClean = defineCommand({
-  meta: {
-    name: "git-clean",
-    description: "Clean and reinstall dependencies",
-  },
   args: {
+    dir: {
+      default: process.cwd(),
+      description: "Target directory",
+      type: "string",
+    },
     dryRun: {
-      type: "boolean",
       alias: "d",
       description: "Skip execution, just log",
+      type: "boolean",
     },
     hard: {
-      type: "boolean",
       alias: "f",
       description: "Force clean",
-    },
-    dir: {
-      type: "string",
-      description: "Target directory",
-      default: process.cwd(),
+      type: "boolean",
     },
   },
-  async run({ args }) {
+  meta: {
+    description: "Clean and reinstall dependencies",
+    name: "git-clean",
+  },
+  run: async ({ args }) => {
     try {
       const parsed = schema.parse(args);
-      const { dryRun, hard, dir } = parsed;
+      const { dir, dryRun, hard } = parsed;
       const pm = await detectPackageManager(dir);
       if (!pm) {
-        consola.error("No package manager detected");
-        process.exit(1);
+        throw new Error("No package manager detected");
       }
+
       const cleanFlags = hard ? "-Xdf" : "-Xd";
       const cleanCmd = `git clean ${cleanFlags}`;
       if (dryRun) {
@@ -50,6 +50,7 @@ const gitClean = defineCommand({
         await exec(cleanCmd, { cwd: dir });
         consola.success("Git clean completed");
       }
+
       const installCmd = `${pm.name} install`;
       if (dryRun) {
         consola.info(`Would run: ${installCmd}`);
@@ -59,8 +60,7 @@ const gitClean = defineCommand({
         consola.success("Dependencies reinstalled");
       }
     } catch (error) {
-      consola.error(error instanceof Error ? error.message : String(error));
-      process.exit(1);
+      throw new Error(error instanceof Error ? error.message : String(error));
     }
   },
 });
