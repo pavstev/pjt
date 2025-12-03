@@ -23,8 +23,8 @@ export type CliUtils = {
   ): void;
 };
 
-export const createCliUtils = (logger: Logger): CliUtils => ({
-  addCommandOptions: (command: unknown, options: CommandOption[]) => {
+export const createCliUtils = (logger: Logger): CliUtils => {
+  const addCommandOptions = (command: unknown, options: CommandOption[]) => {
     for (const opt of options) {
       const flag =
         opt.type === "boolean" ? `--${opt.name}` : `--${opt.name} <value>`;
@@ -33,9 +33,9 @@ export const createCliUtils = (logger: Logger): CliUtils => ({
         opt.description,
       );
     }
-  },
+  };
 
-  async checkGitRepository() {
+  const checkGitRepository = async () => {
     try {
       await fs.access(".git");
     } catch (error) {
@@ -53,19 +53,9 @@ export const createCliUtils = (logger: Logger): CliUtils => ({
         cause: error,
       });
     }
-  },
+  };
 
-  createCommandHandler(handler: ActionHandler) {
-    return async (options?: Record<string, unknown>) => {
-      try {
-        await handler(options);
-      } catch (error) {
-        this.handleError(error);
-      }
-    };
-  },
-
-  handleError: (error: unknown) => {
+  const handleError = (error: unknown) => {
     if (error instanceof CliError) {
       logger.error(`${error.name}: ${error.message}`);
       throw error;
@@ -78,9 +68,19 @@ export const createCliUtils = (logger: Logger): CliUtils => ({
 
     logger.error(`Error: ${String(error)}`);
     throw error;
-  },
+  };
 
-  setupCommand: (
+  const createCommandHandler = (handler: ActionHandler) => {
+    return async (options?: Record<string, unknown>) => {
+      try {
+        await handler(options);
+      } catch (error) {
+        handleError(error);
+      }
+    };
+  };
+
+  const setupCommand = (
     command: unknown,
     cmdDefinition: CommandDefinition,
     utils: CliUtils,
@@ -88,13 +88,21 @@ export const createCliUtils = (logger: Logger): CliUtils => ({
     commandExecutor: CommandExecutor,
   ) => {
     if (cmdDefinition.options) {
-      this.addCommandOptions(command, cmdDefinition.options);
+      addCommandOptions(command, cmdDefinition.options);
     }
 
     (command as { action: (fn: () => Promise<void>) => void }).action(
-      this.createCommandHandler((options = {}) =>
+      createCommandHandler((options = {}) =>
         cmdDefinition.handler(utils, git, commandExecutor, options),
       ),
     );
-  },
-});
+  };
+
+  return {
+    addCommandOptions,
+    checkGitRepository,
+    createCommandHandler,
+    handleError,
+    setupCommand,
+  };
+};

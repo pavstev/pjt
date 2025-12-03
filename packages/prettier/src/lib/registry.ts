@@ -11,6 +11,20 @@ import * as _plugins from "../schema/prettier-plugins.json";
 
 const plugins = _plugins as PluginDefinitions;
 
+const shouldInstallPlugin = async (
+  plugin: PluginDefinition,
+): Promise<boolean> => {
+  if (plugin.condition === "always") return true;
+
+  if (plugin.condition === "never") return false;
+
+  if (plugin.filePatterns) {
+    return await checkGitTrackedFiles(plugin.filePatterns);
+  }
+
+  return false;
+};
+
 export const createPluginRegistry = (): PluginRegistry => ({
   getInstalledPlugins: async (packageJsonPath: string): Promise<string[]> => {
     const result = await readPackageUp({ cwd: packageJsonPath });
@@ -35,23 +49,8 @@ export const createPluginRegistry = (): PluginRegistry => ({
   getRequiredPlugins: async (): Promise<string[]> => {
     const requiredPlugins: string[] = [];
 
-    const shouldInstallPlugin = async (
-      name: string,
-      plugin: PluginDefinition,
-    ): Promise<boolean> => {
-      if (plugin.condition === "always") return true;
-
-      if (plugin.condition === "never") return false;
-
-      if (plugin.filePatterns) {
-        return await checkGitTrackedFiles(plugin.filePatterns);
-      }
-
-      return false;
-    };
-
     for (const [name, plugin] of objectEntries(plugins)) {
-      if (await shouldInstallPlugin(name, plugin)) {
+      if (await shouldInstallPlugin(plugin)) {
         requiredPlugins.push(name);
       }
     }
