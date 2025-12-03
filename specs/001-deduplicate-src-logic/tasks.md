@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+
 # Tasks: Deduplicate Logic in Src
 
 **Input**: Design documents from `/specs/001-deduplicate-src-logic/`
@@ -142,8 +143,9 @@ With multiple developers:
 - Commit after each task or logical group
 - Stop at any checkpoint to validate story independently
 - Avoid: vague tasks, same file conflicts, cross-story dependencies that break independence
-||||||| parent of c235a2b (WIP)
-=======
+  ||||||| parent of c235a2b (WIP)
+  =======
+
 # Tasks: Deduplicate Logic in Src
 
 **Input**: Design documents from `/specs/001-deduplicate-src-logic/`
@@ -287,4 +289,4 @@ With multiple developers:
 - Commit after each task or logical group
 - Stop at any checkpoint to validate story independently
 - Avoid: vague tasks, same file conflicts, cross-story dependencies that break independence
->>>>>>> c235a2b (WIP)
+  > > > > > > > c235a2b (WIP)
