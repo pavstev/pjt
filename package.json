@@ -45,15 +45,16 @@
     "README.md"
   ],
   "scripts": {
-    "all": "pnpm format && pnpm lint && pnpm build && pnpm typecheck && pnpm test && pnpm knip",
+    "all": "pnpm format && pnpm lint && pnpm build && pnpm typecheck && pnpm test && pnpm knip && pnpm docs",
     "build": "unbuild",
     "clean": "find . -type d -empty -delete && git clean -Xfd -e .env.local && pnpm i",
     "dev": "tsc --watch -p tsconfig.build.json",
+    "docs": "cd docs && astro build",
     "format": "prettier --write --cache .",
     "knip": "knip --config knip.config.ts",
     "lint": "eslint src --fix --max-warnings 0 --cache",
     "prepublishOnly": "pnpm build",
-    "release": "pnpm all && pnpm version patch && pnpm publish",
+    "release": "pnpm all && pnpm docs && pnpm version patch && pnpm publish",
     "test": "vitest run --passWithNoTests",
     "typecheck": "tsc --noEmit -p tsconfig.build.json"
   },
@@ -71,6 +72,7 @@
     "@eslint/js": "^9.39.1",
     "@eslint/markdown": "^7.5.1",
     "@types/node": "^24.10.1",
+    "astro": "^4.16.19",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-json-schema-validator": "^5.5.0",

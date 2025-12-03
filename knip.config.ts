@@ -5,7 +5,14 @@ const config: KnipConfig = {
     ".": {
       entry: ["src/main.ts"],
       project: ["src/eslint/**/*.ts", "src/prettier/**/*.ts"],
-      ignoreDependencies: ["cac", "globify-gitignore", "simple-git", "tsx"],
+      ignoreDependencies: [
+        "astro",
+        "cac",
+        "globify-gitignore",
+        "simple-git",
+        "tsx",
+      ],
+      ignoreBinaries: ["astro"],
       ignoreFiles: [
         "src/index.ts",
         "src/lib/completions.ts",
