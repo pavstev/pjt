@@ -4,15 +4,12 @@ const config: KnipConfig = {
   workspaces: {
     ".": {
       entry: ["src/main.ts"],
-      project: ["src/eslint/**/*.ts", "src/prettier/**/*.ts"],
-      ignoreDependencies: [
-        "astro",
-        "cac",
-        "globify-gitignore",
-        "simple-git",
-        "tsx",
+      project: [
+        "src/eslint/**/*.ts",
+        "src/prettier/**/*.ts",
+        "src/lib/**/*.ts",
       ],
-      ignoreBinaries: ["astro"],
+      ignoreDependencies: ["globify-gitignore"],
       ignoreFiles: [
         "src/index.ts",
         "src/lib/completions.ts",
@@ -21,6 +18,10 @@ const config: KnipConfig = {
         "src/prettier/index.ts",
         "src/eslint/config.ts",
       ],
+    },
+    docs: {
+      entry: ["index.md"],
+      project: ["**/*.md"],
     },
   },
 };

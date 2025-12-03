@@ -59,14 +59,13 @@
     "typecheck": "tsc --noEmit -p tsconfig.build.json"
   },
   "dependencies": {
-    "cac": "^6.7.14",
     "citty": "^0.1.6",
     "consola": "^3.4.2",
     "globify-gitignore": "^1.0.3",
     "package-manager-detector": "^1.6.0",
     "simple-git": "^3.30.0",
     "tinyexec": "^1.0.2",
-    "zod": "^3.23.8"
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

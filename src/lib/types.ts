@@ -13,7 +13,7 @@ export type CommandOption = {
   type?: "boolean" | "string";
 };
 
-export type CommandHandler = (
+type CommandHandler = (
   utils: import("./cli-utils").CliUtils,
   git: import("./git").Git,
   executor: import("./command-executor").CommandExecutor,
