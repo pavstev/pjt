@@ -8,8 +8,6 @@ on:
       - "package.json"
 permissions:
   contents: write
-  metadata: write
-  administration: write
 jobs:
   sync:
     runs-on: ubuntu-latest
