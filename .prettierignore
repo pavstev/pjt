@@ -1,8 +1,6 @@
 # Add files here to ignore them from prettier formatting
 /dist
 /coverage
-/.nx/cache
-/.nx/workspace-data
 pnpm-lock.yaml
 *.sh
 .nvmrc
@@ -13,4 +11,3 @@ pnpm-lock.yaml
 .opencode/bun.lock
 opencodetmp/
 docs/
-.eslintignore
