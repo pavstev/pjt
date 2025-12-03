@@ -12,3 +12,5 @@ pnpm-lock.yaml
 .opencode/.gitignore
 .opencode/bun.lock
 opencodetmp/
+docs/
+.eslintignore

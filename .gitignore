@@ -27,8 +27,9 @@ coverage/
 .DS_Store
 Thumbs.db
 
-# specs/
-# .specify/
-# .opencode/
+specs/
+.specify/
+.opencode/
 
 .eslintcache
+.next/

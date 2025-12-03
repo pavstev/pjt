@@ -1,6 +1,6 @@
 {
   "name": "pjt",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "private": false,
   "description": "A powerful cross-platform CLI tool for maintaining clean Git repositories. Removes empty directories, ignored files, and reinstalls dependencies with support for npm, pnpm, and yarn.",
   "keywords": [
@@ -31,26 +31,14 @@
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/index.cjs",
-      "require": "./dist/index.cjs"
-    },
-    "./bin": {
-      "import": "./dist/bin/main.cjs",
-      "require": "./dist/bin/main.cjs"
-    },
-    "./prettier": {
-      "import": "./dist/prettier.cjs",
-      "require": "./dist/prettier.cjs"
-    },
-    "./eslint": {
-      "import": "./dist/eslint.cjs",
-      "require": "./dist/eslint.cjs"
+      "import": "./dist/main.cjs",
+      "require": "./dist/main.cjs"
     }
   },
-  "main": "./dist/bin/main.cjs",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/main.cjs",
+  "types": "./dist/main.d.ts",
   "bin": {
-    "pjt": "dist/bin/main.cjs"
+    "pjt": "dist/main.cjs"
   },
   "files": [
     "dist",
@@ -58,22 +46,28 @@
   ],
   "scripts": {
     "all": "pnpm format && pnpm lint && pnpm build && pnpm typecheck && pnpm test && pnpm knip",
-    "build": "vite build",
+    "build": "unbuild",
     "clean": "find . -type d -empty -delete && git clean -Xfd -e .env.local && pnpm i",
     "dev": "tsc --watch -p tsconfig.build.json",
+    "docs:build": "cd docs && pnpm build",
+    "docs:dev": "cd docs && pnpm dev",
     "format": "prettier --write --cache .",
     "knip": "knip --config knip.config.ts",
-    "lint": "eslint . --fix --max-warnings 0 --cache",
+    "lint": "eslint src --fix --max-warnings 0 --cache",
     "prepublishOnly": "pnpm build",
     "release": "npm version patch && npm publish",
-    "test": "vitest run",
+    "test": "vitest run --passWithNoTests",
     "typecheck": "tsc --noEmit -p tsconfig.build.json"
   },
   "dependencies": {
     "cac": "^6.7.14",
+    "citty": "^0.1.6",
     "consola": "^3.4.2",
     "globify-gitignore": "^1.0.3",
-    "simple-git": "^3.30.0"
+    "package-manager-detector": "^0.2.0",
+    "simple-git": "^3.30.0",
+    "tinyexec": "^0.3.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
@@ -89,6 +83,7 @@
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.48.1",
+    "unbuild": "^3.5.0",
     "vite": "^7.2.6",
     "vite-plugin-dts": "^4.5.4",
     "vitest": "^4.0.15"

@@ -2,13 +2,13 @@
 
 ## Commands
 
-- **Build**: `pnpm build` (Vite build to CommonJS)
+- **Build**: `pnpm build` (Unbuild to CommonJS)
 - **Test all**: `pnpm test` (Vitest)
 - **Test single**: `vitest run src/<file>.test.ts`
 - **Type check**: `pnpm typecheck` (tsc --noEmit)
 - **Lint**: `pnpm lint` (ESLint with --fix)
 - **Format**: `pnpm format` (Prettier)
-- **All checks**: `pnpm all` (format + lint + build + typecheck + test + knip)
+- **All checks**: `pnpm all` (format + lint + build + typecheck + test)
 
 ## Code Style
 
@@ -24,12 +24,12 @@
 
 ## Project Structure
 
-- `src/bin/`: CLI entry points
+- `src/main.ts`: CLI entry point
 - `src/lib/`: Core utilities (git, fs, cli-utils, etc.)
 - `src/eslint/`: ESLint configurations
 - `src/prettier/`: Prettier configurations
 
 ## Dependencies
 
-- Runtime: cac, consola, globify-gitignore, simple-git
-- Dev: TypeScript, Vite, Vitest, ESLint, Prettier, knip
+- Runtime: citty, consola, package-manager-detector, tinyexec, zod
+- Dev: TypeScript, Unbuild, Vitest, ESLint, Prettier

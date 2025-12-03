@@ -7,4 +7,3 @@ export {
   tsRecommended,
 } from "./configs";
 export { tsRules } from "./rules";
-export { config } from "./config";
