@@ -16,9 +16,7 @@
   "settings": {
     "files.exclude": {
       "node_modules/": true,
-      "specs/": true,
-      ".specify/": true,
-      ".opencode/": true
+      "dist/": true,
     },
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.patterns": {

@@ -16,34 +16,12 @@ const cli = cac("pjt");
 const defaultCommand = getDefaultCommand();
 if (defaultCommand) {
   const command = cli.command("", defaultCommand.description);
-  if (defaultCommand.options) {
-    defaultCommand.options.forEach(opt => {
-      const flag =
-        opt.type === "boolean" ? `--${opt.name}` : `--${opt.name} <value>`;
-      command.option(flag, opt.description);
-    });
-  }
-  command.action(
-    utils.createCommandHandler((options = {}) =>
-      defaultCommand.handler(utils, git, commandExecutor, options),
-    ),
-  );
+  utils.setupCommand(command, defaultCommand, utils, git, commandExecutor);
 }
 
 commandRegistry.forEach(cmd => {
   const command = cli.command(cmd.name, cmd.description);
-  if (cmd.options) {
-    cmd.options.forEach(opt => {
-      const flag =
-        opt.type === "boolean" ? `--${opt.name}` : `--${opt.name} <value>`;
-      command.option(flag, opt.description);
-    });
-  }
-  command.action(
-    utils.createCommandHandler((options = {}) =>
-      cmd.handler(utils, git, commandExecutor, options),
-    ),
-  );
+  utils.setupCommand(command, cmd, utils, git, commandExecutor);
 });
 
 cli

@@ -4,6 +4,7 @@ import eslintPluginJsonc from "eslint-plugin-jsonc";
 import eslintConfigPrettier from "eslint-config-prettier";
 import { type Config } from "eslint/config";
 import tseslint from "typescript-eslint";
+import { tsFiles } from "./constants";
 
 export const recommended: Config = eslint.configs.recommended;
 
@@ -12,8 +13,6 @@ export const jsonc: Config[] =
 
 export const jsonSchema: Config[] =
   eslintPluginJsonSchemaValidator.configs["flat/recommended"];
-
-const tsFiles = ["**/*.ts", "**/*.tsx"];
 
 export const tsRecommended: Config[] = tseslint.configs.recommended.map(
   config => ({
