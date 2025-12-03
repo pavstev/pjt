@@ -24,7 +24,7 @@ export type CliUtils = {
 };
 
 export const createCliUtils = (logger: Logger): CliUtils => ({
-  addCommandOptions(command: unknown, options: CommandOption[]) {
+  addCommandOptions: (command: unknown, options: CommandOption[]) => {
     for (const opt of options) {
       const flag =
         opt.type === "boolean" ? `--${opt.name}` : `--${opt.name} <value>`;
@@ -65,7 +65,7 @@ export const createCliUtils = (logger: Logger): CliUtils => ({
     };
   },
 
-  handleError(error: unknown) {
+  handleError: (error: unknown) => {
     if (error instanceof CliError) {
       logger.error(`${error.name}: ${error.message}`);
       throw error;

@@ -3,7 +3,6 @@ import type { Config } from "eslint/config";
 import { getIgnorePatterns, Logger } from "@pjt/core";
 import { defineConfig } from "eslint/config";
 
-import { astro } from "./astro";
 import { cspellConfig } from "./cspell";
 import { globalsConfig } from "./globals";
 import { js } from "./js";
@@ -33,7 +32,6 @@ export const defaultConfig = async (): Promise<Config[]> =>
     ...nx,
     ...schema,
     ...source,
-    ...astro,
     ...perfectionistConfig,
     ...oxlintConfig,
     ...prettierConfigModule,
