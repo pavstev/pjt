@@ -1,6 +1,14 @@
 import { promises as fs } from "node:fs";
-import { CliError, CliErrorMessages, ActionHandler } from "./types";
+import {
+  CliError,
+  CliErrorMessages,
+  ActionHandler,
+  CommandDefinition,
+  CommandOption,
+} from "./types";
 import { Logger } from "./logger";
+import { Git } from "./git";
+import { CommandExecutor } from "./command-executor";
 
 export class CliUtils {
   constructor(private logger: Logger) {}
@@ -47,5 +55,32 @@ export class CliUtils {
         this.handleError(error);
       }
     };
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public addCommandOptions(command: any, options: CommandOption[]): void {
+    options.forEach(opt => {
+      const flag =
+        opt.type === "boolean" ? `--${opt.name}` : `--${opt.name} <value>`;
+      command.option(flag, opt.description);
+    });
+  }
+
+  public setupCommand(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    command: any,
+    cmdDefinition: CommandDefinition,
+    utils: CliUtils,
+    git: Git,
+    commandExecutor: CommandExecutor,
+  ): void {
+    if (cmdDefinition.options) {
+      this.addCommandOptions(command, cmdDefinition.options);
+    }
+    command.action(
+      this.createCommandHandler((options = {}) =>
+        cmdDefinition.handler(utils, git, commandExecutor, options),
+      ),
+    );
   }
 }

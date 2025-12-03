@@ -7,7 +7,7 @@ export type GitCleanOptions = {
 
 export type LogLevel = "debug" | "info" | "warn" | "error";
 
-type CommandOption = {
+export type CommandOption = {
   name: string;
   description: string;
   type?: "boolean" | "string";

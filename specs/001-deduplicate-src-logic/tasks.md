@@ -22,7 +22,7 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Review existing src/ code for duplicate logic
+- [x] T001 Review existing src/ code for duplicate logic
 
 ---
 
@@ -46,10 +46,10 @@
 
 ### Implementation for User Story 1
 
-- [ ] T003 [P] [US1] Create shared utility functions in src/lib/utils.ts
-- [ ] T004 [US1] Refactor duplicate blocks to use shared functions in affected src/ files
-- [ ] T005 [US1] Update imports in affected files
-- [ ] T006 [US1] Verify no duplicate logic remains in src/
+- [x] T003 [P] [US1] Create shared utility functions in src/lib/utils.ts
+- [x] T004 [US1] Refactor duplicate blocks to use shared functions in affected src/ files
+- [x] T005 [US1] Update imports in affected files
+- [x] T006 [US1] Verify no duplicate logic remains in src/
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -59,9 +59,9 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T007 Run lint and typecheck
-- [ ] T008 Run tests
-- [ ] T009 Update documentation if needed
+- [x] T007 Run lint and typecheck
+- [x] T008 Run tests
+- [x] T009 Update documentation if needed
 
 ---
 

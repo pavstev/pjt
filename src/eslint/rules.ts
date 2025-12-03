@@ -1,7 +1,6 @@
 import { type Config } from "eslint/config";
 import tseslint from "typescript-eslint";
-
-const tsFiles = ["**/*.ts", "**/*.tsx"];
+import { tsFiles } from "./constants";
 
 export const tsRules: Config = {
   files: tsFiles,

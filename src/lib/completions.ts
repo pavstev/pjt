@@ -1,5 +1,13 @@
 import { commandRegistry } from "../bin/registry";
 
+const getCommandDescriptions = (): { name: string; description: string }[] => [
+  ...commandRegistry.map(cmd => ({
+    name: cmd.name,
+    description: cmd.description,
+  })),
+  { name: "completions", description: "Generate shell completions" },
+];
+
 export const generateCompletions = (shell: string): string => {
   const allCommands = [...commandRegistry.map(cmd => cmd.name), "completions"];
 
@@ -23,10 +31,9 @@ complete -F _pjt_completions pjt`;
   }
 
   if (shell === "zsh") {
-    const commandDescriptions = [
-      ...commandRegistry.map(cmd => `${cmd.name}:${cmd.description}`),
-      "completions:Generate shell completions",
-    ];
+    const commandDescriptions = getCommandDescriptions().map(
+      cmd => `${cmd.name}:${cmd.description}`,
+    );
 
     return `#compdef pjt
 
@@ -43,10 +50,9 @@ _pjt "$@"`;
   }
 
   if (shell === "fish") {
-    const commandDescriptions = [
-      ...commandRegistry.map(cmd => `${cmd.name}\t${cmd.description}`),
-      "completions\tGenerate shell completions",
-    ];
+    const commandDescriptions = getCommandDescriptions().map(
+      cmd => `${cmd.name}\t${cmd.description}`,
+    );
 
     return `function __fish_pjt_needs_command
   set cmd (commandline -opc)
