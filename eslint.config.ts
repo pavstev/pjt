@@ -10,4 +10,6 @@ export default defineConfig([
   m.prettierConf,
   ...m.tsRecommended,
   m.tsRules,
+  ...m.markdownConf,
+  ...m.mdxConf,
 ]);

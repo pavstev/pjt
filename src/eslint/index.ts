@@ -5,5 +5,7 @@ export {
   jsonSchema,
   prettierConf,
   tsRecommended,
+  markdownConf,
+  mdxConf,
 } from "./configs";
 export { tsRules } from "./rules";

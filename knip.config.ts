@@ -16,13 +16,7 @@ const config: KnipConfig = {
       ],
     },
     docs: {
-      ignoreDependencies: [
-        "@types/mdx",
-        "eslint",
-        "eslint-config-next",
-        "autoprefixer",
-        "postcss",
-      ],
+      ignoreDependencies: [],
       ignoreFiles: [
         ".source/source.config.mjs",
         ".source/**",

@@ -4,6 +4,9 @@ import eslintPluginJsonc from "eslint-plugin-jsonc";
 import eslintConfigPrettier from "eslint-config-prettier";
 import { type Config } from "eslint/config";
 import tseslint from "typescript-eslint";
+import markdown from "@eslint/markdown";
+// eslint-disable-next-line no-restricted-syntax
+import * as eslintPluginMdx from "eslint-plugin-mdx";
 import { tsFiles } from "./constants";
 
 export const recommended: Config = eslint.configs.recommended;
@@ -22,3 +25,18 @@ export const tsRecommended: Config[] = tseslint.configs.recommended.map(
 );
 
 export const prettierConf: Config = eslintConfigPrettier;
+
+export const markdownConf: Config[] = [
+  {
+    files: ["**/*.md"],
+    plugins: {
+      markdown,
+    },
+    language: "markdown/commonmark",
+    rules: {
+      "markdown/no-html": "error",
+    },
+  },
+];
+
+export const mdxConf: Config[] = [eslintPluginMdx.configs.flat];
