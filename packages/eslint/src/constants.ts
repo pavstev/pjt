@@ -1,7 +1,4 @@
-import type { ESLint } from "eslint";
-
 import { type defineConfig } from "eslint/config";
-import { readdirSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 export type EslintEntry = Parameters<typeof defineConfig>[0];
@@ -12,13 +9,6 @@ export const testFiles = tsFiles.flatMap(f =>
   ["test", "spec"].map(d => f.replace("/*", `/*.${d}`)),
 );
 
-const ignoreFiles = [".gitignore"];
-
-const ignorePatterns = ["**/*.d.ts", "**/package.json"];
-
-type AnyRecord = Record<string, any>;
-
-type EslintPlugins = NonNullable<ESLint.Options["plugins"]>;
 type ImportType = "resolve" | "url";
 
 const ensureArray = <T>(arr: T | T[]): T[] =>
@@ -76,19 +66,3 @@ export const patterns = {
 } satisfies {
   [key: string]: string[];
 };
-
-const getIgnorePatterns = (): string[] =>
-  readdirSync(".", {
-    encoding: "utf8",
-    recursive: false,
-  })
-    .filter((file: string) => /^\..*ignore$/.test(file))
-    .flatMap((file: string) =>
-      readFileSync(file, "utf8")
-        .split("\n")
-        .map((line: string) => line.trim())
-        .filter((line: string) => line && !line.startsWith("#")),
-    );
-
-const asPlugins = (rawPlugin: { [key: string]: unknown }): EslintPlugins =>
-  rawPlugin as unknown as EslintPlugins;

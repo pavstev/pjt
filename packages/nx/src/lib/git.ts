@@ -4,9 +4,7 @@ import type { SimpleGit } from "simple-git";
  *
  * @param git
  */
-export function createGitService(git: SimpleGit): SimpleGit {
-  return git;
-}
+export const createGitService = (git: SimpleGit): SimpleGit => git;
 
 /**
  *
@@ -14,11 +12,11 @@ export function createGitService(git: SimpleGit): SimpleGit {
  * @param limit
  * @param dryRun
  */
-export async function runFixupWorkflow(
+export const runFixupWorkflow = async (
   git: SimpleGit,
   limit: number,
   dryRun: boolean,
-): Promise<boolean> {
+): Promise<boolean> => {
   // Placeholder implementation
   // In a real implementation, this would find WIP commits and fixup
   try {
@@ -40,4 +38,4 @@ export async function runFixupWorkflow(
   } catch {
     return false;
   }
-}
+};
