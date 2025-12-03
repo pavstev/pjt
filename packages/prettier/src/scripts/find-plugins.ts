@@ -270,17 +270,12 @@ const loadExistingPlugins = async (): Promise<PluginDefinitions> => {
   try {
     const pluginsPath = join(__dirname, "../schema/prettier-plugins.json");
     const content = await readFile(pluginsPath, "utf-8");
-    const plugins = JSON.parse(content) as PluginDefinitions & {
-      $schema?: string;
-    };
+    const plugins = JSON.parse(content) as PluginDefinitions;
 
-    // Remove $schema field if present
-
-    const { $schema: _schema, ...pluginDefinitions } = plugins;
-    return pluginDefinitions as PluginDefinitions;
+    return plugins;
   } catch (error) {
     consola.warn("Could not load existing plugins:", error);
-    return {};
+    return { $schema: "./prettier-plugins.schema.json", plugins: {} };
   }
 };
 
@@ -289,34 +284,30 @@ const mergePluginTemplates = (
   newTemplates: Record<string, PluginDefinition>,
 ): {
   added: string[];
-  merged: Record<string, PluginDefinition>;
+  merged: PluginDefinitions;
   skipped: string[];
 } => {
-  const merged = { ...(existing || {}) };
+  const existingPlugins = existing.plugins || {};
+  const mergedPlugins = { ...existingPlugins };
   const added: string[] = [];
   const skipped: string[] = [];
 
   for (const [name, template] of Object.entries(newTemplates)) {
-    if (existing?.[name as keyof PluginDefinitions]) {
+    if (existingPlugins[name]) {
       skipped.push(name);
       consola.info(`Skipping existing plugin: ${name}`);
     } else {
-      (merged as Record<string, PluginDefinition>)[name] = template;
+      mergedPlugins[name] = template;
       added.push(name);
       consola.success(`Adding new plugin: ${name}`);
     }
   }
 
-  return { added, merged, skipped };
+  return { added, merged: { ...existing, plugins: mergedPlugins }, skipped };
 };
 
 const writePluginsFile = async (plugins: PluginDefinitions): Promise<void> => {
   const pluginsPath = join(__dirname, "../schema/prettier-plugins.json");
-
-  const content: Record<string, unknown> = {
-    $schema: "./prettier-plugins.schema.json",
-    ...plugins,
-  };
 
   // Create backup
   try {
@@ -328,7 +319,7 @@ const writePluginsFile = async (plugins: PluginDefinitions): Promise<void> => {
     // File might not exist yet, that's okay
   }
 
-  await writeFile(pluginsPath, `${JSON.stringify(content, null, 2)}\n`);
+  await writeFile(pluginsPath, `${JSON.stringify(plugins, null, 2)}\n`);
   consola.success(`Updated plugins file: ${pluginsPath}`);
 };
 
@@ -368,7 +359,7 @@ const main = async (): Promise<void> => {
     // Load existing plugins
     const existing = await loadExistingPlugins();
     consola.info(
-      `Loaded ${Object.keys(existing || {}).length} existing plugins`,
+      `Loaded ${Object.keys(existing.plugins || {}).length} existing plugins`,
     );
 
     // Merge templates

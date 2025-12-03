@@ -1,289 +1,408 @@
 {
-  "@prettier/plugin-oxc": {
-    "condition": "always",
-    "description": "Fast JavaScript/TypeScript formatter using oxlc",
-    "overrides": [
-      {
-        "files": ["*.ts", "*.tsx"],
-        "options": {
-          "parser": "typescript"
+  "$schema": "../../../schemas/src/json/prettier-plugins.schema.json",
+  "plugins": {
+    "@prettier/plugin-oxc": {
+      "condition": "always",
+      "description": "Fast JavaScript/TypeScript formatter using oxlc",
+      "overrides": [
+        {
+          "files": [
+            "*.ts",
+            "*.tsx"
+          ],
+          "options": {
+            "parser": "typescript"
+          }
         }
-      }
-    ]
-  },
-  "@prettier/plugin-xml": {
-    "condition": "git-tracked",
-    "filePatterns": ["*.xml"],
-    "description": "XML formatter",
-    "overrides": [
-      {
-        "files": ["*.xml"],
-        "options": {
-          "parser": "xml"
+      ]
+    },
+    "@prettier/plugin-xml": {
+      "condition": "git-tracked",
+      "description": "XML formatter",
+      "filePatterns": [
+        "*.xml"
+      ],
+      "overrides": [
+        {
+          "files": [
+            "*.xml"
+          ],
+          "options": {
+            "parser": "xml"
+          }
         }
-      }
-    ]
-  },
-  "@svgr/plugin-prettier": {
-    "condition": "always",
-    "description": "SVG to React component formatter"
-  },
-  "prettier-plugin-astro": {
-    "condition": "git-tracked",
-    "filePatterns": ["*.astro"],
-    "description": "Astro framework formatter",
-    "overrides": [
-      {
-        "files": ["*.astro"],
-        "options": {
-          "parser": "astro"
+      ]
+    },
+    "@svgr/plugin-prettier": {
+      "condition": "always",
+      "description": "SVG to React component formatter"
+    },
+    "prettier-plugin-astro": {
+      "condition": "git-tracked",
+      "description": "Astro framework formatter",
+      "filePatterns": [
+        "*.astro"
+      ],
+      "overrides": [
+        {
+          "files": [
+            "*.astro"
+          ],
+          "options": {
+            "parser": "astro"
+          }
         }
-      }
-    ]
-  },
-  "prettier-plugin-css-order": {
-    "condition": "git-tracked",
-    "filePatterns": ["*.css", "*.scss", "*.sass", "*.less"],
-    "description": "CSS property ordering",
-    "overrides": [
-      {
-        "files": ["*.css", "*.scss", "*.sass", "*.less"],
-        "options": {
-          "parser": "css",
-          "singleQuote": false
+      ]
+    },
+    "prettier-plugin-css-order": {
+      "condition": "git-tracked",
+      "description": "CSS property ordering",
+      "filePatterns": [
+        "*.css",
+        "*.scss",
+        "*.sass",
+        "*.less"
+      ],
+      "overrides": [
+        {
+          "files": [
+            "*.css",
+            "*.scss",
+            "*.sass",
+            "*.less"
+          ],
+          "options": {
+            "parser": "css",
+            "singleQuote": false
+          }
         }
-      }
-    ]
-  },
-  "prettier-plugin-dockerfile": {
-    "condition": "git-tracked",
-    "filePatterns": ["*.dockerfile", "*.Dockerfile"],
-    "description": "Dockerfile formatter",
-    "overrides": [
-      {
-        "files": ["*.dockerfile", "*.Dockerfile"],
-        "options": {
-          "parser": "dockerfile"
+      ]
+    },
+    "prettier-plugin-dockerfile": {
+      "condition": "git-tracked",
+      "description": "Dockerfile formatter",
+      "filePatterns": [
+        "*.dockerfile",
+        "*.Dockerfile"
+      ],
+      "overrides": [
+        {
+          "files": [
+            "*.dockerfile",
+            "*.Dockerfile"
+          ],
+          "options": {
+            "parser": "dockerfile"
+          }
         }
-      }
-    ]
-  },
-  "prettier-plugin-ember-template-tag": {
-    "condition": "git-tracked",
-    "filePatterns": ["*.astro"],
-    "description": "Ember template tag formatter"
-  },
-  "prettier-plugin-html": {
-    "condition": "git-tracked",
-    "filePatterns": ["*.htm", "*.html"],
-    "description": "HTML formatter",
-    "overrides": [
-      {
-        "files": ["*.htm", "*.html"],
-        "options": {
-          "parser": "html",
-          "singleAttributePerLine": true
+      ]
+    },
+    "prettier-plugin-ember-template-tag": {
+      "condition": "git-tracked",
+      "description": "Ember template tag formatter",
+      "filePatterns": [
+        "*.astro"
+      ]
+    },
+    "prettier-plugin-html": {
+      "condition": "git-tracked",
+      "description": "HTML formatter",
+      "filePatterns": [
+        "*.htm",
+        "*.html"
+      ],
+      "overrides": [
+        {
+          "files": [
+            "*.htm",
+            "*.html"
+          ],
+          "options": {
+            "parser": "html",
+            "singleAttributePerLine": true
+          }
         }
-      }
-    ]
-  },
-  "prettier-plugin-ignored": {
-    "condition": "always",
-    "description": "Ignore code blocks formatting"
-  },
-  "prettier-plugin-json": {
-    "condition": "git-tracked",
-    "filePatterns": ["*.json", "*.jsonc", "*.json5", "*.code-workspace"],
-    "description": "JSON formatter",
-    "overrides": [
-      {
-        "excludeFiles": ["package.json"],
-        "files": ["*.json", "*.jsonc", "*.json5", "*.code-workspace"],
-        "options": {
-          "parser": "json",
-          "plugins": ["prettier-plugin-sort-package-json"]
+      ]
+    },
+    "prettier-plugin-ignored": {
+      "condition": "always",
+      "description": "Ignore code blocks formatting"
+    },
+    "prettier-plugin-json": {
+      "condition": "git-tracked",
+      "description": "JSON formatter",
+      "filePatterns": [
+        "*.json",
+        "*.jsonc",
+        "*.json5",
+        "*.code-workspace"
+      ],
+      "overrides": [
+        {
+          "excludeFiles": [
+            "package.json"
+          ],
+          "files": [
+            "*.json",
+            "*.jsonc",
+            "*.json5",
+            "*.code-workspace"
+          ],
+          "options": {
+            "parser": "json",
+            "plugins": [
+              "prettier-plugin-sort-package-json"
+            ]
+          }
         }
-      }
-    ]
-  },
-  "prettier-plugin-just": {
-    "condition": "git-tracked",
-    "filePatterns": ["justfile", "*.just"],
-    "description": "Justfile formatter",
-    "overrides": [
-      {
-        "files": ["justfile", "*.just"],
-        "options": {
-          "tabWidth": 4,
-          "useTabs": false
+      ]
+    },
+    "prettier-plugin-just": {
+      "condition": "git-tracked",
+      "description": "Justfile formatter",
+      "filePatterns": [
+        "justfile",
+        "*.just"
+      ],
+      "overrides": [
+        {
+          "files": [
+            "justfile",
+            "*.just"
+          ],
+          "options": {
+            "tabWidth": 4,
+            "useTabs": false
+          }
         }
-      }
-    ]
-  },
-  "prettier-plugin-markdown": {
-    "condition": "git-tracked",
-    "filePatterns": ["*.md", "*.mdx", "*.svx"],
-    "description": "Markdown formatter",
-    "overrides": [
-      {
-        "files": ["*.md", "*.mdx", "*.svx"],
-        "options": {
-          "parser": "markdown",
-          "printWidth": 80,
-          "proseWrap": "always"
+      ]
+    },
+    "prettier-plugin-markdown": {
+      "condition": "git-tracked",
+      "description": "Markdown formatter",
+      "filePatterns": [
+        "*.md",
+        "*.mdx",
+        "*.svx"
+      ],
+      "overrides": [
+        {
+          "files": [
+            "*.md",
+            "*.mdx",
+            "*.svx"
+          ],
+          "options": {
+            "parser": "markdown",
+            "printWidth": 80,
+            "proseWrap": "always"
+          }
         }
-      }
-    ]
-  },
-  "prettier-plugin-multiline-arrays": {
-    "condition": "always",
-    "description": "Multiline array formatting"
-  },
-  "prettier-plugin-organize-attributes": {
-    "condition": "always",
-    "description": "HTML/JSX attribute organization"
-  },
-  "prettier-plugin-organize-imports": {
-    "condition": "always",
-    "description": "Import statement organization"
-  },
-  "prettier-plugin-packagejson": {
-    "condition": "git-tracked",
-    "filePatterns": ["package.json"],
-    "description": "package.json formatting",
-    "overrides": [
-      {
-        "files": ["package.json"],
-        "options": {
-          "parser": "json",
-          "plugins": ["prettier-plugin-packagejson"]
+      ]
+    },
+    "prettier-plugin-multiline-arrays": {
+      "condition": "always",
+      "description": "Multiline array formatting"
+    },
+    "prettier-plugin-organize-attributes": {
+      "condition": "always",
+      "description": "HTML/JSX attribute organization"
+    },
+    "prettier-plugin-organize-imports": {
+      "condition": "always",
+      "description": "Import statement organization"
+    },
+    "prettier-plugin-packagejson": {
+      "condition": "git-tracked",
+      "description": "package.json formatting",
+      "filePatterns": [
+        "package.json"
+      ],
+      "overrides": [
+        {
+          "files": [
+            "package.json"
+          ],
+          "options": {
+            "parser": "json",
+            "plugins": [
+              "prettier-plugin-packagejson"
+            ]
+          }
         }
-      }
-    ]
-  },
-  "prettier-plugin-prisma": {
-    "condition": "git-tracked",
-    "filePatterns": ["*.prisma"],
-    "description": "Prisma schema formatter"
-  },
-  "prettier-plugin-python": {
-    "condition": "git-tracked",
-    "filePatterns": ["*.py"],
-    "description": "Python formatter",
-    "overrides": [
-      {
-        "files": ["*.py"],
-        "options": {
-          "parser": "py"
+      ]
+    },
+    "prettier-plugin-prisma": {
+      "condition": "git-tracked",
+      "description": "Prisma schema formatter",
+      "filePatterns": [
+        "*.prisma"
+      ]
+    },
+    "prettier-plugin-python": {
+      "condition": "git-tracked",
+      "description": "Python formatter",
+      "filePatterns": [
+        "*.py"
+      ],
+      "overrides": [
+        {
+          "files": [
+            "*.py"
+          ],
+          "options": {
+            "parser": "py"
+          }
         }
-      }
-    ]
-  },
-  "prettier-plugin-sh": {
-    "condition": "git-tracked",
-    "filePatterns": ["*.sh", "*.zsh", "*.bash"],
-    "description": "Shell script formatter",
-    "overrides": [
-      {
-        "files": ["*.sh", "*.zsh"],
-        "options": {
-          "parser": "shell"
+      ]
+    },
+    "prettier-plugin-sh": {
+      "condition": "git-tracked",
+      "description": "Shell script formatter",
+      "filePatterns": [
+        "*.sh",
+        "*.zsh",
+        "*.bash"
+      ],
+      "overrides": [
+        {
+          "files": [
+            "*.sh",
+            "*.zsh"
+          ],
+          "options": {
+            "parser": "shell"
+          }
         }
-      }
-    ]
-  },
-  "prettier-plugin-slidev": {
-    "condition": "git-tracked",
-    "filePatterns": ["slides.md", "*.mdc"],
-    "description": "Slidev presentation formatter",
-    "overrides": [
-      {
-        "files": ["slides.mdc", "pages/*.mdc"],
-        "options": {
-          "parser": "slidev",
-          "plugins": ["prettier-plugin-slidev"]
+      ]
+    },
+    "prettier-plugin-slidev": {
+      "condition": "git-tracked",
+      "description": "Slidev presentation formatter",
+      "filePatterns": [
+        "slides.md",
+        "*.mdc"
+      ],
+      "overrides": [
+        {
+          "files": [
+            "slides.mdc",
+            "pages/*.mdc"
+          ],
+          "options": {
+            "parser": "slidev",
+            "plugins": [
+              "prettier-plugin-slidev"
+            ]
+          }
         }
-      }
-    ]
-  },
-  "prettier-plugin-sort-json": {
-    "condition": "git-tracked",
-    "filePatterns": ["*.json"],
-    "description": "JSON key sorting"
-  },
-  "prettier-plugin-sql": {
-    "condition": "git-tracked",
-    "filePatterns": ["*.sql"],
-    "description": "SQL formatter"
-  },
-  "prettier-plugin-svelte": {
-    "condition": "git-tracked",
-    "filePatterns": ["*.svelte"],
-    "description": "Svelte component formatter",
-    "overrides": [
-      {
-        "files": ["*.svelte"],
-        "options": {
-          "parser": "svelte",
-          "svelteAllowShorthand": true,
-          "svelteIndentScriptAndStyle": true,
-          "svelteSortOrder": "options-scripts-markup-styles",
-          "svelteStrictMode": false
+      ]
+    },
+    "prettier-plugin-sort-json": {
+      "condition": "git-tracked",
+      "description": "JSON key sorting",
+      "filePatterns": [
+        "*.json"
+      ]
+    },
+    "prettier-plugin-sql": {
+      "condition": "git-tracked",
+      "description": "SQL formatter",
+      "filePatterns": [
+        "*.sql"
+      ]
+    },
+    "prettier-plugin-svelte": {
+      "condition": "git-tracked",
+      "description": "Svelte component formatter",
+      "filePatterns": [
+        "*.svelte"
+      ],
+      "overrides": [
+        {
+          "files": [
+            "*.svelte"
+          ],
+          "options": {
+            "parser": "svelte",
+            "svelteAllowShorthand": true,
+            "svelteIndentScriptAndStyle": true,
+            "svelteSortOrder": "options-scripts-markup-styles",
+            "svelteStrictMode": false
+          }
         }
-      }
-    ]
-  },
-  "prettier-plugin-toml": {
-    "condition": "git-tracked",
-    "filePatterns": ["*.toml"],
-    "description": "TOML formatter",
-    "overrides": [
-      {
-        "files": ["*.toml"],
-        "options": {
-          "parser": "toml"
+      ]
+    },
+    "prettier-plugin-toml": {
+      "condition": "git-tracked",
+      "description": "TOML formatter",
+      "filePatterns": [
+        "*.toml"
+      ],
+      "overrides": [
+        {
+          "files": [
+            "*.toml"
+          ],
+          "options": {
+            "parser": "toml"
+          }
         }
-      }
-    ]
-  },
-  "prettier-plugin-uno": {
-    "condition": "git-tracked",
-    "filePatterns": ["uno.config.ts"],
-    "description": "UnoCSS config formatter",
-    "overrides": [
-      {
-        "files": ["uno.config.ts"],
-        "options": {
-          "printWidth": 8000
+      ]
+    },
+    "prettier-plugin-uno": {
+      "condition": "git-tracked",
+      "description": "UnoCSS config formatter",
+      "filePatterns": [
+        "uno.config.ts"
+      ],
+      "overrides": [
+        {
+          "files": [
+            "uno.config.ts"
+          ],
+          "options": {
+            "printWidth": 8000
+          }
         }
-      }
-    ]
-  },
-  "prettier-plugin-vue": {
-    "condition": "git-tracked",
-    "filePatterns": ["*.vue"],
-    "description": "Vue formatter",
-    "overrides": [
-      {
-        "files": ["*.vue"],
-        "options": {
-          "parser": "vue"
+      ]
+    },
+    "prettier-plugin-vue": {
+      "condition": "git-tracked",
+      "description": "Vue formatter",
+      "filePatterns": [
+        "*.vue"
+      ],
+      "overrides": [
+        {
+          "files": [
+            "*.vue"
+          ],
+          "options": {
+            "parser": "vue"
+          }
         }
-      }
-    ]
-  },
-  "prettier-plugin-yaml": {
-    "condition": "git-tracked",
-    "filePatterns": ["*.yaml", "*.yml"],
-    "description": "YAML formatter",
-    "overrides": [
-      {
-        "files": ["*.yaml", "*.yml"],
-        "options": {
-          "parser": "yaml",
-          "singleQuote": false
+      ]
+    },
+    "prettier-plugin-yaml": {
+      "condition": "git-tracked",
+      "description": "YAML formatter",
+      "filePatterns": [
+        "*.yaml",
+        "*.yml"
+      ],
+      "overrides": [
+        {
+          "files": [
+            "*.yaml",
+            "*.yml"
+          ],
+          "options": {
+            "parser": "yaml",
+            "singleQuote": false
+          }
         }
-      }
-    ]
+      ]
+    }
   }
 }

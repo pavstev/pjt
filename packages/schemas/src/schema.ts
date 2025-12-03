@@ -43,9 +43,10 @@ export const PluginDefinitionSchema = z
   })
   .strict();
 
-export const PluginDefinitionsSchema = z
-  .object({ $schema: z.string().optional() })
-  .catchall(PluginDefinitionSchema);
+export const PluginDefinitionsSchema = z.object({
+  $schema: z.string(),
+  plugins: z.record(z.string(), PluginConditionSchema),
+});
 
 export type BaseConfigOptions = {
   overrides?: ConfigOverrides[];

@@ -9,7 +9,8 @@ import { readPackageUp } from "read-package-up";
 
 import * as _plugins from "../schema/prettier-plugins.json";
 
-const plugins = _plugins as PluginDefinitions;
+const pluginDefinitions = _plugins as unknown as PluginDefinitions;
+const { plugins } = pluginDefinitions;
 
 const shouldInstallPlugin = async (
   plugin: PluginDefinition,
@@ -44,7 +45,7 @@ export const createPluginRegistry = (): PluginRegistry => ({
   },
 
   getPluginDefinitions: (): PluginDefinition[] =>
-    Object.values(plugins) as PluginDefinition[],
+    Object.values(plugins) as unknown as PluginDefinition[],
 
   getRequiredPlugins: async (): Promise<string[]> => {
     const requiredPlugins: string[] = [];
