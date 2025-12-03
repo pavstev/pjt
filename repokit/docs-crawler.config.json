@@ -1,0 +1,18 @@
+{
+  "repositories": [
+    "https://github.com/benjaminwestern/documentation-crawler",
+    "https://github.com/born3am/README-AI",
+    "https://github.com/eli64s/readme-ai",
+    "https://github.com/firecrawl/firecrawl",
+    "https://github.com/gocolly/colly",
+    "https://github.com/hakluke/hakrawler",
+    "https://github.com/hitachi-nlp/larch",
+    "https://github.com/paulpierre/markdown-crawler",
+    "https://github.com/scrapy/scrapy",
+    "https://github.com/seanpdoyle/git-read",
+    "https://github.com/souradipp76/ReadMeReady",
+    "https://github.com/tcort/markdown-link-check",
+    "https://github.com/tonydub/md-url-extractor",
+    "https://github.com/unclecode/crawl4ai"
+  ]
+}

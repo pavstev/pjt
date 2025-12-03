@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/prettier",
+    "declaration": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@pjt/core": ["../core/src"]
+    }
+  },
+  "exclude": [
+    "jest.config.ts",
+    "jest.config.cts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
+  ],
+  "extends": "../../tsconfig.base.json",
+  "include": ["src/**/*"]
+}

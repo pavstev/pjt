@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "composite": false,
+    "declaration": false,
+    "outDir": "../../dist/out-tsc",
+    "types": [
+      "vitest/globals",
+      "vitest/importMeta",
+      "vite/client",
+      "node",
+      "vitest"
+    ]
+  },
+  "exclude": [],
+  "extends": "./tsconfig.json",
+  "include": ["src/**/*.ts", "src/**/*.test.ts"]
+}

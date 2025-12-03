@@ -1,0 +1,528 @@
+{
+  "extensions": {
+    "recommendations": [
+      "AllemandInstable.colorful-comments-refreshed",
+      "astro-build.astro-vscode",
+      "bierner.github-markdown-preview",
+      "bradlc.vscode-tailwindcss",
+      "christian-kohler.npm-intellisense",
+      "DavidAnson.vscode-markdownlint",
+      "dbaeumer.vscode-eslint",
+      "EditorConfig.EditorConfig",
+      "emeraldwalk.RunOnSave",
+      "esbenp.prettier-vscode",
+      "fill-labs.dependi",
+      "folke.vscode-monorepo-workspace",
+      "golang.go",
+      "golang.go-debug",
+      "golang.go-langserver",
+      "github.vscode-github-actions",
+      "inlang.vs-code-extension",
+      "MermaidChart.vscode-mermaid-chart",
+      "mightbesimon.emoji-icons",
+      "ms-playwright.playwright",
+      "ms-vscode.makefile-tools",
+      "naumovs.color-highlight",
+      "nefrob.vscode-just-syntax",
+      "nrwl.angular-console",
+      "oxc.oxc-vscode",
+      "paulvarache.vscode-taskfile",
+      "Prisma.prisma",
+      "redhat.vscode-xml",
+      "redhat.vscode-yaml",
+      "SimonSiefke.svg-preview",
+      "streetsidesoftware.code-spell-checker",
+      "stylelint.vscode-stylelint",
+      "svelte.svelte-vscode",
+      "tamasfe.even-better-toml",
+      "task.vscode-task",
+      "unifiedjs.vscode-mdx",
+      "unifiedjs.vscode-remark",
+      "usernamehw.errorlens",
+      "vscode-icons-team.vscode-icons",
+      "yoavbls.pretty-ts-errors",
+      "FabianReyes.smart-json-schema",
+      "mrmlnc.vscode-json5"
+    ]
+  },
+  "folders": [
+		{
+			"name": " @repokit/root",
+			"path": "."
+		},
+		{
+			"name": " @repokit/cli",
+			"path": "packages/cli"
+		},
+		{
+			"name": " @repokit/config",
+			"path": "packages/config"
+		},
+		{
+			"name": " @repokit/ribbon-nx",
+			"path": "packages/ribbon-nx"
+		},
+		{
+			"name": " @pjt/schemas",
+			"path": "../packages/schemas"
+		}
+	],
+  "settings": {
+    "[go]": {
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": "never"
+      },
+      "editor.detectIndentation": false,
+      "editor.formatOnSave": true,
+      "editor.insertSpaces": false,
+      "editor.tabSize": 2
+    },
+    "[javascript]": {
+      "editor.codeActionsOnSave": {
+        "source.formatDocument": "always",
+        "source.organizeImports": "always"
+      }
+    },
+    "[json, jsonc]": {
+      "editor.insertSpaces": true,
+      "editor.tabSize": 2
+    },
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json][jsonc]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true
+    },
+    "[jsonc]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[markdown]": {
+      "diffEditor.ignoreTrimWhitespace": true,
+      "editor.codeActionsOnSave": {
+        "source.organizeLinkDefinitions": "always",
+        "source.sort.json": "always"
+      },
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.fontSize": 12,
+      "editor.formatOnSave": true,
+      "editor.quickSuggestions": {
+        "comments": "off",
+        "other": "off",
+        "strings": "off"
+      },
+      "editor.wordWrap": "off"
+    },
+    "[typescript]": {
+      "editor.codeActionsOnSave": {
+        "source.formatDocument": "always",
+        "source.organizeImports": "always"
+      },
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript][javascript][typescriptreact][javascriptreact]": {
+      "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "always",
+        "source.organizeImports": "always"
+      },
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true
+    },
+    "[yaml]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true,
+      "editor.insertSpaces": false,
+      "editor.tabSize": 2
+    },
+    "breadcrumbs.enabled": true,
+    "breadcrumbs.symbolPath": "on",
+    "cSpell.customDictionaries": {
+      "custom-dictionary-workspace": {
+        "addWords": true,
+        "name": "custom-dictionary-workspace",
+        "path": "${workspaceFolder:nx-knip}/.cspell/custom-dictionary-workspace.txt",
+        "scope": "workspace"
+      },
+      "local-dictionary": {
+        "addWords": true,
+        "name": "local-dictionary",
+        "path": "./.cspell/local-dictionary.txt"
+      }
+    },
+    "cSpell.enabled": true,
+    "cSpell.import": ["./cspell.config.js"],
+    "cSpell.useGitignore": true,
+    "cSpell.words": [
+      "Bento",
+      "unlighthouse",
+      "contentgen",
+      "crdb",
+      "genai",
+      "gsheets",
+      "gvm",
+      "Hrefs",
+      "mapstructure",
+      "mdsvex",
+      "paraglide",
+      "Sportbook",
+      "websitebuilder",
+      "Wrapf",
+      "esbenp",
+      "lilconfig",
+      "runme"
+    ],
+    "css.validate": false,
+    "debug.console.fontSize": 13,
+    "debug.internalConsoleOptions": "openOnSessionStart",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.oxc": "always",
+      "source.fixAll.ts": "always",
+      "source.formatDocument": "always",
+      "source.organizeImports": "always"
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.detectIndentation": false,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
+    "editor.formatOnType": false,
+    "editor.guides.bracketPairs": "active",
+    "editor.insertSpaces": false,
+    "editor.minimap.enabled": false,
+    "editor.occurrencesHighlight": "singleFile",
+    "editor.renderLineHighlight": "gutter",
+    "editor.rulers": [80, 100, 120],
+    "editor.selectionHighlight": false,
+    "editor.semanticHighlighting.enabled": true,
+    "editor.tabSize": 2,
+    "editor.trimAutoWhitespace": true,
+    "emmet.includeLanguages": {
+      "javascript": "html",
+      "javascriptreact": "html",
+      "svelte": "html",
+      "svx": "html",
+      "typescript": "html",
+      "typescriptreact": "html"
+    },
+    "emmet.triggerExpansionOnTab": true,
+    "errorLens.enabledDiagnosticLevels": ["error", "warning"],
+    "errorLens.followCursor": "activeLine",
+    "eslint.codeAction.showDocumentation": {
+      "enable": true
+    },
+    "eslint.enable": true,
+    "eslint.format.enable": true,
+    "eslint.nodePath": "/home/stevan/.nvm/versions/node/v24.4.0/bin/node",
+    "eslint.options": {
+      "overrideConfigFile": "./eslint.config.ts"
+    },
+    "eslint.probe": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "html",
+      "vue",
+      "markdown"
+    ],
+    "eslint.run": "onSave",
+    "eslint.useFlatConfig": true,
+    "eslint.validate": [
+      "css",
+      "typescript",
+      "svelte",
+      "svx",
+      "json",
+      "jsonc",
+      "json5",
+      "yaml",
+      "toml",
+      "typescriptreact",
+      "astro",
+      "javascript",
+      "javascriptreact",
+      "markdown"
+    ],
+    "eslint.workingDirectories": ["."],
+    "evenBetterToml.schema.associations": {
+      ".uncommentrc.toml": "./schema/uncomment.schema.json"
+    },
+    "explorer.autoRevealExclude": {
+      "**/*.sum": true,
+      "**/.git": true,
+      "**/apps": true,
+      "**/bin": true,
+      "**/dist": true,
+      "**/out": true,
+      "**/tools": true,
+      "pnpm-lock.yaml": true
+    },
+    "explorer.compactFolders": false,
+    "explorer.excludeGitIgnore": true,
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+      "*.astro": "${capture}.ts, ${capture}.tsx",
+      "*.go": "${capture}_gen.go, ${capture}_enum.go, ${capture}_test.go, ${capture}_testdata, ${capture}_testdata/*, ${capture}_handler.go, ${capture}_repository.go, ${capture}.go",
+      "*.js": "${capture}.js.map, ${capture}.test.js, ${capture}.spec.js",
+      "*.jsx": "${capture}.js, ${capture}.test.jsx, ${capture}.spec.jsx",
+      "*.mod": "go.mod",
+      "*.rs": "${capture}.test.rs, ${capture}_test.rs, mod.rs",
+      "*.sum": "go.sum",
+      "*.svelte": "${capture}.d.ts, ${capture}.spec.ts, ${capture}.test.ts",
+      "*.svx": "${capture}.svelte",
+      "*.ts": "${capture}.js, ${capture}.test.ts, ${capture}.spec.ts, ${capture}.d.ts, ${capture}.js.map, ${capture}.*.ts",
+      "*.tsx": "${capture}.ts, ${capture}.test.tsx, ${capture}.spec.tsx, ${capture}.d.ts, ${capture}.spec.ts, ${capture}.test.ts",
+      "*.tsx?": "${capture}.d.ts, ${capture}.test.ts, ${capture}.test.tsx",
+      ".editorconfig": ".dockerignore",
+      ".env.example": ".env, .env.*, .env.local",
+      ".gitignore": ".prettierignore, .eslintignore, .gitattributes, .gitmodules, .git-blame-ignore-revs, .gitkeep, .*ignore",
+      ".gitmessage": "plaintext",
+      "AGENTS.md": "opencode.*",
+      "Dockerfile": ".dockerignore, compose.*, nginx.conf",
+      "README.md": "README.*.md, *.md",
+      "Taskfile.yml": "*Taskfile.yml",
+      "cspell.config.*": "*.dictionary.txt",
+      "eslint.config.*": ".eslintrc*, eslint.config.*, prettier.config.*, .prettierrc*, .prettierignore, .editorconfig, commitlint.config.*, .commitlintrc*, lint-staged.config.*, lefthook.yml, stylelint.config.*, .stylelintignore, .uncommentrc.*, knip.config.*",
+      "go.mod": "go.sum, go.work, .golangci.yml",
+      "index.just": "*.just",
+      "lefthook.yml": "commitlint.config.*, .prettier*, cspell.config.js, .stylelintrc.json, .uncommentrc.*, knip.config.*, .editorconfig, eslint.config.*, .markdownlint*",
+      "lib.rs": "mod.rs, main.rs",
+      "nx.json": "package.json, bun.lockb, bun.lock, go.work, go.work.sum",
+      "package.json": "pnpm-lock.yaml, pnpm-workspace.yaml, yarn.lock, package-lock.json, .npmrc, .nvmrc, .node-version, .tool-versions, knip.config.ts, components.json, docker-compose.yml, .gitignore, .env.example, .uncommentrc.toml, submodules.config.json, *.json, LICENSE, README.md, project.json, vitest.*.ts",
+      "prettier.config.*": ".prettier*",
+      "project.json": "package.json, eslint.config.*, astro.config.*, svelte.config.js, vite.config.mts, uno.config.ts, go.mod, go.sum",
+      "tsconfig.json": "tsconfig.*.json, vitest-setup-client.ts, jsconfig.json, .swcrc, .babelrc, babel.config.*, next.config.*, svelte.config.*, astro.config.*, webpack.config.*, rollup.config.*, vite.config.*"
+    },
+    "explorer.incrementalNaming": "smart",
+    "explorer.sortOrder": "foldersNestsFiles",
+    "files.associations": {
+      "**/*.json": "jsonc",
+      "**/*.svtext": "markdown",
+      "**/*.svx": "svelte",
+      "**/*.ts.template": "typescript",
+      "**/.husky/*": "shellscript",
+      "**/.lefthookrc": "bash",
+      "**/scripts/*": "shellscript",
+      "**/tsconfig*.json": "jsonc",
+      "*.cts": "typescript",
+      "*.js.template": "javascript",
+      "*.json.template": "json",
+      "*.just": "just",
+      "*.mod": "go.mod",
+      "*.mts": "typescript",
+      "*.sum": "go.sum",
+      ".*-versions": "ini",
+      ".code-workspace": "json",
+      ".gitcleanignore": "ignore",
+      ".gitmessage": "plaintext",
+      ".lefthookrc": "shellscript"
+    },
+    "files.exclude": {
+      "**/*.node": true,
+      "**/*.tsbuildinfo": true,
+      "**/.astro": true,
+      "**/.classpath": true,
+      "**/.git": true,
+      "**/.hg": true,
+      "**/.idea": true,
+      "**/.nx": true,
+      "**/.project": true,
+      "**/.settings": true,
+      "**/Thumbs.db": true,
+      "**/build": true,
+      "**/dist": true,
+      "**/node_modules": true,
+      "**/out": true,
+      "**/packages": true,
+      "**/pnpm-lock.yaml": true,
+      "**/submodules": true,
+      "**/tmp": true,
+      "**/tools": true
+    },
+    "files.insertFinalNewline": true,
+    "files.readonlyInclude": {
+      "**/*-lock.yaml": true,
+      "**/*.d.ts": true,
+      "**/*.integrity.json": true,
+      "**/*.js": true,
+      "**/*.jsx": true,
+      "**/*.sum": false,
+      "**/*.tsbuildinfo": true,
+      "**/bin/**": true,
+      "**/dist/**": true,
+      "**/node_modules/**": true,
+      "**/out/**": true,
+      "**/routeTree.gen.ts": true
+    },
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "git.enableSmartCommit": true,
+    "go.alternateTools": {
+      "customFormatter": "golangci-lint",
+      "go-langserver": "gopls"
+    },
+    "go.buildFlags": [],
+    "go.buildTags": "",
+    "go.coverOnSave": false,
+    "go.formatFlags": ["fmt"],
+    "go.formatTool": "custom",
+    "go.gopath": "/home/stevan/go",
+    "go.goroot": "/usr/local/go",
+    "go.inlayHints.compositeLiteralFields": true,
+    "go.inlayHints.compositeLiteralTypes": true,
+    "go.inlayHints.constantValues": true,
+    "go.inlayHints.functionTypeParameters": true,
+    "go.inlayHints.parameterNames": true,
+    "go.inlayHints.rangeVariableTypes": true,
+    "go.installDependenciesWhenBuilding": true,
+    "go.lintFlags": [],
+    "go.lintOnSave": "package",
+    "go.lintTool": "golangci-lint",
+    "go.showWelcome": false,
+    "go.toolsGopath": null,
+    "go.toolsManagement.checkForUpdates": "local",
+    "go.useLanguageServer": true,
+    "go.vetFlags": [],
+    "go.vetOnSave": "package",
+    "javascript.preferences.quoteStyle": "single",
+    "javascript.suggest.autoImports": true,
+    "javascript.suggest.completeFunctionCalls": true,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "json.schemas": [
+      {
+        "fileMatch": ["**/*.json"],
+        "schema": {
+          "allowTrailingCommas": true
+        }
+      }
+    ],
+    "less.validate": false,
+    "makefile.clearOutputBeforeBuild": true,
+    "makefile.makefilePath": "Makefile",
+    "markdown-preview-github-styles.darkTheme": "dark_colorblind",
+    "markdown.preview.fontSize": 10,
+    "markdownlint.configFile": "./.markdownlint.json",
+    "monorepoWorkspace.folders.custom": [],
+    "monorepoWorkspace.folders.prefix.apps": " ",
+    "monorepoWorkspace.folders.prefix.libs": " ",
+    "monorepoWorkspace.folders.prefix.root": " ",
+    "monorepoWorkspace.folders.prefix.tools": " ",
+    "monorepoWorkspace.folders.prefix.unknown": " ",
+    "monorepoWorkspace.folders.regex.apps": "^apps/",
+    "monorepoWorkspace.folders.regex.libs": "^libs/",
+    "monorepoWorkspace.folders.regex.tools": "^tools/",
+    "monorepoWorkspace.includeRoot": true,
+    "npm-intellisense.recursivePackageJsonLookup": true,
+    "npm.packageManager": "pnpm",
+    "nxConsole.generateAiAgentRules": true,
+    "oxc.configPath": "./.oxlintrc.json",
+    "oxc.enable": true,
+    "oxc.lint.run": "onSave",
+    "oxc.requireConfig": true,
+    "oxc.typeAware": true,
+    "prettier.configPath": ".prettierrc.json",
+    "runme.actions.openViewInEditor": "split",
+    "runme.telemetry.enabled": false,
+    "runonsave.commands": [
+      {
+        "cmd": "golangci-lint fmt ${file}",
+        "match": "\\.go$"
+      }
+    ],
+    "scm.compactFolders": false,
+    "scm.defaultViewMode": "tree",
+    "scss.validate": false,
+    "search.defaultViewMode": "tree",
+    "search.exclude": {
+      "**/*.map": true,
+      "**/*.svg": true,
+      "**/*.tsbuildinfo": true,
+      "**/*_*.md": true,
+      "**/.git": true,
+      "**/.nx/cache": true,
+      "**/bower_components": true,
+      "**/build": true,
+      "**/dist": true,
+      "**/node_modules": true,
+      "**/out": true,
+      "**/packages": true,
+      "**/pnpm-lock.yaml": true,
+      "**/routeTree.gen.ts": true,
+      "**/submodules": true,
+      "**/tools": true,
+      "pnpm-lock.yaml": true
+    },
+    "search.followSymlinks": true,
+    "search.sortOrder": "countDescending",
+    "search.useGlobalIgnoreFiles": true,
+    "search.useIgnoreFiles": true,
+    "stylelint.enable": true,
+    "stylelint.packageManager": "pnpm",
+    "stylelint.validate": [
+      "css",
+      "postcss",
+      "scss",
+      "html",
+      "vue",
+      "svelte",
+      "astro"
+    ],
+    "svelte.enable-ts-plugin": true,
+    "svelte.plugin.svelte.defaultScriptLanguage": "ts",
+    "svelte.plugin.svelte.diagnostics.enable": true,
+    "svelte.plugin.svelte.enable": true,
+    "svelte.plugin.typescript.enable": true,
+    "tailwindCSS.experimental.classRegex": [
+      ["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+      ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+      ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+      ["clsx\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+    ],
+    "tailwindCSS.includeLanguages": {
+      "svelte": "html",
+      "svx": "html"
+    },
+    "terminal.integrated.cwd": "${workspaceFolder}",
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.env.linux": {
+      "CGO_ENABLED": "0",
+      "GOENV_ROOT": "${env:GOENV_ROOT}",
+      "GOPATH": "${env:GOPATH}",
+      "GOROOT": "${env:GOROOT}",
+      "PATH": "${workspaceFolder}/tools/doit/bin:${env:PATH}"
+    },
+    "typescript.autoClosingTags": true,
+    "typescript.check.npmIsInstalled": true,
+    "typescript.experimental.useTsgo": false,
+    "typescript.format.semicolons": "insert",
+    "typescript.inlayHints.functionLikeReturnTypes.enabled": false,
+    "typescript.inlayHints.parameterNames.enabled": "literals",
+    "typescript.inlayHints.parameterTypes.enabled": false,
+    "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+    "typescript.inlayHints.variableTypes.enabled": false,
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "typescript.preferences.includePackageJsonAutoImports": "auto",
+    "typescript.preferences.quoteStyle": "double",
+    "typescript.suggest.autoImports": true,
+    "typescript.suggest.completeFunctionCalls": true,
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "typescript.updateImportsOnPaste.enabled": true,
+    "vscode-just.formatOnSave": true,
+    "vscode-just.justPath": "/home/stevan/work/2025/temp-spdocs/node_modules/.bin/just",
+    "vscode-just.logLevel": "info",
+    "vscode-just.runInTerminal": false,
+    "window.title": "${dirty}${activeEditorShort}${separator}${rootName} ${separator} [${folderName}]",
+    "window.zoomLevel": 1,
+    "workbench.activityBar.iconClickBehavior": "focus",
+    "workbench.activityBar.location": "default",
+    "workbench.commandPalette.history": 25,
+    "workbench.commandPalette.preserveInput": true,
+    "workbench.editor.labelFormat": "short",
+    "workbench.secondarySideBar.defaultVisibility": "visibleInWorkspace",
+    "workbench.secondarySideBar.showLabels": true,
+    "workbench.startupEditor": "none"
+  }
+}

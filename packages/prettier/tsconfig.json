@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "module": "esnext",
+    "declaration": true,
+    "resolveJsonModule": true,
+    "outDir": "../../dist/out-tsc/prettier"
+  },
+  "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts", "**/*.stories.ts"],
+  "extends": "../../tsconfig.base.json",
+  "include": [
+    "src/**/*",
+    "package.json",
+    "src/schema/prettier-plugins.json",
+    "../core/src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../core"
+    }
+  ]
+}

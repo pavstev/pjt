@@ -1,188 +1,54 @@
-# pjt
+<h1 align="center">Welcome to pjt 👋</h1>
+<p>
+  <a href="https://www.npmjs.com/package/pjt" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/pjt.svg">
+  </a>
+  <img src="https://img.shields.io/badge/node-%3E%3D18.0.0-blue.svg" />
+  <a href="https://github.com/pavstev/pjt#readme" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="https://github.com/pavstev/pjt/graphs/commit-activity" target="_blank">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+  </a>
+  <a href="https://github.com/pavstev/pjt/blob/master/LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/github/license/pavstev/pjt" />
+  </a>
+</p>
 
-[![npm version](https://img.shields.io/npm/v/pjt.svg)](https://www.npmjs.com/package/pjt)
-[![npm downloads](https://img.shields.io/npm/dm/pjt.svg)](https://www.npmjs.com/package/pjt)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js Version](https://img.shields.io/node/v/pjt)](https://nodejs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.9+-blue.svg)](https://www.typescriptlang.org/)
-[![CI](https://github.com/pavstev/pjt/workflows/CI/badge.svg)](https://github.com/pavstev/pjt/actions)
+> A powerful cross-platform CLI tool for maintaining clean Git repositories.
+> Removes empty directories, ignored files, and reinstalls dependencies with
+> support for npm, pnpm, and yarn.
 
-> A powerful cross-platform CLI tool for maintaining clean Git repositories. Cleans ignored files and reinstalls dependencies with support for npm, pnpm, yarn, and bun.
+### 🏠 [Homepage](https://pjt.stevanpavlovic.com)
 
-## ✨ Features
+## Prerequisites
 
-- **🧹 Git Repository Cleanup** - Clean ignored files and directories from Git repositories
-- **📦 Dependency Reinstallation** - Automatically reinstall dependencies using detected package manager
-- **⚡ Development Workflow** - Run format, lint, build, test commands with a single tool
-- **🔄 Cross-Platform** - Works seamlessly on Linux, macOS, and Windows
-- **🚀 TypeScript First** - Built with TypeScript 5.9+ and strict mode for reliability
-- **🛡️ Safe Operations** - Dry-run mode prevents accidents
-- **🎯 Zero Config** - Works out of the box with sensible defaults
-- **🔧 Extensible** - Easy to integrate into existing workflows
+- node >=18.0.0
 
-## 📦 Installation
+## Author
 
-### Global (Recommended)
+👤 **Stevan Pavlovic**
 
-```bash
-npm install -g pjt
-# or
-pnpm add -g pjt
-# or
-yarn global add pjt
-```
-
-### Local (Project-specific)
-
-```bash
-npm install --save-dev pjt
-# or
-pnpm add -D pjt
-# or
-yarn add -D pjt
-```
-
-## 🚀 Quick Start
-
-Clean your Git repository and refresh dependencies:
-
-```bash
-cd your-project
-pjt
-```
-
-That's it! Your repository is now clean and dependencies are reinstalled.
-
-## 📖 Usage
-
-### Core Command
-
-#### Git Repository Cleanup and Dependency Reinstallation (Default)
-
-Clean your Git repository by removing ignored files and reinstall dependencies:
-
-```bash
-pjt
-```
-
-#### Development Workflow
-
-Run common development tasks:
-
-```bash
-pjt format    # Format code with Prettier
-pjt lint      # Lint with ESLint
-pjt build     # Build the project
-pjt test      # Run tests with Vitest
-```
-
-### Command Options
-
-| Option         | Description                       | Example               |
-| -------------- | --------------------------------- | --------------------- |
-| `-d, --dryRun` | Preview changes without executing | `pjt --dryRun`        |
-| `-f, --hard`   | Force clean (use -Xdf)            | `pjt --hard`          |
-| `--dir`        | Target directory                  | `pjt --dir ./project` |
-| `--help`       | Show help information             | `pjt --help`          |
-| `--version`    | Show version number               | `pjt --version`       |
-
-### Shell Completions
-
-Generate shell completions for better DX:
-
-```bash
-# Bash
-pjt completions --shell bash >> ~/.bashrc
-
-# Zsh
-pjt completions --shell zsh >> ~/.zshrc
-
-# Fish
-pjt completions --shell fish > ~/.config/fish/completions/pjt.fish
-```
-
-## 🔧 API
-
-Use pjt programmatically in your Node.js applications:
-
-```typescript
-import main from "pjt";
-
-// Run the CLI programmatically
-await main();
-```
-
-### TypeScript Types
-
-```typescript
-import type { CommandDef } from "citty";
-```
-
-## ⚙️ Configuration
-
-### Prettier Configuration
-
-Use pjt's battle-tested Prettier config in your projects:
-
-```javascript
-// prettier.config.js
-module.exports = require("pjt/prettier");
-```
-
-```typescript
-// prettier.config.ts
-import config from "pjt/prettier";
-export default config;
-```
-
-This config includes:
-
-- TypeScript, JavaScript, JSON, YAML, and Markdown support
-- Package.json formatting with `prettier-plugin-packagejson`
-- Consistent formatting for VS Code workspace files
+- Website: https://stevanpavlovic.com
+- Github: [@pavstev](https://github.com/pavstev)
 
 ## 🤝 Contributing
 
-We welcome contributions! Here's how to get involved:
+Contributions, issues and feature requests are welcome!<br />Feel free to check
+[issues page](https://github.com/pavstev/pjt/issues). You can also take a look
+at the
+[contributing guide](https://github.com/pavstev/pjt/blob/master/CONTRIBUTING.md).
 
-### Development Setup
+## Show your support
 
-```bash
-git clone https://github.com/pavstev/pjt.git
-cd pjt
-pnpm install
-pnpm build
-pnpm test
-```
+Give a ⭐️ if this project helped you!
 
-### Development Commands
+## 📝 License
 
-```bash
-pnpm all        # Run all checks (format, lint, build, typecheck, test, knip)
-pnpm format     # Format code
-pnpm lint       # Lint code
-pnpm typecheck  # Type check
-pnpm test       # Run tests
-pnpm build      # Build project
-```
+Copyright © 2025 [Stevan Pavlovic](https://github.com/pavstev).<br /> This
+project is [MIT](https://github.com/pavstev/pjt/blob/master/LICENSE) licensed.
 
-### Guidelines
+---
 
-- **Code Style**: Follow the existing TypeScript patterns
-- **Testing**: Add tests for new features
-- **Commits**: Use conventional commits
-- **PRs**: Ensure CI passes and add a clear description
-
-## 📄 License
-
-MIT © [Stevan Pavlovic](https://github.com/pavstev)
-
-## 🙏 Acknowledgments
-
-Built with ❤️ using:
-
-- [citty](https://github.com/unjs/citty) - CLI framework
-- [consola](https://github.com/unjs/consola) - Logging
-- [package-manager-detector](https://github.com/antfu-collective/package-manager-detector) - Package manager detection
-- [tinyexec](https://github.com/tinylibs/tinyexec) - Command execution
-- [zod](https://github.com/colinhacks/zod) - Schema validation
+_This README was generated with ❤️ by
+[readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

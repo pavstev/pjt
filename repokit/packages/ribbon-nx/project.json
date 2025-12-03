@@ -1,0 +1,20 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "ribbon-nx",
+  "projectType": "library",
+  "sourceRoot": "packages/ribbon-nx/src",
+  "tags": ["scope:plugin"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "main": "packages/ribbon-nx/src/index.ts",
+        "outputPath": "dist/packages/ribbon-nx",
+        "tsConfig": "packages/ribbon-nx/tsconfig.lib.json"
+      },
+      "outputs": ["{options.outputPath}"]
+    },
+    "lint": {},
+    "typecheck": {}
+  }
+}

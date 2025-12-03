@@ -1,0 +1,46 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "prettier",
+  "projectType": "library",
+  "sourceRoot": "packages/prettier/src",
+  "tags": [],
+  "targets": {
+    "generate-schema": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx src/scripts/generate-schema.ts",
+        "cwd": "{projectRoot}"
+      },
+      "cache": true,
+      "inputs": [
+        "{projectRoot}/src/scripts/generate-schema.ts",
+        "{projectRoot}/src/schema/schema.ts",
+        "^default"
+      ],
+      "outputs": ["{projectRoot}/src/schema/prettier-plugins.schema.json"]
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --build tsconfig.lib.json",
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["generate-schema", "^build"],
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "find-plugins": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx src/scripts/find-plugins.ts",
+        "cwd": "{projectRoot}"
+      },
+      "cache": true,
+      "inputs": [
+        "{projectRoot}/src/scripts/find-plugins.ts",
+        "{projectRoot}/src/schema/prettier-plugins.json",
+        "^default"
+      ],
+      "outputs": ["{projectRoot}/src/schema/prettier-plugins.json"]
+    }
+  }
+}

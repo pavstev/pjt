@@ -1,0 +1,9 @@
+{
+  "description": "",
+  "exports": {
+    "*": "./src/*"
+  },
+  "name": "@pjt/schemas",
+  "type": "module",
+  "version": "1.0.0"
+}

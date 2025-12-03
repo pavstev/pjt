@@ -1,27 +1,48 @@
 import type { KnipConfig } from "knip";
 
 const config: KnipConfig = {
+  ignore: [
+    "repokit/**/*",
+    "packages/nx/package.json",
+    "packages/core/package.json",
+    "packages/prettier/jest.config.cts",
+  ],
+  ignoreBinaries: ["tsx"],
+  includeEntryExports: false,
+  rules: {
+    unresolved: "off",
+  },
   workspaces: {
     ".": {
-      entry: ["src/main.ts", "src/eslint/index.ts", "src/index.ts"],
-      project: [
-        "src/lib/**/*.ts",
-        "src/eslint/**/*.ts",
-        "src/prettier/**/*.ts",
-      ],
-      ignoreDependencies: ["globify-gitignore"],
-      ignoreFiles: [
-        "src/index.ts",
-        "src/lib/completions.ts",
-        "src/lib/fs.ts",
-        "src/eslint/config.ts",
-        "src/prettier/config.ts",
-        "src/prettier/index.ts",
+      entry: ["eslint.config.ts"],
+      project: ["*.ts", "*.js"],
+      ignoreDependencies: [
+        "@nx/*",
+        "jest",
+        "jest-environment-*",
+        "ts-node",
+        "tslib",
+        "jsdom",
+        "jsonc-eslint-parser",
+        "@swc/*",
+        "@playwright/test",
+        "eslint-plugin-playwright",
+        "eslint",
       ],
     },
-    docs: {
-      entry: ["src/content/docs/index.md"],
-      project: ["src/**/*.md"],
+    "packages/*": {
+      entry: ["src/index.ts"],
+      project: ["src/**/*.ts"],
+    },
+    "packages/cli": {
+      ignoreDependencies: ["@nx/eslint", "jiti"],
+    },
+    "packages/docs": {
+      entry: ["astro.config.mjs"],
+      project: ["src/**/*"],
+    },
+    "packages/prettier": {
+      project: ["src/**/*.ts", "jest.config.cts"],
     },
   },
 };

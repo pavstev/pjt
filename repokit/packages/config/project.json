@@ -1,0 +1,39 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "generators": {
+    "@repokit/ribbon-nx:cooper": {
+      "layout": "split"
+    }
+  },
+  "name": "config",
+  "projectType": "library",
+  "sourceRoot": "packages/config/src",
+  "tags": ["sync:cooper", "scope:plugin"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "main": "packages/config/src/index.ts",
+        "outputPath": "dist/packages/config",
+        "tsConfig": "packages/config/tsconfig.lib.json"
+      },
+      "outputs": ["{options.outputPath}"]
+    },
+    "lint": {},
+    "typecheck": {
+      "cache": true,
+      "executor": "nx:run-commands",
+      "inputs": ["^default"],
+      "options": {
+        "command": [
+          "tsc",
+          "--noEmit",
+          "--skipLibCheck",
+          "-p",
+          "./tsconfig.json"
+        ],
+        "cwd": "{projectRoot}"
+      }
+    }
+  }
+}

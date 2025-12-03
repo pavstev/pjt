@@ -1,0 +1,8 @@
+{
+  "$schema": "https://github.com/oxc-project/oxc/blob/main/npm/oxlint/configuration_schema.json",
+  "plugins": ["react", "unicorn", "typescript", "oxc"],
+  "rules": {
+    "typescript/no-floating-promises": "error",
+    "typescript/no-misused-promises": "error"
+  }
+}

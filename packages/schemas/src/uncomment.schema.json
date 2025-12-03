@@ -1,0 +1,264 @@
+{
+  "$defs": {
+    "globalConfig": {
+      "additionalProperties": false,
+      "description": "Global configuration settings.",
+      "properties": {
+        "preserve_patterns": {
+          "default": [],
+          "description": "Additional string patterns to preserve within comments.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "remove_docs": {
+          "default": false,
+          "description": "Whether to remove documentation comments.",
+          "type": "boolean"
+        },
+        "remove_fixme": {
+          "default": false,
+          "description": "Whether to remove FIXME comments.",
+          "type": "boolean"
+        },
+        "remove_todos": {
+          "default": false,
+          "description": "Whether to remove TODO comments.",
+          "type": "boolean"
+        },
+        "respect_gitignore": {
+          "default": true,
+          "description": "Whether to respect .gitignore files.",
+          "type": "boolean"
+        },
+        "traverse_git_repos": {
+          "default": false,
+          "description": "Whether to traverse into nested git repositories.",
+          "type": "boolean"
+        },
+        "use_default_ignores": {
+          "default": true,
+          "description": "Whether to use default ignore patterns.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "grammarConfig": {
+      "additionalProperties": false,
+      "description": "Tree-sitter grammar configuration.",
+      "properties": {
+        "compile_flags": {
+          "default": [],
+          "description": "Custom flags for compiling the grammar.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "library_path": {
+          "description": "Local path to a pre-compiled grammar library.",
+          "type": ["string", "null"]
+        },
+        "source": {
+          "$ref": "#/$defs/grammarSource",
+          "default": {
+            "type": "builtin"
+          }
+        },
+        "version": {
+          "description": "Version or commit hash for git-based grammars.",
+          "type": ["string", "null"]
+        }
+      },
+      "type": "object"
+    },
+    "grammarSource": {
+      "description": "Specifies the source of the Tree-sitter grammar.",
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "const": "builtin",
+              "description": "Use the built-in static grammar."
+            }
+          },
+          "required": ["type"],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "branch": {
+              "description": "The branch or tag to use (defaults to main/master).",
+              "type": "string"
+            },
+            "path": {
+              "description": "Subdirectory containing grammar.js, if not in the root.",
+              "type": "string"
+            },
+            "type": {
+              "const": "git",
+              "description": "Load grammar from a Git repository."
+            },
+            "url": {
+              "description": "The URL of the Git repository.",
+              "type": "string"
+            }
+          },
+          "required": ["type", "url"],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "description": "Path to the directory containing grammar.js.",
+              "type": "string"
+            },
+            "type": {
+              "const": "local",
+              "description": "Load grammar from a local directory."
+            }
+          },
+          "required": ["type", "path"],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "description": "Path to the compiled .so, .dll, or .dylib file.",
+              "type": "string"
+            },
+            "type": {
+              "const": "library",
+              "description": "Load a pre-compiled grammar library."
+            }
+          },
+          "required": ["type", "path"],
+          "type": "object"
+        }
+      ]
+    },
+    "languageConfig": {
+      "additionalProperties": false,
+      "description": "Language-specific configuration.",
+      "properties": {
+        "comment_nodes": {
+          "description": "Tree-sitter node types that represent comments.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "doc_comment_nodes": {
+          "default": [],
+          "description": "Tree-sitter node types for documentation comments.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "extensions": {
+          "description": "File extensions associated with this language.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "grammar": {
+          "$ref": "#/$defs/grammarConfig"
+        },
+        "name": {
+          "description": "Display name for the language.",
+          "type": "string"
+        },
+        "preserve_patterns": {
+          "default": [],
+          "description": "Language-specific patterns to preserve in comments.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "remove_docs": {
+          "description": "Override the global remove_docs setting.",
+          "type": ["boolean", "null"]
+        },
+        "remove_fixme": {
+          "description": "Override the global remove_fixme setting.",
+          "type": ["boolean", "null"]
+        },
+        "remove_todos": {
+          "description": "Override the global remove_todos setting.",
+          "type": ["boolean", "null"]
+        },
+        "use_default_ignores": {
+          "description": "Override the global use_default_ignores setting.",
+          "type": ["boolean", "null"]
+        }
+      },
+      "required": ["name", "extensions", "comment_nodes"],
+      "type": "object"
+    },
+    "patternConfig": {
+      "additionalProperties": false,
+      "description": "Configuration for a specific file pattern.",
+      "properties": {
+        "preserve_patterns": {
+          "default": [],
+          "description": "Additional patterns to preserve for this pattern.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "remove_docs": {
+          "description": "Override whether to remove documentation comments.",
+          "type": ["boolean", "null"]
+        },
+        "remove_fixme": {
+          "description": "Override whether to remove FIXME comments.",
+          "type": ["boolean", "null"]
+        },
+        "remove_todos": {
+          "description": "Override whether to remove TODO comments.",
+          "type": ["boolean", "null"]
+        },
+        "use_default_ignores": {
+          "description": "Override whether to use default ignore patterns.",
+          "type": ["boolean", "null"]
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "Schema for the configuration file for the uncomment tool.",
+  "properties": {
+    "global": {
+      "$ref": "#/$defs/globalConfig",
+      "description": "Global settings that apply to all files unless overridden."
+    },
+    "languages": {
+      "additionalProperties": {
+        "$ref": "#/$defs/languageConfig"
+      },
+      "description": "Language-specific configurations, keyed by language identifier.",
+      "type": "object"
+    },
+    "patterns": {
+      "additionalProperties": {
+        "$ref": "#/$defs/patternConfig"
+      },
+      "description": "Pattern-based rules for specific file paths (e.g., 'tests/**/*.py').",
+      "type": "object"
+    }
+  },
+  "title": "Uncomment Configuration",
+  "type": "object"
+}

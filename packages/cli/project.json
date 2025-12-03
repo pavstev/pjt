@@ -1,0 +1,32 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "cli",
+  "projectType": "library",
+  "sourceRoot": "packages/cli/src",
+  "tags": [],
+  "targets": {
+    "configure-prettier": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx ../../prettier/src/configure.ts",
+        "cwd": "{projectRoot}"
+      },
+      "cache": true,
+      "inputs": [
+        "{workspaceRoot}/packages/prettier/src/configure.ts",
+        "{workspaceRoot}/packages/prettier/src/schema/schema.ts",
+        "^default"
+      ],
+      "outputs": ["{workspaceRoot}/.prettierrc.json"]
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --build tsconfig.lib.json",
+        "cwd": "{projectRoot}"
+      },
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/dist"]
+    }
+  }
+}

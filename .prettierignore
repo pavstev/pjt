@@ -11,3 +11,6 @@ pnpm-lock.yaml
 .opencode/bun.lock
 opencodetmp/
 docs/
+.nx/
+dist/
+repokit/

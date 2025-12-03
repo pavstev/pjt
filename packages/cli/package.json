@@ -1,0 +1,77 @@
+{
+  "author": {
+    "name": "Stevan Pavlovic",
+    "email": "hi@stevanpavlovic.com",
+    "url": "https://stevanpavlovic.com/"
+  },
+  "bin": {
+    "pjt": "./dist/index.cjs"
+  },
+  "bugs": {
+    "url": "https://github.com/pavstev/pjt/issues"
+  },
+  "cpu": ["x64", "arm64"],
+  "dependencies": {
+    "@nx/devkit": "22.1.3",
+    "@octokit/rest": "^22.0.1",
+    "@pjt/core": "workspace:*",
+    "@pjt/prettier": "workspace:*",
+    "chalk": "5.6.2",
+    "citty": "0.1.6",
+    "cli-table3": "^0.6.5",
+    "consola": "3.4.2",
+    "execa": "9.6.1",
+    "glob": "13.0.0",
+    "inquirer": "^13.0.2",
+    "playwright": "1.57.0",
+    "simple-git": "3.30.0",
+    "standard-version": "^9.5.0",
+    "tinyexec": "1.0.2",
+    "zod": "4.1.13"
+  },
+  "description": "A powerful cross-platform CLI tool for maintaining clean Git repositories. Removes empty directories, ignored files, and reinstalls dependencies with support for npm, pnpm, and yarn.",
+  "devDependencies": {
+    "@nx/eslint": "22.1.3",
+    "@types/node": "^24.10.1",
+    "@types/standard-version": "^7.1.3",
+    "citty": "^0.1.6",
+    "consola": "^3.4.2",
+    "eslint": "^9.39.1",
+    "jiti": "^2.6.1",
+    "knip": "^5.71.0",
+    "nx": "22.1.3",
+    "tinyexec": "^1.0.2",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.15",
+    "zod": "^4.1.13"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": ["./dist", "README.md"],
+  "homepage": "https://pjt.stevanpavlovic.com",
+  "keywords": [
+    "git",
+    "clean",
+    "pnpm",
+    "npm",
+    "yarn",
+    "cross-platform",
+    "cli",
+    "tool",
+    "maintenance"
+  ],
+  "license": "MIT",
+  "name": "@pjt/cli",
+  "os": ["darwin", "linux", "win32"],
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavstev/pjt.git"
+  },
+  "type": "module",
+  "version": "1.0.27"
+}

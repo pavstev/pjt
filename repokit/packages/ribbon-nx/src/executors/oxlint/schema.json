@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "description": "Run oxlint on the given files",
+  "properties": {
+    "fix": {
+      "default": false,
+      "description": "Automatically fix problems",
+      "type": "boolean"
+    },
+    "format": {
+      "default": "default",
+      "description": "Output format",
+      "enum": ["default", "json", "unix", "checkstyle", "github-actions"],
+      "type": "string"
+    },
+    "lintFilePatterns": {
+      "default": ["**/*.{js,jsx,ts,tsx}"],
+      "description": "The lint file patterns to run oxlint on",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "maxWarnings": {
+      "default": -1,
+      "description": "Maximum number of warnings allowed",
+      "type": "number"
+    },
+    "quiet": {
+      "default": false,
+      "description": "Only show errors, not warnings",
+      "type": "boolean"
+    },
+    "silent": {
+      "default": false,
+      "description": "Hide output text",
+      "type": "boolean"
+    }
+  },
+  "required": [],
+  "title": "Oxlint executor",
+  "type": "object",
+  "version": 2
+}

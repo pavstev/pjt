@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "../../dist/out-tsc",
+    "rootDir": "../../",
+    "skipLibCheck": true,
+    "tsBuildInfoFile": "../../dist/types/ribbon-nx.tsbuildinfo",
+    "types": ["node"]
+  },
+  "exclude": ["vitest.config.ts", "src/**/*.test.ts"],
+  "extends": "./tsconfig.json",
+  "include": ["src/**/*.ts"],
+  "references": [
+    {
+      "path": "../config/tsconfig.lib.json"
+    }
+  ]
+}

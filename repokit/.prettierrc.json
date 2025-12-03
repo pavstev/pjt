@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json.schemastore.org/prettierrc",
+  "arrowParens": "avoid",
+  "bracketSameLine": false,
+  "bracketSpacing": true,
+  "embeddedLanguageFormatting": "auto",
+  "endOfLine": "lf",
+  "htmlWhitespaceSensitivity": "css",
+  "insertPragma": false,
+  "jsxSingleQuote": false,
+  "overrides": [
+    {
+      "files": ["*.astro"],
+      "options": {
+        "parser": "astro"
+      }
+    },
+    {
+      "files": ["*.css", "*.scss", "*.sass", "*.less"],
+      "options": {
+        "parser": "css",
+        "singleQuote": false
+      }
+    },
+    {
+      "files": ["*.dockerfile", "*.Dockerfile"],
+      "options": {
+        "parser": "dockerfile"
+      }
+    },
+    {
+      "files": ["*.htm", "*.html"],
+      "options": {
+        "parser": "html",
+        "singleAttributePerLine": true
+      }
+    },
+    {
+      "excludeFiles": ["package.json"],
+      "files": ["*.json", "*.jsonc", "*.json5", "*.code-workspace"],
+      "options": {
+        "parser": "json"
+      }
+    },
+    {
+      "files": ["*.md", "*.mdx", "*.svx"],
+      "options": {
+        "parser": "markdown",
+        "printWidth": 80,
+        "proseWrap": "always"
+      }
+    },
+    {
+      "files": ["*.py"],
+      "options": {
+        "parser": "py"
+      }
+    },
+    {
+      "files": ["*.sh", "*.zsh"],
+      "options": {
+        "parser": "shell"
+      }
+    },
+    {
+      "files": ["*.svelte"],
+      "options": {
+        "parser": "svelte",
+        "svelteAllowShorthand": true,
+        "svelteIndentScriptAndStyle": true,
+        "svelteSortOrder": "options-scripts-markup-styles",
+        "svelteStrictMode": false
+      }
+    },
+    {
+      "files": ["*.toml"],
+      "options": {
+        "parser": "toml"
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "options": {
+        "parser": "typescript"
+      }
+    },
+    {
+      "files": ["*.vue"],
+      "options": {
+        "parser": "vue"
+      }
+    },
+    {
+      "files": ["*.yaml", "*.yml"],
+      "options": {
+        "parser": "yaml",
+        "singleQuote": false
+      }
+    },
+    {
+      "files": ["*.svelte"],
+      "options": {
+        "parser": "svelte"
+      }
+    },
+    {
+      "files": "*.svx",
+      "options": {
+        "parser": "markdown",
+        "proseWrap": "preserve"
+      }
+    },
+    {
+      "files": ["justfile", "*.just"],
+      "options": {
+        "tabWidth": 4,
+        "useTabs": false
+      }
+    },
+    {
+      "files": ["slides.mdc", "pages/*.mdc"],
+      "options": {
+        "parser": "slidev",
+        "plugins": ["prettier-plugin-slidev"]
+      }
+    },
+    {
+      "files": "uno.config.ts",
+      "options": {
+        "printWidth": 8000
+      }
+    }
+  ],
+  "plugins": [
+    "@prettier/plugin-oxc",
+    "@prettier/plugin-xml",
+    "@svgr/plugin-prettier",
+    "prettier-plugin-astro",
+    "prettier-plugin-css-order",
+    "prettier-plugin-ember-template-tag",
+    "prettier-plugin-ignored",
+    "prettier-plugin-jsdoc",
+    "prettier-plugin-multiline-arrays",
+    "prettier-plugin-organize-attributes",
+    "prettier-plugin-packagejson",
+    "prettier-plugin-prisma",
+    "prettier-plugin-sh",
+    "prettier-plugin-slidev",
+    "prettier-plugin-svelte",
+    "prettier-plugin-sort-json",
+    "prettier-plugin-sort-json",
+    "prettier-plugin-sort-package-json",
+    "prettier-plugin-sql",
+    "prettier-plugin-svelte",
+    "prettier-plugin-toml"
+  ],
+  "printWidth": 80,
+  "proseWrap": "preserve",
+  "quoteProps": "consistent",
+  "requirePragma": false,
+  "semi": true,
+  "singleAttributePerLine": false,
+  "singleQuote": false,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "useTabs": false,
+  "vueIndentScriptAndStyle": true
+}

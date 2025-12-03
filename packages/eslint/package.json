@@ -1,0 +1,45 @@
+{
+  "author": {
+    "name": "Stevan Pavlovic",
+    "email": "hi@stevanpavlovic.com",
+    "url": "https://stevanpavlovic.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/pavstev/pjt/issues"
+  },
+  "dependencies": {
+    "@eslint/js": "^9.39.1",
+    "@eslint/markdown": "^7.5.1",
+    "@nx/eslint-plugin": "22.1.3",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-json-schema-validator": "^5.5.0",
+    "eslint-plugin-jsonc": "^2.21.0",
+    "eslint-plugin-mdx": "^3.6.2",
+    "jsonc-eslint-parser": "^2.4.1",
+    "typescript-eslint": "^8.48.1"
+  },
+  "description": "ESLint configurations for pjt",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/eslint/index.d.ts",
+      "import": "./dist/eslint/index.cjs",
+      "require": "./dist/eslint/index.cjs"
+    }
+  },
+  "files": ["./dist/eslint"],
+  "homepage": "https://pjt.stevanpavlovic.com",
+  "keywords": ["eslint", "config", "linting"],
+  "license": "MIT",
+  "main": "./dist/eslint/index.cjs",
+  "name": "@pjt/eslint",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavstev/pjt.git"
+  },
+  "types": "./dist/eslint/index.d.ts",
+  "version": "1.0.0"
+}

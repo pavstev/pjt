@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "../dist/out-tsc",
+    "declaration": true,
+    "types": ["node"],
+    "esModuleInterop": true,
+    "paths": {
+      "@pjt/core": ["../../core/src/index.ts"],
+      "@pjt/eslint": ["../../eslint/src/index.ts"],
+      "@pjt/prettier": ["../../prettier/src/index.ts"],
+      "@pjt/cli": ["../../cli/src/index.ts"],
+      "@pjt/nx": ["./src/index.ts"],
+      "@pjt/packages": ["../../src/index.ts"]
+    }
+  },
+  "exclude": [
+    "jest.config.ts",
+    "jest.config.cts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
+  ],
+  "extends": "./tsconfig.json",
+  "include": ["src/**/*.ts"]
+}

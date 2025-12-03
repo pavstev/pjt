@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Typecheck executor options",
+  "properties": {
+    "minimum": {
+      "description": "Check only the minimum required files",
+      "type": "boolean"
+    },
+    "noErrors": {
+      "description": "Do not print errors",
+      "type": "boolean"
+    },
+    "tsconfig": {
+      "description": "Path to tsconfig.json",
+      "type": "string"
+    }
+  },
+  "required": [],
+  "title": "Typecheck executor",
+  "type": "object",
+  "version": 2
+}

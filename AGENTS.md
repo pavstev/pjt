@@ -2,13 +2,14 @@
 
 ## Commands
 
-- **Build**: `pnpm build` (Unbuild to CommonJS)
+- **Build**: `pnpm build` (esbuild to CommonJS)
 - **Test all**: `pnpm test` (Vitest)
 - **Test single**: `vitest run src/<file>.test.ts`
 - **Type check**: `pnpm typecheck` (tsc --noEmit)
 - **Lint**: `pnpm lint` (ESLint with --fix)
 - **Format**: `pnpm format` (Prettier)
-- **All checks**: `pnpm all` (format + lint + build + typecheck + test)
+- **All checks**: `pnpm all` (format + lint + build + typecheck + test,
+  sequential)
 
 ## Code Style
 
@@ -32,4 +33,4 @@
 ## Dependencies
 
 - Runtime: citty, consola, package-manager-detector, tinyexec, zod
-- Dev: TypeScript, Unbuild, Vitest, ESLint, Prettier
+- Dev: TypeScript, esbuild, Vitest, ESLint, Prettier

@@ -1,0 +1,18 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "eslint",
+  "projectType": "library",
+  "sourceRoot": "packages/eslint/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "main": "packages/eslint/src/index.ts",
+        "tsConfig": "packages/eslint/tsconfig.lib.json",
+        "outputPath": "packages/eslint/dist"
+      },
+      "outputs": ["{projectRoot}/dist"]
+    }
+  }
+}

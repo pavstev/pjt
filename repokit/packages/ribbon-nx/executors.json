@@ -1,0 +1,19 @@
+{
+  "executors": {
+    "astro-build": {
+      "description": "build executor",
+      "implementation": "./src/executors/astro-build/build",
+      "schema": "./src/executors/astro-build/schema.json"
+    },
+    "astro-check": {
+      "description": "typecheck executor",
+      "implementation": "./src/executors/astro-check/astro-check",
+      "schema": "./src/executors/astro-check/schema.json"
+    },
+    "oxlint": {
+      "description": "Run oxlint on the given files",
+      "implementation": "./src/executors/oxlint/oxlint",
+      "schema": "./src/executors/oxlint/schema.json"
+    }
+  }
+}

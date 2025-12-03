@@ -1,5 +1,8 @@
 packages:
-  - "."
-  - "docs"
+  - "packages/*"
 
 dangerouslyAllowAllBuilds: true
+ignoreWorkspaceRootCheck: true
+engineStrict: true
+packageManagerStrictVersion: true
+sharedWorkspaceLockfile: true

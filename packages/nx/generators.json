@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "configure-prettier": {
+      "factory": "./src/generators/configure-prettier/generator",
+      "schema": "./src/generators/configure-prettier/schema.json",
+      "description": "configure-prettier generator"
+    }
+  }
+}

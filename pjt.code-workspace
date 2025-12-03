@@ -10,13 +10,40 @@
   },
   "folders": [
     {
+      "name": "✨ @pjt/monorepo",
       "path": "."
+    },
+    {
+      "name": "📦 @pjt/cli",
+      "path": "packages/cli"
+    },
+    {
+      "name": "📦 @pjt/core",
+      "path": "packages/core"
+    },
+    {
+      "name": "📦 @pjt/docs",
+      "path": "packages/docs"
+    },
+    {
+      "name": "📦 @pjt/eslint",
+      "path": "packages/eslint"
+    },
+    {
+      "name": "📦 @pjt/nx",
+      "path": "packages/nx"
+    },
+    {
+      "name": "📦 @pjt/prettier",
+      "path": "packages/prettier"
     }
   ],
   "settings": {
     "files.exclude": {
       "node_modules/": true,
-      "dist/": true
+      "dist/": true,
+      "packages/": true,
+      "repokit/": true
     },
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.patterns": {

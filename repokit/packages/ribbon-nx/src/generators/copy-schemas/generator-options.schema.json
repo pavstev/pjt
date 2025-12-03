@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "map": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "pattern": "^\\.\\/node_modules\\/.*\\.json$",
+            "type": "string"
+          },
+          {
+            "pattern": "^https:\\/\\/.+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "outputDir": {
+      "type": "string"
+    }
+  },
+  "required": [],
+  "type": "object"
+}

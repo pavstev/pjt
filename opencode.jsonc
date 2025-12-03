@@ -43,16 +43,6 @@
       "command": ["npx", "-y", "nx-mcp@latest"],
       "enabled": true
     },
-    "knip": {
-      "type": "local",
-      "command": ["npx", "-y", "@genar/knip-mcp-server@latest"],
-      "enabled": true,
-      "environment": {
-        "KNIP_PROJECT_ROOT": ".",
-        "KNIP_LOG_LEVEL": "info",
-        "KNIP_SAFE_MODE": "true"
-      }
-    },
     "cloudflare-browser": {
       "type": "remote",
       "url": "https://browser.mcp.cloudflare.com/mcp",

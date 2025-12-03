@@ -9,7 +9,7 @@ src/
 .gitignore
 .npmignore
 tsconfig.json
-vitest.config.ts
+jest.config.ts
 
 # Development files
 .env
@@ -23,3 +23,4 @@ pnpm-workspace.yaml
 
 # Include build output
 !dist/
+.astro/

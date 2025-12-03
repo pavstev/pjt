@@ -1,13 +1,23 @@
 {
   "exclude": [
-    "vite.config.ts",
+    "jest.config.ts",
     "eslint.config.ts",
     "knip.config.ts",
     "prettier.config.ts"
   ],
   "extends": "./tsconfig.base.json",
   "references": [
-    { "path": "./tsconfig.build.json" },
-    { "path": "./tsconfig.spec.json" }
+    {
+      "path": "./packages/prettier"
+    },
+    {
+      "path": "./packages/eslint"
+    },
+    {
+      "path": "./packages/core"
+    },
+    {
+      "path": "./packages/cli"
+    }
   ]
 }

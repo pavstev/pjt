@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["ES2022"],
@@ -11,6 +12,15 @@
     "strict": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
-    "target": "ES2022"
+    "target": "ES2022",
+    "paths": {
+      "@pjt/core": ["packages/core/src/index.ts"],
+      "@pjt/eslint": ["packages/eslint/src/index.ts"],
+      "@pjt/prettier": ["packages/prettier/src/index.ts"],
+      "@pjt/cli": ["packages/cli/src/index.ts"],
+      "@pjt/nx": ["packages/nx/src/index.ts"],
+      "@pjt/packages": ["packages/src/index.ts"],
+      "@pjt/pjt-nx": ["pjt-nx/src/index.ts"]
+    }
   }
 }

@@ -1,0 +1,45 @@
+{
+  "author": {
+    "name": "Stevan Pavlovic",
+    "email": "hi@stevanpavlovic.com",
+    "url": "https://stevanpavlovic.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/pavstev/pjt/issues"
+  },
+  "dependencies": {
+    "@pjt/core": "workspace:*",
+    "consola": "^3.4.2",
+    "jest": "^30.2.0",
+    "libnpmsearch": "9.0.1",
+    "prettier": "^3.7.4",
+    "read-package-up": "^12.0.0",
+    "zod": "4.1.13"
+  },
+  "description": "Prettier configurations for pjt",
+  "devDependencies": {
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "zod": "4.1.13"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/prettier/src/index.d.ts",
+      "import": "./dist/prettier/src/index.js",
+      "require": "./dist/prettier/src/index.js"
+    }
+  },
+  "files": ["./dist/prettier"],
+  "homepage": "https://pjt.stevanpavlovic.com",
+  "keywords": ["prettier", "config", "formatting"],
+  "license": "MIT",
+  "main": "./dist/prettier/src/index.js",
+  "name": "@pjt/prettier",
+  "repository": {
+    "type": "git",
+    "directory": "./packages/prettier",
+    "url": "git+https://github.com/pavstev/pjt.git"
+  },
+  "types": "./dist/prettier/src/index.d.ts",
+  "version": "1.0.0"
+}

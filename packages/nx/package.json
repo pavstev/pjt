@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@nx/devkit": "22.1.3",
+    "@pjt/prettier": "workspace:*"
+  },
+  "generators": "./generators.json",
+  "main": "./src/index.ts",
+  "name": "@pjt/nx",
+  "private": true,
+  "type": "commonjs",
+  "types": "./src/index.ts",
+  "version": "0.0.1"
+}
