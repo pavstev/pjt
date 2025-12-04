@@ -152,7 +152,5 @@
     "all": "nx run-many -t=build,lint,typecheck"
   },
   "version": "1.0.0",
-  "workspaces": [
-    "packages/*"
-  ]
+  "workspaces": ["packages/*"]
 }

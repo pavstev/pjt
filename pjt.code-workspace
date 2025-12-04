@@ -62,9 +62,7 @@
     "typescript.preferences.importModuleSpecifier": "relative",
     "typescript.suggest.autoImports": true,
     "emmet.includeLanguages": {},
-    "cSpell.words": [
-      "globify"
-    ],
+    "cSpell.words": ["globify"],
     "[json]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
     },

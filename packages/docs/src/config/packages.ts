@@ -144,4 +144,19 @@ Or in package.json:
 \`\`\`
 `,
   },
+  schemas: {
+    customContent: () => `
+Zod schemas for validating prettier configurations and plugin definitions.
+
+## Usage
+
+Import the schemas to validate your prettier configurations:
+
+\`\`\`typescript
+import { PluginDefinitionsSchema } from '@pjt/schemas';
+
+const config = PluginDefinitionsSchema.parse(yourConfig);
+\`\`\`
+`,
+  },
 };

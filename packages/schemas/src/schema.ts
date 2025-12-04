@@ -45,7 +45,7 @@ export const PluginDefinitionSchema = z
 
 export const PluginDefinitionsSchema = z.object({
   $schema: z.string(),
-  plugins: z.record(z.string(), PluginConditionSchema),
+  plugins: z.record(z.string(), PluginDefinitionSchema),
 });
 
 export type BaseConfigOptions = {

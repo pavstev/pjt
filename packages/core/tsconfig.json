@@ -2,7 +2,8 @@
   "compilerOptions": {
     "composite": true,
     "declaration": true,
-    "outDir": "../../dist/out-tsc"
+    "outDir": "../../dist/out-tsc",
+    "rootDir": "."
   },
   "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts", "**/*.stories.ts"],
   "extends": "../../tsconfig.base.json",

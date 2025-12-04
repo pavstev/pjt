@@ -20,16 +20,6 @@
         "fix": true,
         "max-warnings": 0
       }
-    },
-    "typecheck": {
-      "executor": "@nx/js:tsc",
-      "options": {
-        "main": "packages/eslint/src/index.ts",
-        "tsConfig": "packages/eslint/tsconfig.lib.json",
-        "outputPath": "packages/eslint/dist",
-        "skipLibCheck": true
-      },
-      "outputs": ["{projectRoot}/dist"]
     }
   }
 }
