@@ -2,10 +2,11 @@ import { promises as fs } from "node:fs";
 
 import type { CommandExecutor } from "./command-executor";
 import type { Git } from "./git";
-import type { Logger } from "./logger";
+import type { Logger } from "./lib/logger";
 import type { ActionHandler, CommandDefinition, CommandOption } from "./types";
 
-import { CliError, CliErrorMessages } from "./types";
+import { createCliError } from "./errors";
+import { CliErrorMessages } from "./types";
 
 export type CliUtils = {
   addCommandOptions(command: unknown, options: CommandOption[]): void;
@@ -44,19 +45,19 @@ export const createCliUtils = (logger: Logger): CliUtils => {
         "code" in error &&
         error.code === "ENOENT"
       ) {
-        throw new CliError(CliErrorMessages.NOT_A_GIT_REPOSITORY, {
+        throw createCliError(CliErrorMessages.NOT_A_GIT_REPOSITORY, {
           cause: error,
         });
       }
 
-      throw new CliError(CliErrorMessages.FAILED_TO_CHECK_GIT_REPOSITORY, {
+      throw createCliError(CliErrorMessages.FAILED_TO_CHECK_GIT_REPOSITORY, {
         cause: error,
       });
     }
   };
 
   const handleError = (error: unknown) => {
-    if (error instanceof CliError) {
+    if (error instanceof Error && error.name === "CliError") {
       logger.error(`${error.name}: ${error.message}`);
       throw error;
     }

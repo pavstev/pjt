@@ -36,3 +36,10 @@
 
 - Runtime: citty, consola, package-manager-detector, tinyexec, zod
 - Dev: TypeScript, Nx, Vitest, ESLint, Prettier
+
+## Active Technologies
+- TypeScript 5.9+ with strict mode enabled + citty, consola, package-manager-detector, tinyexec, zod (001-code-deduplication-refactor)
+- N/A (code refactoring, no new data storage) (001-code-deduplication-refactor)
+
+## Recent Changes
+- 001-code-deduplication-refactor: Added TypeScript 5.9+ with strict mode enabled + citty, consola, package-manager-detector, tinyexec, zod

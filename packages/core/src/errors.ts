@@ -10,9 +10,11 @@ export enum CliErrorMessages {
   NOT_A_GIT_REPOSITORY = "Not a git repository",
 }
 
-export class CliError extends Error {
-  constructor(message: string, options?: { cause?: unknown }) {
-    super(message, options);
-    this.name = "CliError";
-  }
-}
+export const createCliError = (
+  message: string,
+  options?: { cause?: unknown },
+): Error => {
+  const error = new Error(message, options);
+  error.name = "CliError";
+  return error;
+};

@@ -1,6 +1,6 @@
 import type { Config } from "eslint/config";
 
-import { getIgnorePatterns, Logger } from "@pjt/core";
+import { createLogger, getIgnorePatterns } from "@pjt/core";
 import { defineConfig } from "eslint/config";
 
 import { cspellConfig } from "./cspell";
@@ -18,7 +18,7 @@ export const defaultConfig = async (): Promise<Config[]> =>
   defineConfig([
     {
       ignores: [
-        ...(await getIgnorePatterns(new Logger())),
+        ...(await getIgnorePatterns(createLogger())),
         "dist/",
         "build/",
         "out/",

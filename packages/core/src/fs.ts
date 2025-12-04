@@ -2,9 +2,10 @@ import { globifyGitIgnore } from "globify-gitignore";
 import { promises as fs, readdirSync } from "node:fs";
 import { join } from "node:path";
 
-import type { Logger } from "./logger";
+import type { Logger } from "./lib/logger";
 
-import { CliError, CliErrorMessages } from "./types";
+import { createCliError } from "./errors";
+import { CliErrorMessages } from "./types";
 
 export const getIgnorePatterns = async (logger: Logger): Promise<string[]> => {
   try {
@@ -37,7 +38,7 @@ export const getIgnorePatterns = async (logger: Logger): Promise<string[]> => {
     logger.error(
       `Failed to read ignore patterns: ${error instanceof Error ? error.message : String(error)}`,
     );
-    throw new CliError(CliErrorMessages.FAILED_TO_READ_IGNORE_PATTERNS, {
+    throw createCliError(CliErrorMessages.FAILED_TO_READ_IGNORE_PATTERNS, {
       cause: error,
     });
   }
@@ -66,7 +67,7 @@ export const removeEmptyDirectories = async (
     logger.error(
       `Failed to remove empty directories in ${dir}: ${error instanceof Error ? error.message : String(error)}`,
     );
-    throw new CliError(
+    throw createCliError(
       CliErrorMessages.FAILED_TO_PROCESS_DIRECTORY_TEMPLATE.replace("%s", dir),
       { cause: error },
     );
@@ -75,20 +76,20 @@ export const removeEmptyDirectories = async (
 
 export const validateDirectory = async (dir: string): Promise<void> => {
   if (!dir || typeof dir !== "string") {
-    throw new CliError(CliErrorMessages.INVALID_DIRECTORY_PATH);
+    throw createCliError(CliErrorMessages.INVALID_DIRECTORY_PATH);
   }
 
   try {
     const stat = await fs.stat(dir);
     if (!stat.isDirectory()) {
-      throw new CliError(
+      throw createCliError(
         CliErrorMessages.NOT_A_DIRECTORY_TEMPLATE.replace("%s", dir),
       );
     }
   } catch (error) {
-    if (error instanceof CliError) throw error;
+    if (error instanceof Error && error.name === "CliError") throw error;
 
-    throw new CliError(
+    throw createCliError(
       CliErrorMessages.DIRECTORY_NOT_ACCESSIBLE_TEMPLATE.replace("%s", dir),
       {
         cause: error,

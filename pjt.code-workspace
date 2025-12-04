@@ -14,20 +14,12 @@
       "path": "."
     },
     {
-      "name": "📦 @pjt/cli",
-      "path": "packages/cli"
-    },
-    {
       "name": "📦 @pjt/core",
       "path": "packages/core"
     },
     {
       "name": "📦 @pjt/nx",
       "path": "packages/nx"
-    },
-    {
-      "name": "📦 @pjt/prettier",
-      "path": "packages/prettier"
     },
     {
       "name": "📦 @pjt/schemas",

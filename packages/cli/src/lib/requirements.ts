@@ -1,4 +1,4 @@
-import { execSync } from "node:child_process";
+import { commandExists, isGitRepository } from "@pjt/core";
 
 import { error } from "./logger";
 
@@ -12,13 +12,12 @@ export const requireCommand = (
   command: string,
   errorMessage?: string,
 ): boolean => {
-  try {
-    execSync(`which ${command}`, { stdio: "ignore" });
+  if (commandExists(command)) {
     return true;
-  } catch {
-    error(errorMessage ?? `Error: ${command} is not installed or not in PATH.`);
-    return false;
   }
+
+  error(errorMessage ?? `Error: ${command} is not installed or not in PATH.`);
+  return false;
 };
 
 /**
@@ -29,14 +28,10 @@ export const requireCommand = (
 export const requireGitRepo = (
   errorMessage = "fatal: not a git repository.",
 ): boolean => {
-  try {
-    execSync("git rev-parse --git-dir", {
-      cwd: process.cwd(),
-      stdio: "ignore",
-    });
+  if (isGitRepository()) {
     return true;
-  } catch {
-    error(errorMessage);
-    return false;
   }
+
+  error(errorMessage);
+  return false;
 };

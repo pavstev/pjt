@@ -4,6 +4,6 @@ export * from "./errors";
 export * from "./export-schema";
 export * from "./fs";
 export * from "./git";
-export * from "./logger";
+export * from "./lib";
 export * from "./package-manager";
 export * from "./types";

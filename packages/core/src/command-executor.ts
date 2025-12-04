@@ -1,8 +1,8 @@
 import { spawn } from "node:child_process";
 
-import type { Logger } from "./logger";
+import type { Logger } from "./lib/logger";
 
-import { CliError, CliErrorMessages } from "./types";
+import { CliErrorMessages, createCliError } from "./types";
 
 export type CommandExecutor = {
   exec(scriptName: string): Promise<void>;
@@ -33,7 +33,7 @@ export const createCommandExecutor = (logger: Logger): CommandExecutor => ({
         } else {
           logger.error(`Script failed: npm run ${scriptName}`);
           reject(
-            new CliError(
+            createCliError(
               CliErrorMessages.COMMAND_EXECUTION_FAILED_TEMPLATE.replace(
                 "%s",
                 `npm run ${scriptName}`,
@@ -44,7 +44,7 @@ export const createCommandExecutor = (logger: Logger): CommandExecutor => ({
       });
       child.on("error", (err: unknown) => {
         reject(
-          new CliError(
+          createCliError(
             CliErrorMessages.COMMAND_EXECUTION_FAILED_TEMPLATE.replace(
               "%s",
               `npm run ${scriptName}`,
@@ -87,7 +87,7 @@ export const createCommandExecutor = (logger: Logger): CommandExecutor => ({
         } else {
           logger.error(`Command failed: ${command}`);
           reject(
-            new CliError(
+            createCliError(
               CliErrorMessages.COMMAND_EXECUTION_FAILED_TEMPLATE.replace(
                 "%s",
                 command,
@@ -98,7 +98,7 @@ export const createCommandExecutor = (logger: Logger): CommandExecutor => ({
       });
       child.on("error", (err: unknown) => {
         reject(
-          new CliError(
+          createCliError(
             CliErrorMessages.COMMAND_EXECUTION_FAILED_TEMPLATE.replace(
               "%s",
               command,

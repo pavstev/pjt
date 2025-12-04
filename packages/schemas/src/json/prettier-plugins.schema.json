@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "additionalProperties": false,
+  "type": "object",
   "properties": {
     "$schema": {
       "type": "string"
@@ -15,7 +15,11 @@
         "properties": {
           "condition": {
             "type": "string",
-            "enum": ["always", "git-tracked", "never"]
+            "enum": [
+              "always",
+              "git-tracked",
+              "never"
+            ]
           },
           "description": {
             "type": "string",
@@ -52,7 +56,10 @@
                   "properties": {
                     "arrowParens": {
                       "type": "string",
-                      "enum": ["always", "avoid"]
+                      "enum": [
+                        "always",
+                        "avoid"
+                      ]
                     },
                     "bracketSameLine": {
                       "type": "boolean"
@@ -62,15 +69,26 @@
                     },
                     "embeddedLanguageFormatting": {
                       "type": "string",
-                      "enum": ["auto", "off"]
+                      "enum": [
+                        "auto",
+                        "off"
+                      ]
                     },
                     "endOfLine": {
                       "type": "string",
-                      "enum": ["lf", "crlf", "cr", "auto"]
+                      "enum": [
+                        "lf",
+                        "crlf",
+                        "cr",
+                        "auto"
+                      ]
                     },
                     "experimentalOperatorPosition": {
                       "type": "string",
-                      "enum": ["start", "end"]
+                      "enum": [
+                        "start",
+                        "end"
+                      ]
                     },
                     "experimentalTernaries": {
                       "type": "boolean"
@@ -88,7 +106,11 @@
                     },
                     "quoteProps": {
                       "type": "string",
-                      "enum": ["as-needed", "consistent", "preserve"]
+                      "enum": [
+                        "as-needed",
+                        "consistent",
+                        "preserve"
+                      ]
                     },
                     "semi": {
                       "type": "boolean"
@@ -106,7 +128,11 @@
                     },
                     "trailingComma": {
                       "type": "string",
-                      "enum": ["all", "es5", "none"]
+                      "enum": [
+                        "all",
+                        "es5",
+                        "none"
+                      ]
                     },
                     "useTabs": {
                       "type": "boolean"
@@ -115,16 +141,24 @@
                   "additionalProperties": {}
                 }
               },
-              "required": ["files", "options"],
+              "required": [
+                "files",
+                "options"
+              ],
               "additionalProperties": false
             }
           }
         },
-        "required": ["condition"],
+        "required": [
+          "condition"
+        ],
         "additionalProperties": false
       }
     }
   },
-  "required": ["$schema", "plugins"],
-  "type": "object"
+  "required": [
+    "$schema",
+    "plugins"
+  ],
+  "additionalProperties": false
 }

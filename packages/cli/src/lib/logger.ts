@@ -1,28 +1,26 @@
 import type { Logger } from "./types";
 
-class ModernLogger implements Logger {
-  public debug = (message: string): void => {
+export const createLogger = (): Logger => ({
+  debug: (message: string): void => {
     console.log(`🔍 ${message}`);
-  };
+  },
 
-  public error = (message: string): void => {
+  error: (message: string): void => {
     console.error(`✗ ${message}`);
-  };
+  },
 
-  public info = (message: string): void => {
+  info: (message: string): void => {
     console.log(`ℹ ${message}`);
-  };
+  },
 
-  public success = (message: string): void => {
+  success: (message: string): void => {
     console.log(`✓ ${message}`);
-  };
+  },
 
-  public warn = (message: string): void => {
+  warn: (message: string): void => {
     console.warn(`⚠ ${message}`);
-  };
-}
-
-export const createLogger = (): Logger => new ModernLogger();
+  },
+});
 
 // Additional logger functions for compatibility
 export const error = (message: string): void => {
