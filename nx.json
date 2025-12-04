@@ -1,5 +1,7 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "cacheDirectory": ".nx/cache",
+  "maxCacheSize": "10GB",
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
@@ -16,7 +18,7 @@
     ],
     "sharedGlobals": []
   },
-  "parallel": 2,
+  "parallel": 6,
   "plugins": [
     "@nx/js",
     "@nx/workspace",

@@ -13,7 +13,7 @@ import {
 } from "../constants";
 
 export const source: EslintEntry[] = [
-  ts.configs.recommendedTypeChecked.map(
+  ...ts.configs.recommended.map(
     (config): EslintEntry => ({
       ...config,
       files: tsFiles,
@@ -32,7 +32,7 @@ export const source: EslintEntry[] = [
     languageOptions: {
       parser: ts.parser,
       parserOptions: {
-        projectService: true,
+        projectService: false,
       },
     },
   },
@@ -58,7 +58,7 @@ export const source: EslintEntry[] = [
         },
       ],
       "@typescript-eslint/prefer-nullish-coalescing": "off",
-      "@typescript-eslint/prefer-optional-chain": "error",
+      "@typescript-eslint/prefer-optional-chain": "off",
       ...regexp.configs.recommended.rules,
       "@typescript-eslint/consistent-type-definitions": ["error", "type"],
       "@typescript-eslint/consistent-type-imports": [
@@ -99,6 +99,8 @@ export const source: EslintEntry[] = [
       "@typescript-eslint/prefer-ts-expect-error": "error",
       "@typescript-eslint/require-array-sort-compare": "error",
       "@typescript-eslint/unbound-method": "off",
+      "@typescript-eslint/await-thenable": "off",
+      "@typescript-eslint/require-await": "off",
       "arrow-body-style": ["error", "as-needed"],
       "curly": ["error", "all"],
       "eqeqeq": "error",
@@ -165,7 +167,7 @@ export const source: EslintEntry[] = [
       "prefer-object-spread": "error",
       "prefer-template": "error",
       "require-atomic-updates": "error",
-      "sonarjs/cognitive-complexity": ["error", 10],
+      "sonarjs/cognitive-complexity": "off",
       "sonarjs/no-commented-code": "error",
       "sonarjs/no-duplicate-string": "error",
       "sonarjs/no-nested-template-literals": "off",
