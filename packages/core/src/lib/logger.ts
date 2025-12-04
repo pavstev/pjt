@@ -14,6 +14,7 @@ export type Logger = {
   error: (message: string) => void;
   info: (message: string) => void;
   setLevel: (level: LogLevel) => void;
+  success: (message: string) => void;
   warn: (message: string) => void;
 };
 
@@ -52,6 +53,10 @@ export const createLogger = (): Logger => {
 
     setLevel: (newLevel: LogLevel): void => {
       level = newLevel;
+    },
+
+    success: (message: string): void => {
+      consola.success(message);
     },
 
     warn: (message: string): void => {

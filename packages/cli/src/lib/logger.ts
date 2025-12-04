@@ -1,28 +1,9 @@
-import type { Logger } from "./types";
-
-export const createLogger = (): Logger => ({
-  debug: (message: string): void => {
-    console.log(`🔍 ${message}`);
-  },
-
-  error: (message: string): void => {
-    console.error(`✗ ${message}`);
-  },
-
-  info: (message: string): void => {
-    console.log(`ℹ ${message}`);
-  },
-
-  success: (message: string): void => {
-    console.log(`✓ ${message}`);
-  },
-
-  warn: (message: string): void => {
-    console.warn(`⚠ ${message}`);
-  },
-});
+// Re-export from core for consistency
+export * from "@pjt/core";
 
 // Additional logger functions for compatibility
+import { createLogger } from "@pjt/core";
+
 export const error = (message: string): void => {
   createLogger().error(message);
 };

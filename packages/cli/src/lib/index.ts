@@ -11,4 +11,4 @@ export * from "./process";
 export * from "./requirements";
 
 // General utilities
-export * from "./utils";
+export * from "@pjt/core";

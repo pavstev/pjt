@@ -78,25 +78,28 @@ export const ensureArray = <T>(arrayLike: T | T[]): T[] =>
 export const measureExecutionTime = <T>(
   fn: () => T,
 ): { result: T; duration: number } => {
-  const start = Date.now();
+  const start = performance.now();
   const result = fn();
-  const duration = Date.now() - start;
+  const duration = performance.now() - start;
   return { result, duration };
 };
 
 /**
  * Memoize a function
  */
-export const memoize = <T extends (...args: any[]) => any>(fn: T): T => {
-  const cache = new Map<string, ReturnType<T>>();
-  return ((...args: any[]) => {
+export const memoize = <Args extends readonly unknown[], Return>(
+  fn: (...args: Args) => Return,
+): ((...args: Args) => Return) => {
+  const cache = new Map<string, Return>();
+  return (...args: Args) => {
     const key = JSON.stringify(args);
     if (cache.has(key)) {
-      return cache.get(key);
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      return cache.get(key)!;
     }
 
     const result = fn(...args);
     cache.set(key, result);
     return result;
-  }) as T;
+  };
 };

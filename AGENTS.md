@@ -40,6 +40,8 @@
 ## Active Technologies
 - TypeScript 5.9+ with strict mode enabled + citty, consola, package-manager-detector, tinyexec, zod (001-code-deduplication-refactor)
 - N/A (code refactoring, no new data storage) (001-code-deduplication-refactor)
+- TypeScript 5.9+ with strict mode enabled + Nx 22.1.3, ESLint 9.39.1, TypeScript 5.9.3, pnpm (001-build-lint-opt)
+- N/A (build system optimization) (001-build-lint-opt)
 
 ## Recent Changes
 - 001-code-deduplication-refactor: Added TypeScript 5.9+ with strict mode enabled + citty, consola, package-manager-detector, tinyexec, zod
